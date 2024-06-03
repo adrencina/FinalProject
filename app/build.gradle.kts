@@ -44,16 +44,16 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     // ViewModel and LiveData
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
     // Navigation component
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation (libs.androidx.navigation.fragment.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
     // Fragment
-    implementation ("androidx.fragment:fragment-ktx:1.7.1")
+    implementation (libs.androidx.fragment.ktx)
     // Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
