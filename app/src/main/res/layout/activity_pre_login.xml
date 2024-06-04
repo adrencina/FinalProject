@@ -12,6 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/logo_rla"
         android:src="@drawable/ic_logo_rla"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,18 +23,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="@font/robotobold"
         android:text="@string/refactoring_life_nacademy"
         android:textColor="@color/title_rla"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo_rla" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_init_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
         app:cardElevation="5dp"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="150dp"
@@ -48,15 +49,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:fontFamily="@font/robotobold"
             android:text="@string/iniciar_sesi_n"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_register"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
         app:cardElevation="5dp"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="50dp"
@@ -70,10 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/robotobold"
             android:gravity="center"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -82,8 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="En caso de tener problemas comunicarse con soporte"
-        android:textStyle="bold"
+        android:text="@string/en_caso_de_tener_problemas_comunicarse_con_soporte"
+        android:fontFamily="@font/robotobold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
