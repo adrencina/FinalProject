@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+
+    <string name="refactoring_life_nacademy">Refactoring Life\nAcademy</string>
+    <string name="register">Register</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
 </resources>
