@@ -53,8 +53,6 @@
             android:text="@string/iniciar_sesi_n"
             android:textColor="@color/white"
             android:textSize="12sp" />
-            android:textSize="12sp"
-            android:fontFamily="@font/robotobold"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
