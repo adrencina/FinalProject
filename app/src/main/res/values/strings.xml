@@ -3,4 +3,12 @@
     <string name="refactoring_life_nacademy">Refactoring Life\nAcademy</string>
     <string name="register">Register</string>
     <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="app_name">FinalProject</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">Email</string>
+    <string name="icono_de_mail">icono de mail</string>
+    <string name="password">Contraseña</string>
+    <string name="icono_de_password">icono de password</string>
+    <string name="Confirmacontraseña">Confirmar contraseña</string>
+    <string name="mostrar_contrase_a">Mostrar contraseña</string>
 </resources>

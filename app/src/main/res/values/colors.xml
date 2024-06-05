@@ -5,4 +5,6 @@
 
     <color name="title_rla">#7353B9</color>
     <color name="btn_pre_login">#5DACE1</color>
+    <color name="et_hint">#9F9F9F</color>
+
 </resources>

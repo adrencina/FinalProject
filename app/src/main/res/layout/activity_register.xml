@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:layout_marginStart="37dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:fontFamily="@font/robotocondensedsemibold"
+        android:text="@string/registrarse"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="284dp"
+        android:layout_height="54dp"
+        android:autofillHints="emailAddress"
+        android:hint="@string/email"
+        android:fontFamily="@font/robotoregular"
+        android:textColor="@color/et_hint"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp"
+        android:background="@drawable/edittext_border"
+        android:paddingStart="37dp"
+        android:layout_marginTop="136dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageView
+        android:id="@+id/ic_mail"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/icono_de_mail"
+        android:src="@drawable/ic_mail"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_email"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toTopOf="@+id/et_email"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="284dp"
+        android:layout_height="54dp"
+        android:autofillHints="password"
+        android:background="@drawable/edittext_border"
+        android:fontFamily="@font/robotoregular"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingStart="37dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/et_hint"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        tools:ignore="RtlSymmetry"/>
+
+    <ImageView
+        android:id="@+id/ic_password"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/icono_de_password"
+        android:src="@drawable/ic_password"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_password"/>
+
+    <CheckBox
+        android:id="@+id/cb_password"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="9dp"
+        android:fontFamily="@font/robotocondensedsemibold"
+        android:text="@string/mostrar_contrase_a"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/cb_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <EditText
+        android:id="@+id/et_confirm_password"
+        android:layout_width="284dp"
+        android:layout_height="54dp"
+        android:autofillHints="password"
+        android:background="@drawable/edittext_border"
+        android:fontFamily="@font/robotoregular"
+        android:hint="@string/Confirmacontraseña"
+        android:inputType="textPassword"
+        android:paddingStart="37dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/et_hint"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/ic_confirm_password"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="9dp"
+        android:contentDescription="@string/icono_de_password"
+        android:src="@drawable/ic_password"
+        app:layout_constraintBottom_toBottomOf="@+id/et_confirm_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_confirm_password" />
+
+    <CheckBox
+        android:id="@+id/cb_show_password"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="9dp"
+        android:fontFamily="@font/robotocondensedsemibold"
+        android:text="@string/mostrar_contrase_a"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/cb_show_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
