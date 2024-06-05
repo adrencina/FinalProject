@@ -16,8 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         navigateToPreLogin()
     }
-    //esta fun es para ir directo a preLogin
-    private fun navigateToPreLogin(){
+    private fun navigateToPreLogin() {
         val intent = Intent(this, PreLoginActivity::class.java)
         startActivity(intent)
         finish()

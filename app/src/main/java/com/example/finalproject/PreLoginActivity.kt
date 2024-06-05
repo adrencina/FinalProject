@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityPreLoginBinding
 
-
 class PreLoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +12,5 @@ class PreLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 }
