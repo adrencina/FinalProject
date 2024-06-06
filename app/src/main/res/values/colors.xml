@@ -6,4 +6,10 @@
     <color name="title_rla">#7353B9</color>
     <color name="btn_pre_login">#5DACE1</color>
 
+    <color name="login_In">#5DADE2</color>
+    <color name="login_loading_bg">#4D000000</color>
+
+    <color name="email_error">#C0392B</color>
+    <color name="btn_logIn_error">#D9D9D9</color>
+
 </resources>
