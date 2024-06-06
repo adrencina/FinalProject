@@ -12,5 +12,6 @@ class PreLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // com
     }
 }
