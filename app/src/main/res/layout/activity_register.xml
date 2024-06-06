@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
@@ -11,38 +12,38 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginStart="@dimen/_37dp"
+        android:layout_marginTop="@dimen/_130dp"
         android:fontFamily="@font/robotocondensedsemibold"
         android:text="@string/registrarse"
         android:textColor="@color/black"
-        android:textSize="36sp"
+        android:textSize="@dimen/_36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_email"
-        android:layout_width="284dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="136dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_54dp"
+        android:layout_marginStart="@dimen/_37dp"
+        android:layout_marginTop="@dimen/_136dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:paddingStart="37dp"
+        android:paddingStart="@dimen/_37dp"
         android:textColor="@color/et_hint"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/ic_mail"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="9dp"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_9dp"
         android:contentDescription="@string/icono_de_mail"
         android:src="@drawable/ic_mail"
         app:layout_constraintBottom_toBottomOf="@+id/et_email"
@@ -51,27 +52,27 @@
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="284dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_54dp"
+        android:layout_marginStart="@dimen/_37dp"
+        android:layout_marginTop="@dimen/_36dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:paddingStart="37dp"
+        android:paddingStart="@dimen/_37dp"
         android:textColor="@color/et_hint"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
         tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/ic_password"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="9dp"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_9dp"
         android:contentDescription="@string/icono_de_password"
         android:src="@drawable/ic_password"
         app:layout_constraintBottom_toBottomOf="@+id/et_password"
@@ -80,10 +81,10 @@
 
     <CheckBox
         android:id="@+id/cb_password"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="@dimen/_18dp"
+        android:layout_height="@dimen/_18dp"
+        android:layout_marginStart="@dimen/_38dp"
+        android:layout_marginTop="@dimen/_5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
@@ -91,37 +92,37 @@
         android:id="@+id/tv_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="@dimen/_9dp"
+        android:layout_marginTop="@dimen/_6dp"
         android:fontFamily="@font/robotocondensedsemibold"
         android:text="@string/mostrar_contrase_a"
-        android:textSize="12sp"
+        android:textSize="@dimen/_12sp"
         app:layout_constraintStart_toEndOf="@+id/cb_password"
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <EditText
         android:id="@+id/et_confirm_password"
-        android:layout_width="284dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_54dp"
+        android:layout_marginStart="@dimen/_37dp"
+        android:layout_marginTop="@dimen/_36dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
         android:hint="@string/Confirmacontraseña"
         android:inputType="textPassword"
-        android:paddingStart="37dp"
+        android:paddingStart="@dimen/_37dp"
         android:textColor="@color/et_hint"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password"
         tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/ic_confirm_password"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="9dp"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_9dp"
         android:contentDescription="@string/icono_de_password"
         android:src="@drawable/ic_password"
         app:layout_constraintBottom_toBottomOf="@+id/et_confirm_password"
@@ -130,33 +131,33 @@
 
     <CheckBox
         android:id="@+id/cb_show_password"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="@dimen/_18dp"
+        android:layout_height="@dimen/_18dp"
+        android:layout_marginStart="@dimen/_38dp"
+        android:layout_marginTop="@dimen/_5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="@dimen/_9dp"
+        android:layout_marginTop="@dimen/_6dp"
         android:fontFamily="@font/robotocondensedsemibold"
         android:text="@string/mostrar_contrase_a"
-        android:textSize="12sp"
+        android:textSize="@dimen/_12sp"
         app:layout_constraintStart_toEndOf="@+id/cb_show_password"
         app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_init_login"
-        android:layout_width="284dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="71dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_43dp"
+        android:layout_marginStart="@dimen/_37dp"
+        android:layout_marginBottom="@dimen/_71dp"
         app:cardBackgroundColor="@color/btn_pre_login"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="5dp"
+        app:cardCornerRadius="@dimen/_8dp"
+        app:cardElevation="@dimen/_5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -168,19 +169,19 @@
             android:gravity="center"
             android:text="@string/Entrar"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_14sp" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginTop="@dimen/_21dp"
         android:fontFamily="@font/robotoregular"
         android:text="@string/txt_cuenta"
         android:textColor="@color/txt_register"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_init_login" />
 
@@ -188,13 +189,14 @@
         android:id="@+id/tv_bold_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_21dp"
         android:fontFamily="@font/robotocondensedsemibold"
         android:text="@string/txt_registreaqui"
         android:textColor="@color/txt_register"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintStart_toEndOf="@+id/tv_register"
         app:layout_constraintTop_toBottomOf="@+id/cv_init_login" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

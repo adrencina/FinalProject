@@ -16,4 +16,9 @@
     <string name="icono_de_password">icono de password</string>
     <string name="mostrar_contrase_a">Mostrar contraseña</string>
     <string name="Confirmacontraseña">Confirmar contraseña</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="si_no_tienes_una_cuenta">Si no tienes una cuenta,</string>
+    <string name="error_en_el_usuario_o_contrase_a">Error en el usuario o contraseña</string>
+    <string name="registrate_aqui">registrate aqui</string>
 </resources>

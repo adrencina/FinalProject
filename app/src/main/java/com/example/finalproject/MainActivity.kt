@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    fun navigateToPreLogin(){
+    private fun navigateToPreLogin(){
         val intent = Intent(this, PreLoginActivity::class.java)
         startActivity(intent)
         finish()
