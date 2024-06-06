@@ -1,5 +1,6 @@
 package com.example.finalproject
 
+import android.content.Intent
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,9 @@ class PreLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // com
+        binding.cvInitLogin.setOnClickListener {
+            val intent = Intent(this,LoginActivity::class.java )
+            startActivity(intent)
+        }
     }
 }
