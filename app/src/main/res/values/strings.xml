@@ -16,4 +16,5 @@
     <string name="icono_de_password">icono de password</string>
     <string name="mostrar_contrase_a">Mostrar contraseña</string>
     <string name="Confirmacontraseña">Confirmar contraseña</string>
+    <string name="text_error_register">Error en el usuario o contraseña!</string>
 </resources>

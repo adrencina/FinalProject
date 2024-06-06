@@ -24,7 +24,6 @@
         android:id="@+id/et_email"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginStart="37dp"
         android:layout_marginTop="136dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/edittext_border"
@@ -34,6 +33,7 @@
         android:paddingStart="37dp"
         android:textColor="@color/et_hint"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="RtlSymmetry" />
@@ -53,7 +53,6 @@
         android:id="@+id/et_password"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginStart="37dp"
         android:layout_marginTop="36dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
@@ -63,6 +62,7 @@
         android:paddingStart="37dp"
         android:textColor="@color/et_hint"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
         tools:ignore="RtlSymmetry" />
@@ -78,32 +78,31 @@
         app:layout_constraintStart_toStartOf="@+id/et_password"
         app:layout_constraintTop_toTopOf="@+id/et_password" />
 
-    <CheckBox
-        android:id="@+id/cb_password"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
-
-    <TextView
-        android:id="@+id/tv_password"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/robotocondensedsemibold"
-        android:text="@string/mostrar_contrase_a"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/cb_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password">
+
+        <CheckBox
+            android:id="@+id/cb_show_password"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/mostrar_contrase_a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/et_confirm_password"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginStart="37dp"
         android:layout_marginTop="36dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
@@ -113,6 +112,7 @@
         android:paddingStart="37dp"
         android:textColor="@color/et_hint"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password"
         tools:ignore="RtlSymmetry" />
@@ -128,36 +128,37 @@
         app:layout_constraintStart_toStartOf="@+id/et_confirm_password"
         app:layout_constraintTop_toTopOf="@+id/et_confirm_password" />
 
-    <CheckBox
-        android:id="@+id/cb_show_password"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
-
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/robotocondensedsemibold"
-        android:text="@string/mostrar_contrase_a"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/cb_show_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password">
+
+        <CheckBox
+            android:id="@+id/cb_show_conf_password"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/mostrar_contrase_a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_confirm_password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_init_login"
         android:layout_width="284dp"
         android:layout_height="43dp"
-        android:layout_marginStart="37dp"
         android:layout_marginBottom="71dp"
         app:cardBackgroundColor="@color/btn_pre_login"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -171,30 +172,97 @@
             android:textSize="14sp" />
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tv_register"
+    <LinearLayout
+        android:id="@+id/btn_goToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="21dp"
-        android:fontFamily="@font/robotoregular"
-        android:text="@string/txt_cuenta"
         android:textColor="@color/txt_register"
-        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_init_login" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_init_login">
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
+            android:text="@string/txt_cuenta"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_bold_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/robotocondensedsemibold"
+            android:text="@string/txt_registreaqui"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/login_loading_bg"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_bold_register"
+        android:visibility="gone"
+        android:id="@+id/tv_error_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="21dp"
-        android:fontFamily="@font/robotocondensedsemibold"
-        android:text="@string/txt_registreaqui"
-        android:textColor="@color/txt_register"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_register"
-        app:layout_constraintTop_toBottomOf="@+id/cv_init_login" />
+        android:layout_marginBottom="14dp"
+        android:fontFamily="@font/robotomedium"
+        android:text="@string/text_error_register"
+        android:textColor="@color/txt_error_register"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_init_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_error_register"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="71dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/btn_error_register"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/robotobold"
+            android:gravity="center"
+            android:text="@string/Entrar"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
