@@ -1,3 +1,10 @@
 <resources>
+
+    <string name="refactoring_life_nacademy">Refactoring Life\nAcademy</string>
+    <string name="register">Register</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="logo_rla">logo_rla</string>
     <string name="app_name">FinalProject</string>
+    <string name="en_caso_de_tener_problemas_comunicarse_con_soporte">En caso de tener problemas comunicarse con soporte</string>
+
 </resources>
