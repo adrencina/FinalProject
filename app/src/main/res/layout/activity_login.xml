@@ -96,7 +96,7 @@
         android:layout_marginStart="@dimen/_62dp"
         android:layout_marginTop="@dimen/_113dp"
         app:cardBackgroundColor="@color/btn_pre_login"
-        app:cardCornerRadius="@dimen/_10dp"
+        app:cardCornerRadius="@dimen/_8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_Password">
         <TextView
@@ -118,7 +118,7 @@
         android:layout_marginStart="@dimen/_62dp"
         android:layout_marginTop="@dimen/_113dp"
         app:cardBackgroundColor="@color/btn_logIn_error"
-        app:cardCornerRadius="@dimen/_10dp"
+        app:cardCornerRadius="@dimen/_8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_Password">
         <TextView
@@ -132,9 +132,9 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/btn_goToRegister"
-        android:layout_width="@dimen/_277dp"
-        android:layout_height="@dimen/_57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/_62dp"
@@ -145,6 +145,7 @@
             android:textSize="@dimen/_15sp"
             android:text="@string/si_no_tienes_una_cuenta"/>
         <TextView
+            android:id="@+id/btn_goToRegister"
             android:layout_marginStart="@dimen/_4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
