@@ -24,4 +24,5 @@
     <string name="registrate_aqui">registrate aqui</string>
     <string name="inicia_sesion_aqui">inicia sesión aquí</string>
     <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
+    <string name="et_email">Email</string>
 </resources>

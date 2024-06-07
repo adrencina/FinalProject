@@ -17,5 +17,9 @@ class PreLoginActivity : AppCompatActivity() {
             val intent = Intent(this,LoginActivity::class.java )
             startActivity(intent)
         }
+        binding.cvRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
