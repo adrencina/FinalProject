@@ -8,8 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <TextView
 
+
+    <TextView
         android:id="@+id/tv_title_login"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_42dp"
@@ -144,6 +145,7 @@
             android:textSize="@dimen/_15sp"
             android:text="@string/si_no_tienes_una_cuenta"/>
         <TextView
+            android:layout_marginStart="@dimen/_4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registrate_aqui"
