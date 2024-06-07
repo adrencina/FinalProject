@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
@@ -24,7 +25,7 @@
         android:id="@+id/et_email"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="84dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
@@ -53,7 +54,7 @@
         android:id="@+id/et_password"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="46dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
@@ -103,7 +104,7 @@
         android:id="@+id/et_confirm_password"
         android:layout_width="284dp"
         android:layout_height="54dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="46dp"
         android:autofillHints="password"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/robotoregular"
@@ -187,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/txt_cuenta"
+            android:text="@string/si_ya_tienes_una_cuenta"
             android:textSize="16sp" />
 
         <TextView
@@ -196,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:fontFamily="@font/robotocondensedsemibold"
-            android:text="@string/txt_registreaqui"
+            android:text="@string/inicia_sesion_aqui"
             android:textSize="16sp" />
 
     </LinearLayout>
