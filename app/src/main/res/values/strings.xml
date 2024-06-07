@@ -6,12 +6,9 @@
     <string name="logo_rla">logo_rla</string>
     <string name="app_name">FinalProject</string>
     <string name="en_caso_de_tener_problemas_comunicarse_con_soporte">En caso de tener problemas comunicarse con soporte</string>
-    <string name="Entrar">Entrar</string>
-    <string name="txt_cuenta">Si no tienes una cuenta,</string>
-    <string name="txt_registreaqui">registrate aqui</string>
-    <string name="registrarse">Registrarse</string>
+
+
     <string name="email">Email</string>
-    <string name="icono_de_mail">icono de mail</string>
     <string name="password">Contraseña</string>
     <string name="icono_de_password">icono de password</string>
     <string name="mostrar_contrase_a">Mostrar contraseña</string>
