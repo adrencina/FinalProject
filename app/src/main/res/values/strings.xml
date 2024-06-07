@@ -22,4 +22,7 @@
     <string name="inicia_sesion_aqui">inicia sesión aquí</string>
     <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
     <string name="et_email">Email</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="icono_de_mail">icono de mail</string>
+    <string name="Entrar">Entrar</string>
 </resources>

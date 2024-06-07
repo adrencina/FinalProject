@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -25,10 +25,10 @@
         android:id="@+id/ll_mail"
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_54dp"
+        android:layout_marginTop="@dimen/_84dp"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -52,20 +52,20 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/robotoregular"
             android:hint="@string/email"
-            android:textColor="@color/et_hint"
             android:inputType="textEmailAddress"
             android:padding="0dp"
-            android:textSize="@dimen/_16sp"/>
+            android:textColor="@color/et_hint"
+            android:textSize="@dimen/_16sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_password"
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_54dp"
+        android:layout_marginTop="@dimen/_46dp"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_46dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_mail">
@@ -114,10 +114,10 @@
         android:id="@+id/ll_confirm_password"
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_54dp"
+        android:layout_marginTop="@dimen/_46dp"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_46dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_password">
@@ -199,8 +199,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/robotoregular"
-            android:textColor="@color/txt_register"
             android:text="@string/si_ya_tienes_una_cuenta"
+            android:textColor="@color/txt_register"
             android:textSize="@dimen/_16sp" />
 
         <TextView
@@ -209,8 +209,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5dp"
             android:fontFamily="@font/robotocondensedsemibold"
-            android:textColor="@color/txt_register"
             android:text="@string/inicia_sesion_aqui"
+            android:textColor="@color/txt_register"
             android:textSize="@dimen/_16sp" />
 
     </LinearLayout>
@@ -236,7 +236,6 @@
     </LinearLayout>
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_error_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -245,6 +244,7 @@
         android:text="@string/text_error_register"
         android:textColor="@color/txt_error_register"
         android:textSize="@dimen/_14sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/cv_init_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
