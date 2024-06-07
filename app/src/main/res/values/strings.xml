@@ -10,10 +10,19 @@
 
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
+    <string name="icono_de_password">icono de password</string>
     <string name="mostrar_contrase_a">Mostrar contraseña</string>
+    <string name="Confirmacontraseña">Confirmar contraseña</string>
+    <string name="text_error_register">Error en el usuario o contraseña!</string>
     <string name="contrase_a">Contraseña</string>
     <string name="entrar">Entrar</string>
     <string name="si_no_tienes_una_cuenta">Si no tienes una cuenta,</string>
     <string name="error_en_el_usuario_o_contrase_a">Error en el usuario o contraseña</string>
     <string name="registrate_aqui">registrate aqui</string>
+    <string name="inicia_sesion_aqui">inicia sesión aquí</string>
+    <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
+    <string name="et_email">Email</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="icono_de_mail">icono de mail</string>
+    <string name="Entrar">Entrar</string>
 </resources>

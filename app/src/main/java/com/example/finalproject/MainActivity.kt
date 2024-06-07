@@ -14,15 +14,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
       navigateToPreLogin()
-
-
     }
-    fun navigateToPreLogin(){
+    private fun navigateToPreLogin(){
         val intent = Intent(this, PreLoginActivity::class.java)
         startActivity(intent)
         finish()
     }
-
-
-
 }
