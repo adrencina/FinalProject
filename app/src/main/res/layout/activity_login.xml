@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+
+        android:id="@+id/tv_title_login"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_42dp"
+        android:layout_marginTop="@dimen/_130dp"
+        android:layout_marginStart="@dimen/_62dp"
+        android:text="@string/iniciar_sesi_n"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/container_Email"
+        android:layout_marginTop="@dimen/_151dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_54dp"
+        android:layout_marginStart="@dimen/_62dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_login"
+        app:startIconDrawable="@drawable/ic_mail"
+        app:startIconTint="@color/black"
+        android:hint="@string/email"
+        app:errorIconDrawable="@null"
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/container_Password"
+        android:layout_marginTop="@dimen/_36dp"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_54dp"
+        android:layout_marginStart="@dimen/_62dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_Email"
+        app:startIconDrawable="@drawable/ic_password"
+        app:startIconTint="@color/black"
+        android:hint="@string/contrase_a"
+        app:errorIconDrawable="@null"
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <CheckBox
+        android:visibility="gone"
+        android:id="@+id/checkBox_password"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_8dp"
+        app:layout_constraintTop_toBottomOf="@id/container_Password"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_62dp"
+        android:text="@string/mostrar_contrase_a"
+        android:textStyle="bold"
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:visibility="visible"
+        android:id="@+id/cv_logIn"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_43dp"
+        app:cardElevation="@dimen/_5dp"
+        android:layout_marginStart="@dimen/_62dp"
+        android:layout_marginTop="@dimen/_113dp"
+        app:cardBackgroundColor="@color/btn_pre_login"
+        app:cardCornerRadius="@dimen/_10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_Password">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/entrar"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/cv_logIn_error"
+        android:layout_width="@dimen/_284dp"
+        android:layout_height="@dimen/_43dp"
+        app:cardElevation="@dimen/_5dp"
+        android:layout_marginStart="@dimen/_62dp"
+        android:layout_marginTop="@dimen/_113dp"
+        app:cardBackgroundColor="@color/btn_logIn_error"
+        app:cardCornerRadius="@dimen/_10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_Password">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/entrar"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sp" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/btn_goToRegister"
+        android:layout_width="@dimen/_277dp"
+        android:layout_height="@dimen/_57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_62dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sp"
+            android:text="@string/si_no_tienes_una_cuenta"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registrate_aqui"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_loading"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/login_loading_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_55dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/email_Error_message"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_16dp"
+        android:textColor="@color/email_error"
+        android:textStyle="bold"
+        android:text="@string/error_en_el_usuario_o_contrase_a"
+        app:layout_constraintBottom_toTopOf="@id/container_Email"
+        android:layout_marginStart="@dimen/_66dp"
+        android:textSize="@dimen/_15sp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
