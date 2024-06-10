@@ -139,7 +139,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     private fun loginSucces(){
         if (isRegistrationClickable){
             //call data base and go home on viewmodel
