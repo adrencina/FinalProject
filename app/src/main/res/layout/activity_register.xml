@@ -162,7 +162,7 @@
         app:layout_constraintTop_toTopOf="@+id/ll_confirm_password" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_init_login"
+        android:id="@+id/cv_init_register"
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_43dp"
         android:layout_marginBottom="@dimen/_71dp"
@@ -188,11 +188,12 @@
         android:id="@+id/btn_goToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_21dp"
         android:textColor="@color/txt_register"
+        android:layout_marginTop="@dimen/_21dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_init_login">
+        app:layout_constraintTop_toBottomOf="@+id/cv_init_register"
+        >
 
         <TextView
             android:id="@+id/tv_register"
@@ -245,7 +246,7 @@
         android:textColor="@color/txt_error_register"
         android:textSize="@dimen/_14sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/cv_init_login"
+        app:layout_constraintBottom_toTopOf="@+id/cv_init_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -254,7 +255,6 @@
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_43dp"
         android:layout_marginBottom="@dimen/_71dp"
-        android:visibility="gone"
         app:cardBackgroundColor="@color/btn_error_register"
         app:cardCornerRadius="@dimen/_8dp"
         app:cardElevation="@dimen/_5dp"
