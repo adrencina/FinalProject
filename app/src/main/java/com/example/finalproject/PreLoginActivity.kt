@@ -9,11 +9,16 @@ import com.example.finalproject.databinding.ActivityPreLoginBinding
 class PreLoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.cvInitLogin.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java )
+            startActivity(intent)
+        }
+        binding.cvRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
