@@ -6,6 +6,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,17 +17,18 @@ import com.example.finalproject.databinding.ActivityLoginBinding
 
 
 class LoginActivity : AppCompatActivity() {
-    private var isRegistrationClickable : Boolean = false
-    private var isAtleast8 : Boolean = false
-    private var hasUpperCase : Boolean = false
-    private var hasNumber : Boolean = false
-    private var hasSymbol : Boolean = false
-    private var hasLowerCase : Boolean = false
-    private var emailPattern : Boolean = false
-    private var emailNotEmpty : Boolean = false
+    private var isRegistrationClickable: Boolean = false
+    private var isAtleast8: Boolean = false
+    private var hasUpperCase: Boolean = false
+    private var hasNumber: Boolean = false
+    private var hasSymbol: Boolean = false
+    private var hasLowerCase: Boolean = false
+    private var emailPattern: Boolean = false
+    private var emailNotEmpty: Boolean = false
 
 
     private lateinit var binding: ActivityLoginBinding
+    val loginViewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -59,15 +61,15 @@ class LoginActivity : AppCompatActivity() {
         inputChangeEmail()
     }
 
-    private fun emailCheck(){
+    private fun emailCheck() {
         val email: String = binding.inputEmail.text.toString().trim()
-        if (email.isNotEmpty()){
+        if (email.isNotEmpty()) {
             emailNotEmpty = true
         } else {
             emailNotEmpty = false
             binding.inputEmail.error = "Email requerido, no puede estar vacio."
         }
-        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailPattern = true
         } else {
             emailPattern = false
@@ -75,10 +77,11 @@ class LoginActivity : AppCompatActivity() {
         }
         checkAllData()
     }
-    private fun passswordCheck(){
+
+    private fun passswordCheck() {
         val password = binding.inputPassword.text.toString().trim()
         // for 8 characters
-        if (password.length >= 8){
+        if (password.length >= 8) {
             isAtleast8 = true
             binding.cvLogIn.enable(true)
         } else {
@@ -111,57 +114,63 @@ class LoginActivity : AppCompatActivity() {
             hasSymbol = true
         } else {
             hasSymbol = false
-            binding.inputPassword.error = "Contraseña Debil, se necesita minimo 1 caracter especial."
+            binding.inputPassword.error =
+                "Contraseña Debil, se necesita minimo 1 caracter especial."
         }
         checkAllData()
     }
-    private fun checkAllData(){
-        if (isAtleast8 && hasLowerCase && hasUpperCase && hasSymbol && hasNumber && emailPattern && emailNotEmpty){
+
+    private fun checkAllData() {
+        if (isAtleast8 && hasLowerCase && hasUpperCase && hasSymbol && hasNumber && emailPattern && emailNotEmpty) {
             isRegistrationClickable = true
-            loginButtonSwitcher(okA = true,okB = false)
-        }else {
+            loginButtonSwitcher(okA = true, okB = false)
+        } else {
             isRegistrationClickable = false
-            loginButtonSwitcher(okA = false,okB = true)
-        }
-    }
-    private fun inputChangeEmail(){
-        binding.inputEmail.addTextChangedListener {
-            binding.emailErrorMessage.visible(false)
-            emailCheck()
-            loginButtonSwitcher(okA = true,okB = false)
-        }
-    }
-    private fun inputChangePassWord(){
-        binding.inputPassword.addTextChangedListener {
-            binding.emailErrorMessage.visible(false)
-            passswordCheck()
-            loginButtonSwitcher(okA = true,okB = false)
+            loginButtonSwitcher(okA = false, okB = true)
         }
     }
 
-    private fun loginSucces(){
-        if (isRegistrationClickable){
+    private fun inputChangeEmail() {
+        binding.inputEmail.addTextChangedListener {
+            binding.emailErrorMessage.visible(false)
+            emailCheck()
+            loginButtonSwitcher(okA = true, okB = false)
+        }
+    }
+
+    private fun inputChangePassWord() {
+        binding.inputPassword.addTextChangedListener {
+            binding.emailErrorMessage.visible(false)
+            passswordCheck()
+            loginButtonSwitcher(okA = true, okB = false)
+        }
+    }
+
+    private fun loginSucces() {
+        if (isRegistrationClickable) {
             //call data base and go home on viewmodel
             binding.containerLoading.visible(true)
-            val intent =  Intent(this, PreLoginActivity::class.java)
+            val intent = Intent(this, PreLoginActivity::class.java)
             startActivity(intent)
             finish()
-        }else {
+        } else {
             binding.emailErrorMessage.visible(true)
         }
     }
 
     //change on viewmodel
-    private fun loginButtonSwitcher(okA : Boolean,okB: Boolean){
+    private fun loginButtonSwitcher(okA: Boolean, okB: Boolean) {
         binding.cvLogIn.enable(okA)
         binding.cvLogIn.visible(okA)
         binding.cvLogInError.enable(okB)
         binding.cvLogInError.visible(okB)
     }
-    private fun checkboxChecker(){
-        if (binding.checkBoxPassword.isChecked){
-            binding.inputPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-        }else {
+
+    private fun checkboxChecker() {
+        if (binding.checkBoxPassword.isChecked) {
+            binding.inputPassword.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+        } else {
             binding.inputPassword.transformationMethod = PasswordTransformationMethod.getInstance()
         }
     }
