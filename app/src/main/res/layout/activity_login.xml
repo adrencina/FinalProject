@@ -74,7 +74,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
     <CheckBox
-        android:visibility="gone"
+
         android:id="@+id/checkBox_password"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_20dp"
