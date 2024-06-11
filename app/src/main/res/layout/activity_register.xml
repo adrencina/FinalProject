@@ -144,7 +144,8 @@
             android:inputType="textPassword"
             android:padding="0dp"
             android:textColor="@color/et_hint"
-            android:textSize="@dimen/_16sp" />
+            android:textSize="@dimen/_16sp"
+            tools:ignore="VisualLintBounds" />
     </LinearLayout>
 
     <CheckBox
