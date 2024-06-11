@@ -1,16 +1,23 @@
 package com.example.finalproject
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
-import android.view.View
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
+import com.example.finalproject.Utils.enable
+import com.example.finalproject.Utils.visible
 import com.example.finalproject.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,53 +28,117 @@ class RegisterActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        validateEmail()
-        validateInputs()
-    }
 
-    private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
+        binding.cvInitRegister.enable(false)
+        binding.cvErrorRegister.enable(true)
 
-    private fun validateInputs(): Boolean {
-        val email = binding.etEmail.text.toString()
-        var isValid = true
-
-        if (!isValidEmail(email)) {
-            binding.tvErrorRegister.visibility = View.VISIBLE
-            isValid = false
-        } else {
-            binding.tvErrorRegister.visibility = View.GONE
+        binding.cbShowPassword.setOnClickListener {
+            togglePasswordVisibility(binding.cbShowPassword.isChecked, binding.etPassword)
         }
 
-        // Additional validation for other fields can go here
+        binding.cbShowConfPassword.setOnClickListener {
+            togglePasswordVisibility(
+                binding.cbShowConfPassword.isChecked,
+                binding.etConfirmPassword
+            )
+        }
 
-        return isValid
+        binding.cvInitRegister.setOnClickListener {
+            validateInputs()
+            if (binding.cvInitRegister.isEnabled) registerUser()
+        }
+
+        binding.etEmail.addTextChangedListener {
+            validateInputs()
+        }
+        binding.etPassword.addTextChangedListener {
+            validateInputs()
+        }
+        binding.etConfirmPassword.addTextChangedListener {
+            validateInputs()
+        }
+
+        binding.tvBoldRegister.setOnClickListener {
+            navigateToLogin()
+        }
     }
 
+    private fun validateInputs() {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
+        val emailValid = validateEmail(email)
+        val passwordValid = validatePassword(password)
+        val passwordsMatch = password == confirmPassword
 
+        val allValid = emailValid && passwordValid && passwordsMatch
+        updateButtonState(allValid)
+    }
 
+    private fun validateEmail(email: String): Boolean {
+        return if (email.isEmpty()) {
+            binding.etEmail.error = "Email requerido."
+            false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.etEmail.error = "Email inválido."
+            false
+        } else {
+            binding.etEmail.error = null
+            true
+        }
+    }
 
+    private fun validatePassword(password: String): Boolean {
+        val isValid = when {
+            password.length < 8 -> "Contraseña débil, es necesario mínimo 8 caracteres."
+            !Utils.PASSWORD_UPPERCASE_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 letra mayúscula."
 
+            !Utils.PASSWORD_NUMBER_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 número."
 
+            !Utils.PASSWORD_LOWERCASE_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 letra minúscula."
 
+            !Utils.PASSWORD_SPECIAL_CHARACTER_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 caracter especial."
 
+            else -> null
+        }
 
-//    private fun validateEmail(): Boolean {
-//        val email = binding.etEmail.text.toString()
-//        return if (email.isEmpty()) {
-//            binding.etEmail.error = "Ingrese su Email"
-//            false
-//        } else if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()){
-//            binding.etEmail.error = "Email inválido"
-//            false
-//        } else {
-//            binding.etEmail.error = null
-//            true
-//        }
-//    }
+        binding.etPassword.error = isValid
+        return isValid == null
+    }
 
+    private fun updateButtonState(allValid: Boolean) {
+        binding.cvInitRegister.enable(allValid)
+        binding.cvErrorRegister.visible(!allValid)
+    }
 
+    private fun togglePasswordVisibility(show: Boolean, passwordField: EditText) {
+        passwordField.transformationMethod = if (show) {
+            HideReturnsTransformationMethod.getInstance()
+        } else {
+            PasswordTransformationMethod.getInstance()
+        }
+    }
 
+    private fun registerUser() {
+        binding.containerLoading.visible(true)
+
+        // Lógica de registro del usuario...
+
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
+
+
+
+
+
