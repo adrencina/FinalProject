@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PreLoginActivity">
@@ -85,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
+        android:textSize="12sp"
         android:text="@string/en_caso_de_tener_problemas_comunicarse_con_soporte"
         android:fontFamily="@font/robotobold"
         app:layout_constraintBottom_toBottomOf="parent"
