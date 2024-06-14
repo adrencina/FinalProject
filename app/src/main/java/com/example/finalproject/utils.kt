@@ -32,4 +32,17 @@ object Utils {
         isEnabled = enabled
         alpha = if (enabled) 1f else 0.5f
     }
+
+    // logOut onDestroy method
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        if (isDestroyed){
+//            TokenManager.clearData(this)
+//            val intent = Intent(this, PreLoginActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+//            startActivity(intent)
+//        }
+//    }
 }

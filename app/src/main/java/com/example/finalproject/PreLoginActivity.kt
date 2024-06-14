@@ -5,6 +5,8 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityPreLoginBinding
+import com.example.finalproject.ui.Register.RegisterActivity
+import com.example.finalproject.ui.login.LoginActivity
 
 class PreLoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreLoginBinding
@@ -14,7 +16,7 @@ class PreLoginActivity : AppCompatActivity() {
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.cvInitLogin.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java )
+            val intent = Intent(this, LoginActivity::class.java )
             startActivity(intent)
         }
         binding.cvRegister.setOnClickListener {
