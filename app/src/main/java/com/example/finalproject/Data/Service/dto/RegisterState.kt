@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.Data.Service.dto
 
 sealed class RegisterState {
     //modificar datos de Success por el del response cuando se cree la class RegisterResponse

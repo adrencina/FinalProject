@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".ui.login.LoginActivity">
 
 
 
@@ -110,7 +110,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:visibility="gone"
+        android:visibility="invisible"
         android:id="@+id/cv_logIn_error"
         android:layout_width="@dimen/_284dp"
         android:layout_height="@dimen/_43dp"

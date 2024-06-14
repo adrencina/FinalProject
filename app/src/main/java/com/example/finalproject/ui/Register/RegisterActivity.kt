@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.ui.Register
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import com.example.finalproject.R
+import com.example.finalproject.Utils
 import com.example.finalproject.Utils.enable
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.databinding.ActivityRegisterBinding
+import com.example.finalproject.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
