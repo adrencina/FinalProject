@@ -1,6 +1,6 @@
-package com.example.finalproject.Data.Dto.Response
+package com.example.finalproject.data.dto.response
 
-import com.example.finalproject.Data.Dto.Model.User
+import com.example.finalproject.data.dto.model.User
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(

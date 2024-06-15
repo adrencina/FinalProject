@@ -1,8 +1,8 @@
-package com.example.finalproject.Data.Service
+package com.example.finalproject.data.service
 
-import com.example.finalproject.Data.Dto.Request.LoginRequest
-import com.example.finalproject.Data.Dto.Response.LoginResponse
-import com.example.finalproject.Data.Repostory.RemoteDataSource
+import com.example.finalproject.data.dto.request.LoginRequest
+import com.example.finalproject.data.dto.response.LoginResponse
+import com.example.finalproject.data.repostory.RemoteDataSource
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

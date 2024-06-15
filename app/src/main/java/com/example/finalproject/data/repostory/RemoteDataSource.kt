@@ -1,4 +1,4 @@
-package com.example.finalproject.Data.Repostory
+package com.example.finalproject.data.repostory
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

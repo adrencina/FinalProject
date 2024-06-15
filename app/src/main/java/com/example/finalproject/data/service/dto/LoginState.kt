@@ -1,4 +1,4 @@
-package com.example.finalproject.Data.Service.dto
+package com.example.finalproject.data.service.dto
 
 sealed class LoginState<out T> {
     data class Success<out T>(val data: T? = null) : LoginState<T>()

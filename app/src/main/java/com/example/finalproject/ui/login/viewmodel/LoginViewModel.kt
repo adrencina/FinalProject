@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.login
+package com.example.finalproject.ui.login.viewmodel
 
 import android.app.Application
 import android.text.method.HideReturnsTransformationMethod
@@ -11,10 +11,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.Data.Dto.Request.LoginRequest
-import com.example.finalproject.Data.Dto.Response.LoginResponse
-import com.example.finalproject.Data.Repostory.UserRepository
-import com.example.finalproject.Data.Service.dto.LoginState
+import com.example.finalproject.data.dto.request.LoginRequest
+import com.example.finalproject.data.dto.response.LoginResponse
+import com.example.finalproject.data.repostory.UserRepository
+import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.Utils
 import com.example.finalproject.Utils.visible
 import com.google.android.material.textfield.TextInputEditText
