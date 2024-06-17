@@ -1,4 +1,4 @@
-package com.example.finalproject.data.repostory
+package com.example.finalproject.data.repository
 
 import com.example.finalproject.data.dto.request.LoginRequest
 import com.example.finalproject.data.dto.response.LoginResponse

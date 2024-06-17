@@ -52,7 +52,6 @@ class RegisterActivity : AppCompatActivity() {
             validateInputs()
             if (binding.cvInitRegister.isEnabled) registerUser()
         }
-
         binding.etEmail.addTextChangedListener {
             validateInputs()
         }
@@ -69,19 +68,16 @@ class RegisterActivity : AppCompatActivity() {
         observeViewModel()
 
     }
-
     private fun validateInputs() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
         val confirmPassword = binding.etConfirmPassword.text.toString().trim()
         registerViewModel.validateInputs(email, password, confirmPassword)
     }
-
     private fun updateButtonState(allValid: Boolean) {
         binding.cvInitRegister.enable(allValid)
         binding.cvErrorRegister.visible(!allValid)
     }
-
     private fun togglePasswordVisibility(show: Boolean, passwordField: EditText) {
         passwordField.transformationMethod = if (show) {
             HideReturnsTransformationMethod.getInstance()
@@ -89,13 +85,11 @@ class RegisterActivity : AppCompatActivity() {
             PasswordTransformationMethod.getInstance()
         }
     }
-
     private fun registerUser() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
         registerViewModel.registerUser(email, password)
     }
-
     private fun observeViewModel() {
         lifecycleScope.launch {
             registerViewModel.registerState.collectLatest { state ->

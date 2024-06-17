@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.finalproject.data.dto.response.LoginResponse
-import com.example.finalproject.data.repostory.TokenManager
+import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.R
 import com.example.finalproject.Utils.visible

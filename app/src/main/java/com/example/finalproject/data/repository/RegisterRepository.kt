@@ -1,4 +1,4 @@
-package com.example.finalproject.data.repostory
+package com.example.finalproject.data.repository
 
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.service.RegisterApiServisImp

@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.dto.request.LoginRequest
 import com.example.finalproject.data.dto.response.LoginResponse
-import com.example.finalproject.data.repostory.UserRepository
+import com.example.finalproject.data.repository.UserRepository
 import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.Utils
 import com.example.finalproject.Utils.visible
