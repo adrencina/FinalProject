@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/custom"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="250dp"
         android:background="@drawable/custom_color"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,8 +31,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_searchview"
-        android:layout_width="231dp"
+        android:layout_width="250dp"
         android:layout_height="25dp"
+        android:layout_marginStart="@dimen/_20dp"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_home"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
@@ -50,7 +52,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:contentDescription="@string/imageview"
         android:src="@drawable/ic_heart_3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +76,7 @@
         android:id="@+id/rv_home_items"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30dp"
-        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -87,14 +89,25 @@
         android:id="@+id/rv_home_products"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150dp"
-        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_10dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="@dimen/_10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_home_items"
-        tools:listitem="@layout/item_rv_home_products"/>
+        tools:listitem="@layout/item_rv_home_products" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:contentDescription="@string/imageview"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="40dp"
+        android:background="#EDEAEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_home_products" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_image"
@@ -163,6 +176,7 @@
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
+            android:fontFamily="@font/robotolight"
             android:text="@string/buzo_canguro_capucha_ncon_cordon"
             android:textSize="12sp" />
 
