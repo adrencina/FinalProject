@@ -6,4 +6,5 @@ sealed class RegisterState {
     data class Error(val message: String?) : RegisterState()
     data object Ready : RegisterState()
     data object Invalid : RegisterState()
+    data class Validation(val message: String?) : RegisterState()
 }
