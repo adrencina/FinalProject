@@ -9,9 +9,9 @@ import retrofit2.create
 
 class RegisterApiServisImp {
     private val retrofit = Retrofit.Builder()
-    .baseUrl("https://api-users-c9xg.onrender.com")
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
+        .baseUrl("https://api-users-c9xg.onrender.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
     private val service = retrofit.create<RegisterApiService>()
     suspend fun registerUser(request: RegisterRequest): Response<RegisterResponse> {
