@@ -25,4 +25,14 @@
     <string name="registrarse">Registrarse</string>
     <string name="icono_de_mail">icono de mail</string>
     <string name="Entrar">Entrar</string>
+    <string name="imageview">imageView</string>
+    <string name="pants">Pants</string>
+    <string name="ultimo_visitado">Ultimo visitado</string>
+    <string name="rusty">Rusty</string>
+    <string name="buzo_canguro_capucha_ncon_cordon">Buzo canguro capucha con\ncordon</string>
+    <string name="_52_000">$ 52.000</string>
+    <string name="soporte">soporte</string>
+    <string name="en_caso_de_problemas_comunicarse_con">En caso de problemas comunicarse con</string>
+    <string name="short_verano">Short verano</string>
+    <string name="_12_000">$ 12.000</string>
 </resources>

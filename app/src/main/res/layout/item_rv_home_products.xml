@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="110dp"
+    android:layout_height="@dimen/_150dp"
+    android:layout_marginEnd="@dimen/_10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_recycler_product"
+        android:layout_width="89dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="@dimen/_10dp"
+        app:cardCornerRadius="@dimen/_20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_recycler_roduct"
+            android:layout_width="65dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10dp"
+            android:contentDescription="@string/imageview"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_example_2" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/name_recycler_product"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:text="@string/short_verano"
+        android:textSize="@dimen/_12sp"
+        android:fontFamily="@font/robotolight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_recycler_product" />
+
+    <TextView
+        android:id="@+id/tv_recycler_price"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:fontFamily="@font/robotocondensedsemibold"
+        android:text="@string/_12_000"
+        android:textSize="@dimen/_12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_recycler_product" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
