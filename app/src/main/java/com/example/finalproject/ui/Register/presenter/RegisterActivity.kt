@@ -6,13 +6,11 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
-import com.example.finalproject.PreLoginActivity
 import com.example.finalproject.R
 import com.example.finalproject.ui.register.viewmodel.RegisterViewModel
 import com.example.finalproject.Utils.enable
@@ -22,7 +20,9 @@ import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.RegisterApiServisImp
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
+import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.login.presenter.LoginActivity
+import com.example.finalproject.ui.preLogin.presenter.PreLoginActivity
 import com.example.finalproject.ui.register.viewmodel.RegisterViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
@@ -125,7 +125,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun navigateToHome() {
-        val intent = Intent(this, PreLoginActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
