@@ -170,7 +170,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="90dp"
             android:fontFamily="@font/robotocondensedsemibold"
-            android:text="@string/rusty"
+            tools:text="@string/rusty"
             android:textSize="14sp" />
 
         <TextView
@@ -181,7 +181,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/robotolight"
-            android:text="@string/buzo_canguro_capucha_ncon_cordon"
+            tools:text="@string/buzo_canguro_capucha_ncon_cordon"
             android:textSize="12sp" />
 
         <TextView
@@ -192,7 +192,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/_52_000"
+            tools:text="@string/_52_000"
             android:textSize="16sp" />
 
 
@@ -201,19 +201,20 @@
     <TextView
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
+        android:layout_marginStart="78dp"
         android:layout_marginBottom="20dp"
         android:text="@string/en_caso_de_problemas_comunicarse_con"
         android:textSize="@dimen/_12sp"
+        android:fontFamily="@font/robotolight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="78dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/robotobold"
+        android:fontFamily="@font/robotocondensedsemibold"
         android:text="@string/soporte"
         android:textSize="@dimen/_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
