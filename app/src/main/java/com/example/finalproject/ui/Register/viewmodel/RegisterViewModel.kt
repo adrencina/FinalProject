@@ -21,11 +21,14 @@ class RegisterViewModel : ViewModel() {
     private val _registerState = MutableLiveData<RegisterState>()
     val registerState: LiveData<RegisterState> get() = _registerState
 
-    private val _passwordValidationState = MutableLiveData<Boolean>()
-    val passwordValidationState: LiveData<Boolean> get() = _passwordValidationState
-
-    private val _validationState = MutableLiveData<RegisterState.Validation>()
-    val validationState: LiveData<RegisterState.Validation> get() = _validationState
+    fun registerUser(email: String, password: String) {
+        viewModelScope.launch {
+            _registerState.value = RegisterState.Loading
+            val request = RegisterRequest(email, password)
+            val result = registerRepository.registerUser(request)
+            _registerState.value = result
+        }
+    }
 
     fun validateInputs(email: String, password: String, confirmPassword: String) {
         val emailError = when {
@@ -51,7 +54,7 @@ class RegisterViewModel : ViewModel() {
 
         val confirmPasswordError = when {
             confirmPassword.isEmpty() -> "Confirmar Password."
-            confirmPassword != password -> "Passowords No coinciden."
+            confirmPassword != password -> "Passwords no coinciden."
             else -> null
         }
 
@@ -65,15 +68,6 @@ class RegisterViewModel : ViewModel() {
             _registerState.value = RegisterState.Ready
         } else {
             _registerState.value = RegisterState.Invalid
-        }
-    }
-
-    fun registerUser(email: String, password: String) {
-        viewModelScope.launch {
-            _registerState.value = RegisterState.Loading
-            val request = RegisterRequest(email, password)
-            val result = registerRepository.registerUser(request)
-            _registerState.value = result
         }
     }
 }

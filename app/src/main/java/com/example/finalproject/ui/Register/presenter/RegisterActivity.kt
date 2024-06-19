@@ -11,17 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProvider
 import com.example.finalproject.R
 import com.example.finalproject.ui.register.viewmodel.RegisterViewModel
 import com.example.finalproject.Utils.enable
 import com.example.finalproject.Utils.visible
-import com.example.finalproject.data.repository.RegisterRepository
 import com.example.finalproject.data.repository.TokenManager
-import com.example.finalproject.data.service.RegisterApiServisImp
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
-import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.login.presenter.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
@@ -41,36 +37,24 @@ class RegisterActivity : AppCompatActivity() {
 
         setupListeners()
         observeViewModel()
-        observePasswordValidationState()
 
-    }
-
-    private fun updateButtonState(allValid: Boolean) {
-        binding.cvInitRegister.enable(allValid)
-        binding.cvErrorRegister.visible(!allValid)
-    }
-
-
-    private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun setupListeners() {
         binding.cvInitRegister.enable(false)
         binding.cvErrorRegister.enable(true)
+        binding.tvBoldRegister.setOnClickListener {
+            navigateToLogin()
+        }
         binding.cbShowPassword.setOnClickListener {
             togglePasswordVisibility(binding.cbShowPassword.isChecked, binding.etPassword)
         }
-
         binding.cbShowConfPassword.setOnClickListener {
             togglePasswordVisibility(
                 binding.cbShowConfPassword.isChecked,
                 binding.etConfirmPassword
             )
         }
-
         binding.cvInitRegister.setOnClickListener {
             validateInputs()
             if (binding.cvInitRegister.isEnabled) registerUser()
@@ -84,9 +68,28 @@ class RegisterActivity : AppCompatActivity() {
         binding.etConfirmPassword.addTextChangedListener {
             validateInputs()
         }
-        binding.tvBoldRegister.setOnClickListener {
-            navigateToLogin()
+
+        // Esto es para Validar las entradas cuando se deja de escribir.
+        binding.etEmail.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) validateInputs()
         }
+        binding.etPassword.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) validateInputs()
+        }
+        binding.etConfirmPassword.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) validateInputs()
+        }
+    }
+
+    private fun updateButtonState(allValid: Boolean) {
+        binding.cvInitRegister.enable(allValid)
+        binding.cvErrorRegister.visible(!allValid)
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun validateInputs() {
@@ -144,50 +147,28 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-        registerViewModel.validationState.observe(this) { validationState ->
-            handleValidationState(validationState)
-        }
     }
 
     private fun handleValidationState(validation: RegisterState.Validation) {
-        if (validation.emailError != null) {
-            binding.tvErrorRegister.text = validation.emailError
-            binding.tvErrorRegister.visible(true)
-        } else {
-            binding.tvErrorRegister.visible(false)
-        }
-
-        if (validation.passwordError != null) {
-            binding.tvErrorRegister.text = validation.passwordError
-            binding.tvErrorRegister.visible(true)
-        } else {
-            binding.tvErrorRegister.visible(false)
-        }
-
-        if (validation.confirmPasswordError != null) {
-            binding.tvErrorRegister.text = validation.confirmPasswordError
-            binding.tvErrorRegister.visible(true)
-        } else {
-            binding.tvErrorRegister.visible(false)
-        }
-    }
-
-    private fun observePasswordValidationState() {
-        registerViewModel.passwordValidationState.observe(this) { isValid ->
-            if (!isValid) {
-                binding.tvErrorRegister.text = "Passwords No coinciden"
+        when {
+            validation.emailError != null -> {
+                binding.tvErrorRegister.text = validation.emailError
                 binding.tvErrorRegister.visible(true)
-            } else {
+            }
+
+            validation.passwordError != null -> {
+                binding.tvErrorRegister.text = validation.passwordError
+                binding.tvErrorRegister.visible(true)
+            }
+
+            validation.confirmPasswordError != null -> {
+                binding.tvErrorRegister.text = validation.confirmPasswordError
+                binding.tvErrorRegister.visible(true)
+            }
+
+            else -> {
                 binding.tvErrorRegister.visible(false)
             }
         }
     }
 }
-
-
-
-
-
-
-
-
