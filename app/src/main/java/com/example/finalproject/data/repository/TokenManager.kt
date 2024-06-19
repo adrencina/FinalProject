@@ -1,4 +1,4 @@
-package com.example.finalproject.Data.Repostory
+package com.example.finalproject.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences

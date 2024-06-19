@@ -5,8 +5,8 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityPreLoginBinding
-import com.example.finalproject.ui.Register.RegisterActivity
-import com.example.finalproject.ui.login.LoginActivity
+import com.example.finalproject.ui.register.presenter.RegisterActivity
+import com.example.finalproject.ui.login.presenter.LoginActivity
 
 class PreLoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreLoginBinding

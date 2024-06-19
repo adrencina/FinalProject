@@ -18,10 +18,10 @@
             android:name=".ui.home.presenter.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.login.presenter.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Register.RegisterActivity"
+            android:name=".ui.register.presenter.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.preLogin.presenter.PreLoginActivity"

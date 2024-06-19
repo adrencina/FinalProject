@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.login
+package com.example.finalproject.ui.login.presenter
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -9,13 +9,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.finalproject.Data.Dto.Response.LoginResponse
-import com.example.finalproject.Data.Repostory.TokenManager
-import com.example.finalproject.Data.Service.dto.LoginState
+import com.example.finalproject.data.dto.response.LoginResponse
+import com.example.finalproject.data.repository.TokenManager
+import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.R
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.databinding.ActivityLoginBinding
-import com.example.finalproject.ui.Register.RegisterActivity
+import com.example.finalproject.ui.register.presenter.RegisterActivity
+import com.example.finalproject.ui.login.viewmodel.LoginViewModel
 
 
 class LoginActivity : AppCompatActivity() {

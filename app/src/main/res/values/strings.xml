@@ -35,5 +35,6 @@
     <string name="en_caso_de_problemas_comunicarse_con">En caso de problemas comunicarse con</string>
     <string name="short_verano">Short verano</string>
     <string name="_12_000">$ 12.000</string>
+    <string name="error_en_passwords">Error en Passwords</string>
     <string name="textview">textview</string>
 </resources>
