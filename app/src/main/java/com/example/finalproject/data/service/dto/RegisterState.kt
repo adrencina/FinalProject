@@ -6,5 +6,9 @@ sealed class RegisterState {
     data class Error(val message: String?) : RegisterState()
     data object Ready : RegisterState()
     data object Invalid : RegisterState()
-    data class Validation(val message: String?) : RegisterState()
+    data class Validation(
+        val emailError: String? = null,
+        val passwordError: String? = null,
+        val confirmPasswordError: String? = null
+    ) : RegisterState()
 }

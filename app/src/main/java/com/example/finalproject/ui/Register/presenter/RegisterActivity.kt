@@ -6,6 +6,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,12 +23,10 @@ import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.login.presenter.LoginActivity
-import com.example.finalproject.ui.preLogin.presenter.PreLoginActivity
-import com.example.finalproject.ui.register.viewmodel.RegisterViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,42 +39,61 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        val apiService = RegisterApiServisImp()
-        val repository = RegisterRepository(apiService)
-        registerViewModel = ViewModelProvider(this,
-            RegisterViewModelFactory(repository)).get(RegisterViewModel::class.java)
-
-        observeViewModel()
         setupListeners()
+        observeViewModel()
+        observePasswordValidationState()
 
+    }
+
+    private fun updateButtonState(allValid: Boolean) {
+        binding.cvInitRegister.enable(allValid)
+        binding.cvErrorRegister.visible(!allValid)
+    }
+
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun setupListeners() {
         binding.cvInitRegister.enable(false)
+        binding.cvErrorRegister.enable(true)
         binding.cbShowPassword.setOnClickListener {
             togglePasswordVisibility(binding.cbShowPassword.isChecked, binding.etPassword)
         }
+
         binding.cbShowConfPassword.setOnClickListener {
             togglePasswordVisibility(
                 binding.cbShowConfPassword.isChecked,
                 binding.etConfirmPassword
             )
         }
+
         binding.cvInitRegister.setOnClickListener {
-            registerUser()
+            validateInputs()
+            if (binding.cvInitRegister.isEnabled) registerUser()
         }
         binding.etEmail.addTextChangedListener {
-            registerViewModel.onEmailChanged(it.toString())
+            validateInputs()
         }
         binding.etPassword.addTextChangedListener {
-            registerViewModel.onPasswordChanged(it.toString())
+            validateInputs()
         }
         binding.etConfirmPassword.addTextChangedListener {
-            registerViewModel.onConfirmPasswordChanged(it.toString())
+            validateInputs()
         }
         binding.tvBoldRegister.setOnClickListener {
             navigateToLogin()
         }
+    }
+
+    private fun validateInputs() {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+        registerViewModel.validateInputs(email, password, confirmPassword)
     }
 
     private fun togglePasswordVisibility(show: Boolean, passwordField: EditText) {
@@ -103,7 +121,7 @@ class RegisterActivity : AppCompatActivity() {
                 is RegisterState.Success -> {
                     binding.containerRegister.visible(false)
                     state.accessToken?.let { TokenManager.saveAuthToken(this, it) }
-                    navigateToHome()
+                    navigateToLogin()
                 }
 
                 is RegisterState.Error -> {
@@ -120,27 +138,54 @@ class RegisterActivity : AppCompatActivity() {
                 RegisterState.Ready -> {
                     updateButtonState(true)
                 }
+
+                is RegisterState.Validation -> {
+                    handleValidationState(state)
+                }
             }
+        }
+        registerViewModel.validationState.observe(this) { validationState ->
+            handleValidationState(validationState)
         }
     }
 
-    private fun navigateToHome() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        finish()
+    private fun handleValidationState(validation: RegisterState.Validation) {
+        if (validation.emailError != null) {
+            binding.tvErrorRegister.text = validation.emailError
+            binding.tvErrorRegister.visible(true)
+        } else {
+            binding.tvErrorRegister.visible(false)
+        }
+
+        if (validation.passwordError != null) {
+            binding.tvErrorRegister.text = validation.passwordError
+            binding.tvErrorRegister.visible(true)
+        } else {
+            binding.tvErrorRegister.visible(false)
+        }
+
+        if (validation.confirmPasswordError != null) {
+            binding.tvErrorRegister.text = validation.confirmPasswordError
+            binding.tvErrorRegister.visible(true)
+        } else {
+            binding.tvErrorRegister.visible(false)
+        }
     }
 
-    private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun updateButtonState(allValid: Boolean) {
-        binding.cvInitRegister.enable(allValid)
-        binding.cvErrorRegister.visible(!allValid)
+    private fun observePasswordValidationState() {
+        registerViewModel.passwordValidationState.observe(this) { isValid ->
+            if (!isValid) {
+                binding.tvErrorRegister.text = "Passwords No coinciden"
+                binding.tvErrorRegister.visible(true)
+            } else {
+                binding.tvErrorRegister.visible(false)
+            }
+        }
     }
 }
+
+
+
 
 
 

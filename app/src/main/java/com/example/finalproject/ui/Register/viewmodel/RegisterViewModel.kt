@@ -5,46 +5,66 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalproject.Utils.PASSWORD_LOWERCASE_PATTERN
+import com.example.finalproject.Utils.PASSWORD_NUMBER_PATTERN
+import com.example.finalproject.Utils.PASSWORD_SPECIAL_CHARACTER_PATTERN
+import com.example.finalproject.Utils.PASSWORD_UPPERCASE_PATTERN
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.repository.RegisterRepository
+import com.example.finalproject.data.service.RegisterApiServisImp
 import com.example.finalproject.data.service.dto.RegisterState
 import kotlinx.coroutines.launch
 
-class RegisterViewModel(private val registerRepository: RegisterRepository) : ViewModel() {
+class RegisterViewModel : ViewModel() {
+    private val registerRepository = RegisterRepository(RegisterApiServisImp())
+
     private val _registerState = MutableLiveData<RegisterState>()
     val registerState: LiveData<RegisterState> get() = _registerState
 
-    private val _email = MutableLiveData<String>()
-    private val _password = MutableLiveData<String>()
-    private val _confirmPassword = MutableLiveData<String>()
+    private val _passwordValidationState = MutableLiveData<Boolean>()
+    val passwordValidationState: LiveData<Boolean> get() = _passwordValidationState
 
-    fun onEmailChanged(email: String) {
-        _email.value = email
-        validateInputs()
-    }
+    private val _validationState = MutableLiveData<RegisterState.Validation>()
+    val validationState: LiveData<RegisterState.Validation> get() = _validationState
 
-    fun onPasswordChanged(password: String) {
-        _password.value = password
-        validateInputs()
-    }
+    fun validateInputs(email: String, password: String, confirmPassword: String) {
+        val emailError = when {
+            email.isEmpty() -> "Email requerido."
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> "Email inválido."
+            else -> null
+        }
 
-    fun onConfirmPasswordChanged(confirmPassword: String) {
-        _confirmPassword.value = confirmPassword
-        validateInputs()
-    }
+        val passwordError = when {
+            password.length < 8 -> "Es necesario mínimo 8 caracteres."
+            !PASSWORD_UPPERCASE_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 letra mayúscula."
 
-    private fun validateInputs() {
-        val email = _email.value ?: ""
-        val password = _password.value ?: ""
-        val confirmPassword = _confirmPassword.value ?: ""
+            !PASSWORD_NUMBER_PATTERN.matcher(password).matches() -> "Se necesita mínimo 1 número."
+            !PASSWORD_LOWERCASE_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 letra minúscula."
 
-        val isValidEmail = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        val isValidPassword = password.length >= 8 && password == confirmPassword
+            !PASSWORD_SPECIAL_CHARACTER_PATTERN.matcher(password)
+                .matches() -> "Se necesita mínimo 1 caracter especial."
 
-        _registerState.value = if (isValidEmail && isValidPassword) {
-            RegisterState.Ready
+            else -> null
+        }
+
+        val confirmPasswordError = when {
+            confirmPassword.isEmpty() -> "Confirmar Password."
+            confirmPassword != password -> "Passowords No coinciden."
+            else -> null
+        }
+
+        _registerState.value = RegisterState.Validation(
+            emailError = emailError,
+            passwordError = passwordError,
+            confirmPasswordError = confirmPasswordError
+        )
+
+        if (emailError == null && passwordError == null && confirmPasswordError == null) {
+            _registerState.value = RegisterState.Ready
         } else {
-            RegisterState.Invalid
+            _registerState.value = RegisterState.Invalid
         }
     }
 
