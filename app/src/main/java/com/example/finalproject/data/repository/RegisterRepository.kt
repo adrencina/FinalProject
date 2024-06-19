@@ -3,6 +3,7 @@ package com.example.finalproject.data.repository
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.service.RegisterApiServisImp
 import com.example.finalproject.data.service.dto.RegisterState
+import java.net.SocketTimeoutException
 
 class RegisterRepository(private val registerApiServiceImpl: RegisterApiServisImp) {
 
@@ -19,6 +20,8 @@ class RegisterRepository(private val registerApiServiceImpl: RegisterApiServisIm
             } else {
                 RegisterState.Error("Error en la respuesta: ${response.message()}")
             }
+        } catch (e: SocketTimeoutException) {
+            RegisterState.Error("Timeout de conexión")
         } catch (e: Exception) {
             RegisterState.Error("Excepción: ${e.message}")
         }
