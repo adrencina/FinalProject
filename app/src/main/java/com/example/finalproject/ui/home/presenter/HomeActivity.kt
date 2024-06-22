@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 
@@ -49,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.onSaleProducts.observe(this, Observer { products ->
 
+
 //            onSaleProductsAdapter.submitList(products)
 //            onSaleProductsAdapter.notifyDataSetChanged()
 
@@ -57,5 +59,27 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.error.observe(this, Observer { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         })
+
+        // Observamos los estados de la API
+
+        homeViewModel.homeState.observe(this, Observer { state ->
+            when (state) {
+                is HomeState.Loading -> {
+//                    Mostrar el estado de carga en la UI
+//                    showLoading()
+                }
+                is HomeState.Success -> {
+//                    Ocultar el estado de carga y mostrar el mensaje de éxito
+//                    hideLoading()
+                    Toast.makeText(this, state.info, Toast.LENGTH_SHORT).show()
+                }
+                is HomeState.Error -> {
+//                    Ocultar el estado de carga y mostrar el mensaje de error
+//                    hideLoading()
+                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
     }
 }

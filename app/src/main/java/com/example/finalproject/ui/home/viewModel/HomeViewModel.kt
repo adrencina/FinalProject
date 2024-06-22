@@ -31,32 +31,42 @@ class HomeViewModel : ViewModel() {
     val error: LiveData<String> get() = _error
 
     fun fetchCategories() {
+        _homeState.postValue(HomeState.Loading)
         viewModelScope.launch {
             val result = homeRepository.getCategories()
             if (result.isSuccess) {
                 result.getOrNull()?.let {
-                    _categories.postValue(it)
+                    _homeState.postValue(HomeState.Success("Categorías cargadas con éxito"))
                 } ?: run {
-                    _error.postValue("No se pudo obtener las categorías")
+                    _homeState.postValue(HomeState.Error("Error al obtener categorías"))
                 }
             } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+                _homeState.postValue(
+                    HomeState.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
             }
         }
     }
 
     // funcion para obtener productos por categoría
     fun fetchProductsByCategory(categoryId: Int) {
+        _homeState.postValue(HomeState.Loading)
         viewModelScope.launch {
             val result = homeRepository.getProductsByCategory(categoryId)
             if (result.isSuccess) {
                 result.getOrNull()?.let {
-                    _products.postValue(it)
+                    _homeState.postValue(HomeState.Success("Productos cargados con éxito"))
                 } ?: run {
-                    _error.postValue("No se pudo obtener los productos")
+                    _homeState.postValue(HomeState.Error("Error al obtener productos para la categoría"))
                 }
             } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+                _homeState.postValue(
+                    HomeState.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
             }
         }
     }
@@ -69,31 +79,41 @@ class HomeViewModel : ViewModel() {
         size: String?,
         gender: String?
     ) {
+        _homeState.postValue(HomeState.Loading)
         viewModelScope.launch {
             val result = homeRepository.searchProducts(query, categoryId, color, size, gender)
             if (result.isSuccess) {
                 result.getOrNull()?.let {
-                    _products.postValue(it)
+                    _homeState.postValue(HomeState.Success("Productos cargados con éxito"))
                 } ?: run {
-                    _error.postValue("No se pudo buscar los productos")
+                    _homeState.postValue(HomeState.Error("Error al buscar productos"))
                 }
             } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+                _homeState.postValue(
+                    HomeState.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
             }
         }
     }
 
     fun fetchOnSaleProducts() {
+        _homeState.postValue(HomeState.Loading)
         viewModelScope.launch {
             val result = homeRepository.getOnSaleProducts()
             if (result.isSuccess) {
                 result.getOrNull()?.let {
-                    _onSaleProducts.postValue(it)
+                    _homeState.postValue(HomeState.Success("Productos en oferta cargados con éxito"))
                 } ?: run {
-                    _error.postValue("No se pudo obtener las oferta")
+                    _homeState.postValue(HomeState.Error("Error al obtener productos en oferta"))
                 }
             } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+                _homeState.postValue(
+                    HomeState.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
             }
         }
     }
