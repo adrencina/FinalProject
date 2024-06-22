@@ -3,6 +3,7 @@ package com.example.finalproject.ui.home.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.finalproject.data.service.dto.HomeState
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.service.HomeApiServiceImp
@@ -11,6 +12,9 @@ import com.example.finalproject.data.service.dto.Product
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
+
+    private val _homeState = MutableLiveData<HomeState>()
+    val homeState: LiveData<HomeState> = _homeState
 
     private val homeRepository = HomeRepository(HomeApiServiceImp())
 
