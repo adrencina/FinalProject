@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 
@@ -17,20 +18,44 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        homeViewModel.homeData.observe(this, Observer { homeData ->
-            binding.tvHomeNameProduct.text = homeData.name
-            binding.tvHomeDescriptionProduct.text = homeData.description
-            binding.tvHomePriceProduct.text = homeData.price.toString()
+        setupRecyclerViews()
+        observeViewModel()
 
-            // Cargar la imagen en el ImageView... esto depende de la API y el rv
+        homeViewModel.fetchCategories()
+        homeViewModel.fetchOnSaleProducts()
+    }
+
+    private fun setupRecyclerViews() {
+        binding.rvHomeNameItems.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvHomeProducts.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun observeViewModel() {
+        homeViewModel.categories.observe(this, Observer { categories ->
+
+//            categoriesAdapter.submitList(categories)
+//            categoriesAdapter.notifyDataSetChanged()
+
+        })
+
+        homeViewModel.products.observe(this, Observer { products ->
+
+//            productsAdapter.submitList(products)
+//            productsAdapter.notifyDataSetChanged()
+
+        })
+
+        homeViewModel.onSaleProducts.observe(this, Observer { products ->
+
+//            onSaleProductsAdapter.submitList(products)
+//            onSaleProductsAdapter.notifyDataSetChanged()
 
         })
 
         homeViewModel.error.observe(this, Observer { error ->
-
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show() // Muestra el error en un Toast
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         })
-
-        homeViewModel.fetchHomeData()
     }
 }
