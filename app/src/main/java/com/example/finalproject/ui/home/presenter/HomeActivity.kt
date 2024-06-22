@@ -68,11 +68,13 @@ class HomeActivity : AppCompatActivity() {
 //                    Mostrar el estado de carga en la UI
 //                    showLoading()
                 }
+
                 is HomeState.Success -> {
 //                    Ocultar el estado de carga y mostrar el mensaje de éxito
 //                    hideLoading()
                     Toast.makeText(this, state.info, Toast.LENGTH_SHORT).show()
                 }
+
                 is HomeState.Error -> {
 //                    Ocultar el estado de carga y mostrar el mensaje de error
 //                    hideLoading()
