@@ -87,7 +87,6 @@ class HomeActivity : AppCompatActivity() {
         })
 
     }
-
     private fun navigateToEmailSupport() {
         binding.tvSupport.setOnClickListener {
             val emailIntent =
