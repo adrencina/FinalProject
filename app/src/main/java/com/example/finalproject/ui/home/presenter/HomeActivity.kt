@@ -1,5 +1,7 @@
 package com.example.finalproject.ui.home.presenter
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -21,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
 
         setupRecyclerViews()
         observeViewModel()
+        binding.tvSupport.setOnClickListener { navigateToEmailSupport() }
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchOnSaleProducts()
@@ -83,5 +86,10 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+    }
+    private fun navigateToEmailSupport() {
+        val emailIntent =
+            Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
+        startActivity(Intent.createChooser(emailIntent, "enviar email..."))
     }
 }
