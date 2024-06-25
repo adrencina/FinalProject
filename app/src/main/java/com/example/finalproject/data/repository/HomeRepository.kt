@@ -11,11 +11,11 @@ class HomeRepository(private val homeApiService: HomeApiServiceImp) {
     suspend fun getCategories(): Result<List<Category>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = homeApiService.getCategories()
+                val response = homeApiService.getProductTypes()
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        Result.success(it)
-                    } ?: Result.failure(Exception("No se encontraron categorías"))
+                        Result.success(it.productTypes)
+                    } ?: Result.failure(Exception("No categories found"))
                 } else {
                     Result.failure(Exception("Error: ${response.message()}"))
                 }
@@ -28,11 +28,12 @@ class HomeRepository(private val homeApiService: HomeApiServiceImp) {
     suspend fun getProductsByCategory(categoryId: Int): Result<List<Product>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = homeApiService.getProductsByCategory(categoryId)
+                val response = homeApiService.getProducts()
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        Result.success(it)
-                    } ?: Result.failure(Exception("No se encontraron productos para la categoría"))
+                        val productsByCategory = it.products.filter { product -> product.productType.idType == categoryId }
+                        Result.success(productsByCategory)
+                    } ?: Result.failure(Exception("No products found for category"))
                 } else {
                     Result.failure(Exception("Error: ${response.message()}"))
                 }
@@ -42,21 +43,21 @@ class HomeRepository(private val homeApiService: HomeApiServiceImp) {
         }
     }
 
-    suspend fun searchProducts(
-        query: String?,
-        categoryId: Int?,
-        color: String?,
-        size: String?,
-        gender: String?
-    ): Result<List<Product>> {
+    suspend fun searchProducts(query: String?, categoryId: Int?, color: String?, size: String?, gender: String?): Result<List<Product>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = homeApiService.searchProducts(query, categoryId, color, size, gender)
+                val response = homeApiService.getProducts()
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        Result.success(it)
-                    }
-                        ?: Result.failure(Exception("No se encontraron productos para los criterios de búsqueda"))
+                        val filteredProducts = it.products.filter { product ->
+                            (query == null || product.name.contains(query, ignoreCase = true)) &&
+                                    (categoryId == null || product.productType.idType == categoryId) &&
+                                    (color == null || product.description.contains(color, ignoreCase = true)) &&
+                                    (size == null || product.description.contains(size, ignoreCase = true)) &&
+                                    (gender == null || product.description.contains(gender, ignoreCase = true))
+                        }
+                        Result.success(filteredProducts)
+                    } ?: Result.failure(Exception("No products found for search criteria"))
                 } else {
                     Result.failure(Exception("Error: ${response.message()}"))
                 }
@@ -69,11 +70,11 @@ class HomeRepository(private val homeApiService: HomeApiServiceImp) {
     suspend fun getOnSaleProducts(): Result<List<Product>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = homeApiService.getOnSaleProducts()
+                val response = homeApiService.getDailyOffer()
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        Result.success(it)
-                    } ?: Result.failure(Exception("No se encontraron productos en oferta"))
+                        Result.success(listOf(it))
+                    } ?: Result.failure(Exception("No on sale products found"))
                 } else {
                     Result.failure(Exception("Error: ${response.message()}"))
                 }

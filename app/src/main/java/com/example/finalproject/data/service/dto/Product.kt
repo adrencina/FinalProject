@@ -1,13 +1,22 @@
 package com.example.finalproject.data.service.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class Product(
-    val id: Int,
+    @SerializedName("idProduct")
+    val idProduct: Int,
+    @SerializedName("name")
     val name: String,
-    val description: String,
-    val price: Double,
-    val color: String,
-    val size: String,
-    val gender: String,
-    val categoryId: Int,
-    val isOnSale: Boolean
+    @SerializedName("productType")
+    val productType: ProductType,
+    @SerializedName("currency")
+    val currency: String,
+    @SerializedName("price")
+    val price: String,
+    @SerializedName("image")
+    val image: String,
+    @SerializedName("isFavorite")
+    val isFavorite: Boolean,
+    @SerializedName("description")
+    val description: String
 )
