@@ -1,5 +1,6 @@
-package com.example.finalproject.data.service.dto
+package com.example.finalproject.data.dto.response
 
+import com.example.finalproject.data.service.dto.Product
 import com.google.gson.annotations.SerializedName
 
 data class ProductResponse(

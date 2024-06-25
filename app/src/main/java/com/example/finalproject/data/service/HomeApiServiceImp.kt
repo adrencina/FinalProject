@@ -1,10 +1,9 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.repository.BaseUrl
 import com.example.finalproject.data.repository.MockBaseUrl
 import com.example.finalproject.data.service.dto.Product
-import com.example.finalproject.data.service.dto.ProductResponse
-import com.example.finalproject.data.service.dto.ProductTypeResponse
+import com.example.finalproject.data.dto.response.ProductResponse
+import com.example.finalproject.data.dto.response.ProductTypeResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
