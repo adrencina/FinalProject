@@ -1,28 +1,21 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.service.dto.Category
 import com.example.finalproject.data.service.dto.Product
+import com.example.finalproject.data.service.dto.ProductResponse
+import com.example.finalproject.data.service.dto.ProductTypeResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface HomeApiService {
-    @GET("categories")
-    suspend fun getCategories(): Response<List<Category>>
+    @GET("/api/v1/products")
+    suspend fun getProducts(): Response<ProductResponse>
 
-    @GET("categories/{categoryId}/products")
-    suspend fun getProductsByCategory(@Path("categoryId") categoryId: Int): Response<List<Product>>
+    @GET("/api/v1/products/daily-offer")
+    suspend fun getDailyOffer(): Response<Product>
 
-    @GET("products/search")
-    suspend fun searchProducts(
-        @Query("query") query: String?,
-        @Query("categoryId") categoryId: Int?,
-        @Query("color") color: String?,
-        @Query("size") size: String?,
-        @Query("gender") gender: String?
-    ): Response<List<Product>>
+    @GET("/api/v1/products/product-types")
+    suspend fun getProductTypes(): Response<ProductTypeResponse>
 
-    @GET("products/on_sale")
-    suspend fun getOnSaleProducts(): Response<List<Product>>
+    @GET("/api/v1/products/lastuserproduct")
+    suspend fun getLastUserProduct(): Response<Product>
 }
