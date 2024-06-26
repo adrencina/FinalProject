@@ -1,18 +1,16 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.repository.MockBaseUrl
-import com.example.finalproject.data.service.dto.Product
+import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
+import com.example.finalproject.data.repository.MockBaseUrl
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeApiServiceImp {
     private val retrofit = Retrofit.Builder()
-
-//        .baseUrl(BaseUrl.BASE_URL) URL de la Api que está en proceso...
-
         .baseUrl(MockBaseUrl.MOCK_BASE_URL) // URL del API Mock de Prueba.
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -23,7 +21,7 @@ class HomeApiServiceImp {
         return service.getProducts()
     }
 
-    suspend fun getDailyOffer(): Response<Product> {
+    suspend fun getDailyOffer(): Response<DailyOfferResponse> {
         return service.getDailyOffer()
     }
 
@@ -31,7 +29,7 @@ class HomeApiServiceImp {
         return service.getProductTypes()
     }
 
-    suspend fun getLastUserProduct(): Response<Product> {
+    suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
         return service.getLastUserProduct()
     }
 }

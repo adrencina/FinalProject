@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 
@@ -22,13 +21,13 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerViews()
-
         observeViewModel()
-
         navigateToEmailSupport()
 
         homeViewModel.fetchCategories()
-        homeViewModel.fetchOnSaleProducts()
+        homeViewModel.fetchProducts()
+//        homeViewModel.fetchOnSaleProducts()
+        homeViewModel.fetchLastUserProduct()
     }
 
     private fun setupRecyclerViews() {
@@ -39,50 +38,28 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        // Observa los cambios en las categorías
         homeViewModel.categories.observe(this, Observer { categories ->
-            // Actualiza el RecyclerView de categorías
             // categoriesAdapter.submitList(categories)
             // categoriesAdapter.notifyDataSetChanged()
         })
 
-        // Observa los cambios en los productos
         homeViewModel.products.observe(this, Observer { products ->
-            // Actualiza el RecyclerView de productos
             // productsAdapter.submitList(products)
             // productsAdapter.notifyDataSetChanged()
         })
 
-        // Observa los cambios en los productos en oferta
-        homeViewModel.onSaleProducts.observe(this, Observer { products ->
-            // Actualiza el RecyclerView de productos en oferta
-            // onSaleProductsAdapter.submitList(products)
+        homeViewModel.onSaleProducts.observe(this, Observer { product ->
+            // onSaleProductsAdapter.submitList(listOf(product))
             // onSaleProductsAdapter.notifyDataSetChanged()
         })
 
-        // Observa los errores y muestra un Toast
-        homeViewModel.error.observe(this, Observer { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        homeViewModel.lastUserProduct.observe(this, Observer { product ->
+            // lastUserProductAdapter.submitList(listOf(product))
+            // lastUserProductAdapter.notifyDataSetChanged()
         })
 
-        // Observa los estados de la API
-        homeViewModel.homeState.observe(this, Observer { state ->
-            when (state) {
-                is HomeState.Loading -> {
-                    // Mostrar el estado de carga en la UI
-                    // showLoading()
-                }
-                is HomeState.Success -> {
-                    // Ocultar el estado de carga y mostrar el mensaje de éxito
-                    // hideLoading()
-                    Toast.makeText(this, state.info, Toast.LENGTH_SHORT).show()
-                }
-                is HomeState.Error -> {
-                    // Ocultar el estado de carga y mostrar el mensaje de error
-                    // hideLoading()
-                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
-                }
-            }
+        homeViewModel.error.observe(this, Observer { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         })
     }
 
