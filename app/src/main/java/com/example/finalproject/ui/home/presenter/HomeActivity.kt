@@ -10,10 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
+import com.example.finalproject.ui.home.adapter.ProductsAdapter
+import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+
+    private val productsAdapter = ProductsAdapter()
+    private val productTypesAdapter = ProductTypesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,32 +36,29 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerViews() {
-        binding.rvHomeNameItems.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvHomeProducts.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvHomeNameItems.apply {
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = productTypesAdapter
+        }
+
+        binding.rvHomeProducts.apply {
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = productsAdapter
+        }
     }
 
     private fun observeViewModel() {
         homeViewModel.categories.observe(this, Observer { categories ->
-            // categoriesAdapter.submitList(categories)
-            // categoriesAdapter.notifyDataSetChanged()
+            productTypesAdapter.submitList(categories)
         })
 
         homeViewModel.products.observe(this, Observer { products ->
-            // productsAdapter.submitList(products)
-            // productsAdapter.notifyDataSetChanged()
+            productsAdapter.submitList(products)
         })
 
-        homeViewModel.onSaleProducts.observe(this, Observer { product ->
-            // onSaleProductsAdapter.submitList(listOf(product))
-            // onSaleProductsAdapter.notifyDataSetChanged()
-        })
-
-        homeViewModel.lastUserProduct.observe(this, Observer { product ->
-            // lastUserProductAdapter.submitList(listOf(product))
-            // lastUserProductAdapter.notifyDataSetChanged()
-        })
+//        homeViewModel.onSaleProducts.observe(this, Observer { products ->
+//            // Puedes tener un adaptador separado para los productos en oferta o usar el mismo adaptador de productos
+//        })
 
         homeViewModel.error.observe(this, Observer { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
@@ -65,8 +67,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun navigateToEmailSupport() {
         binding.tvSupport.setOnClickListener {
-            val emailIntent =
-                Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
+            val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
         }
     }

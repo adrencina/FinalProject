@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_recycler_roduct"
+            android:id="@+id/iv_recycler_product"
             android:layout_width="65dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
