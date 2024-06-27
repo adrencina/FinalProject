@@ -15,6 +15,7 @@ import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.R
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.databinding.ActivityLoginBinding
+import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.register.presenter.RegisterActivity
 import com.example.finalproject.ui.login.viewmodel.LoginViewModel
 
@@ -70,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
         initInputListeners()
     }
     private fun navigateToHome() {
-        val intent = Intent(this, RegisterActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
@@ -95,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         binding.containerLoading.visible(false)
     }
     private fun processLogin(data: LoginResponse?) {
-        showToast("Success:" + data?.message)
+        showToast("Success:" +" "+ TokenManager.getToken(this))
         if (!data?.data?.accessToken.isNullOrEmpty()) {
             data?.data?.accessToken?.let { TokenManager.saveAuthToken(this, it) }
             navigateToHome()
