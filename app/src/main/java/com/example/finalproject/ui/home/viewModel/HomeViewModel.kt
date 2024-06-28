@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.Utils.visible
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.service.HomeApiServiceImp
 import com.example.finalproject.data.dto.response.ProductType
@@ -102,6 +104,16 @@ class HomeViewModel : ViewModel() {
             }
         } else {
             _error.postValue("No se pudo obtener el producto destacado")
+        }
+    }
+
+    fun searchViewController(
+        result:Boolean,
+    ){
+        if (result == true){
+            _searchResult.postValue(true)
+        }else{
+            _searchResult.postValue(false)
         }
     }
 }
