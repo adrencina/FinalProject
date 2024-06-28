@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
-import com.example.finalproject.data.dto.model.Product
+import com.example.finalproject.data.dto.response.Product
 
 class SearchAdapter(
-    private var productLst: List<Product>,
-    private val onClickListener:(Product) -> Unit
+    private var productLst: MutableList<Product>,
+    private val onClickListener: (Product) -> Unit
 
 ) : RecyclerView.Adapter<SearchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return SearchViewHolder(layoutInflater.inflate(R.layout.item_rv_home_search_list, parent,false))
+        return SearchViewHolder(
+            layoutInflater.inflate(
+                R.layout.item_rv_home_search_list,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -27,8 +33,8 @@ class SearchAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(productLst:List<Product>){
-        this.productLst = productLst
+    fun update(productLst: List<Product>) {
+        this.productLst = productLst.toMutableList()
         notifyDataSetChanged()
     }
 }

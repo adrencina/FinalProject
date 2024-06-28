@@ -25,6 +25,9 @@ class HomeViewModel : ViewModel() {
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
+    private val _searchResult = MutableLiveData<Boolean>()
+    val searchResult : LiveData<Boolean> get() = _searchResult
+
     fun fetchCategories() {
         viewModelScope.launch {
             val result = homeRepository.getProductTypes()

@@ -13,7 +13,6 @@ import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
-import com.example.finalproject.ui.home.recycler.productProvider
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -26,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private val productsAdapter = ProductsAdapter()
     private val productTypesAdapter = ProductTypesAdapter()
 
-    private var searchList: MutableList<Product> = productProvider.productLst.toMutableList()
+    private lateinit var searchList: MutableList<Product>
     private lateinit var searchAdapter: SearchAdapter
     private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
@@ -115,16 +114,15 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
     }
 
-
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-
                     homeViewModel.searchViewController(true)
-                    val filtered =
-                        searchList.filter { product -> product.name.contains(query.toString()) }
+                    val filtered = searchList.filter { product ->
+                        product.name?.contains(query, ignoreCase = true) ?: false
+                    }
                     searchAdapter.update(filtered)
                 } else {
                     homeViewModel.searchViewController(false)
@@ -135,8 +133,9 @@ class HomeActivity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
                     homeViewModel.searchViewController(true)
-                    val filtered =
-                        searchList.filter { product -> product.name.contains(newText.toString()) }
+                    val filtered = searchList.filter { product ->
+                        product.name?.contains(newText, ignoreCase = true) ?: false
+                    }
                     searchAdapter.update(filtered)
                 } else {
                     homeViewModel.searchViewController(false)
@@ -152,6 +151,7 @@ class HomeActivity : AppCompatActivity() {
                 true -> {
                     searchVisibity(result)
                 }
+
                 false -> {
                     searchVisibity(result)
                 }
@@ -159,7 +159,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchVisibity(result:Boolean) {
+    private fun searchVisibity(result: Boolean) {
         binding.cvImageProduct.visible(!result)
         binding.rvHomeProducts.visible(!result)
         binding.rvHomeNameItems.visible(!result)
@@ -167,6 +167,4 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
-
-
 }
