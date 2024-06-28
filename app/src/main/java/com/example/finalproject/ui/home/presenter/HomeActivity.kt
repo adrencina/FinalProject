@@ -11,8 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
-import com.example.finalproject.data.dto.model.Product
-import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
 import com.example.finalproject.ui.home.recycler.productProvider
