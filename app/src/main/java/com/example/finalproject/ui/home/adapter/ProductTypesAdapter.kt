@@ -17,7 +17,8 @@ class ProductTypesAdapter : RecyclerView.Adapter<ProductTypesAdapter.ProductType
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductTypeViewHolder {
-        val binding = ItemRvHomeTextProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRvHomeTextProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductTypeViewHolder(binding)
     }
 
@@ -27,7 +28,8 @@ class ProductTypesAdapter : RecyclerView.Adapter<ProductTypesAdapter.ProductType
 
     override fun getItemCount(): Int = productTypeList.size
 
-    class ProductTypeViewHolder(private val binding: ItemRvHomeTextProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ProductTypeViewHolder(private val binding: ItemRvHomeTextProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(productType: ProductType) {
             binding.tvProductTypeName.text = productType.description
         }

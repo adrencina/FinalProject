@@ -8,10 +8,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
+import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -31,18 +33,19 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
-//        homeViewModel.fetchOnSaleProducts()
-        homeViewModel.fetchLastUserProduct()
+        homeViewModel.fetchFeaturedProduct()
     }
 
     private fun setupRecyclerViews() {
         binding.rvHomeNameItems.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
         }
 
         binding.rvHomeProducts.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productsAdapter
         }
     }
@@ -56,18 +59,32 @@ class HomeActivity : AppCompatActivity() {
             productsAdapter.submitList(products)
         })
 
-//        homeViewModel.onSaleProducts.observe(this, Observer { products ->
-//            // Puedes tener un adaptador separado para los productos en oferta o usar el mismo adaptador de productos
-//        })
-
-        homeViewModel.error.observe(this, Observer { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        homeViewModel.featuredProduct.observe(this, Observer { product ->
+            product?.let {
+                updateFeaturedProductCard(it)
+            }
         })
+
+        homeViewModel.error.observe(this, Observer { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun updateFeaturedProductCard(product: Product) {
+        binding.tvHomeNameProduct.text = product.name
+        binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
+        binding.tvHomeDescriptionProduct.text = product.description
+        Picasso.get()
+            .load(product.image)
+            .into(binding.ivHomeProduct)
     }
 
     private fun navigateToEmailSupport() {
         binding.tvSupport.setOnClickListener {
-            val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
+            val emailIntent =
+                Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
         }
     }
