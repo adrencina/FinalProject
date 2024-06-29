@@ -1,89 +1,72 @@
 package com.example.finalproject.data.repository
 
-import androidx.lifecycle.MutableLiveData
+import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.LastUserProductResponse
+import com.example.finalproject.data.dto.response.ProductResponse
+import com.example.finalproject.data.dto.response.ProductTypeResponse
 import com.example.finalproject.data.service.HomeApiServiceImp
-import com.example.finalproject.data.service.dto.Category
-import com.example.finalproject.data.service.dto.Product
-import com.example.finalproject.ui.home.recycler.productProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
-class HomeRepository(private val homeApiService: HomeApiServiceImp) {
+class HomeRepository(private val apiService: HomeApiServiceImp) {
 
+    suspend fun getProducts(): Result<ProductResponse> {
+        return try {
+            val response = apiService.getProducts()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("No se pudo obtener los productos"))
+            } else {
+                Result.failure(Exception("Error en la respuesta de productos"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 
+    suspend fun getDailyOffer(): Result<DailyOfferResponse> {
+        return try {
+            val response = apiService.getDailyOffer()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("No se pudo obtener la oferta diaria"))
+            } else {
+                Result.failure(Exception("Error en la respuesta de oferta diaria"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 
-//    suspend fun getCategories(): Result<List<Category>> {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val response = homeApiService.getCategories()
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        Result.success(it)
-//                    } ?: Result.failure(Exception("No se encontraron categorías"))
-//                } else {
-//                    Result.failure(Exception("Error: ${response.message()}"))
-//                }
-//            } catch (e: Exception) {
-//                Result.failure(e)
-//            }
-//        }
-//    }
-//
-//    suspend fun getProductsByCategory(categoryId: Int): Result<List<Product>> {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val response = homeApiService.getProductsByCategory(categoryId)
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        Result.success(it)
-//                    } ?: Result.failure(Exception("No se encontraron productos para la categoría"))
-//                } else {
-//                    Result.failure(Exception("Error: ${response.message()}"))
-//                }
-//            } catch (e: Exception) {
-//                Result.failure(e)
-//            }
-//        }
-//    }
-//
-//    suspend fun searchProducts(
-//        query: String?,
-//        categoryId: Int?,
-//        color: String?,
-//        size: String?,
-//        gender: String?
-//    ): Result<List<Product>> {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val response = homeApiService.searchProducts(query, categoryId, color, size, gender)
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        Result.success(it)
-//                    }
-//                        ?: Result.failure(Exception("No se encontraron productos para los criterios de búsqueda"))
-//                } else {
-//                    Result.failure(Exception("Error: ${response.message()}"))
-//                }
-//            } catch (e: Exception) {
-//                Result.failure(e)
-//            }
-//        }
-//    }
-//
-//    suspend fun getOnSaleProducts(): Result<List<Product>> {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val response = homeApiService.getOnSaleProducts()
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        Result.success(it)
-//                    } ?: Result.failure(Exception("No se encontraron productos en oferta"))
-//                } else {
-//                    Result.failure(Exception("Error: ${response.message()}"))
-//                }
-//            } catch (e: Exception) {
-//                Result.failure(e)
-//            }
-//        }
-//    }
+    suspend fun getProductTypes(): Result<ProductTypeResponse> {
+        return try {
+            val response = apiService.getProductTypes()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("No se pudieron obtener los tipos de producto"))
+            } else {
+                Result.failure(Exception("Error en la respuesta de tipos de producto"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getLastUserProduct(): Result<LastUserProductResponse> {
+        return try {
+            val response = apiService.getLastUserProduct()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("No se pudo obtener el último producto del usuario"))
+            } else {
+                Result.failure(Exception("Error en la respuesta del último producto del usuario"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }
+
+

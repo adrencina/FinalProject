@@ -9,19 +9,23 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
-import com.example.finalproject.data.dto.model.Product
-import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
-import com.example.finalproject.ui.home.recycler.productProvider
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
+import com.example.finalproject.ui.home.adapter.ProductsAdapter
+import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
+import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
 
-    private var searchList: MutableList<Product> = productProvider.productLst.toMutableList()
+    private val productsAdapter = ProductsAdapter()
+    private val productTypesAdapter = ProductTypesAdapter()
+
+    private lateinit var searchList: MutableList<Product>
     private lateinit var searchAdapter: SearchAdapter
     private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
@@ -39,77 +43,62 @@ class HomeActivity : AppCompatActivity() {
         initSearchView()
         searchViewObserver()
 
-
-//        homeViewModel.fetchCategories()
-//        homeViewModel.fetchOnSaleProducts()
+        homeViewModel.fetchCategories()
+        homeViewModel.fetchProducts()
+        homeViewModel.fetchFeaturedProduct()
     }
 
     private fun setupRecyclerViews() {
-        binding.rvHomeNameItems.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvHomeProducts.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvHomeNameItems.apply {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = productTypesAdapter
+        }
+
+        binding.rvHomeProducts.apply {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = productsAdapter
+        }
     }
 
     private fun observeViewModel() {
         homeViewModel.categories.observe(this, Observer { categories ->
-
-//            categoriesAdapter.submitList(categories)
-//            categoriesAdapter.notifyDataSetChanged()
-
+            productTypesAdapter.submitList(categories)
         })
 
         homeViewModel.products.observe(this, Observer { products ->
-
-//            productsAdapter.submitList(products)
-//            productsAdapter.notifyDataSetChanged()
-
+            productsAdapter.submitList(products)
         })
 
-        homeViewModel.onSaleProducts.observe(this, Observer { products ->
-
-
-//            onSaleProductsAdapter.submitList(products)
-//            onSaleProductsAdapter.notifyDataSetChanged()
-
-        })
-
-        homeViewModel.error.observe(this, Observer { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        })
-
-        // Observamos los estados de la API
-
-        homeViewModel.homeState.observe(this, Observer { state ->
-            when (state) {
-                is HomeState.Loading -> {
-//                    Mostrar el estado de carga en la UI
-//                    showLoading()
-                }
-
-                is HomeState.Success -> {
-//                    Ocultar el estado de carga y mostrar el mensaje de éxito
-//                    hideLoading()
-                    Toast.makeText(this, state.info, Toast.LENGTH_SHORT).show()
-                }
-
-                is HomeState.Error -> {
-//                    Ocultar el estado de carga y mostrar el mensaje de error
-//                    hideLoading()
-                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
-                }
+        homeViewModel.featuredProduct.observe(this, Observer { product ->
+            product?.let {
+                updateFeaturedProductCard(it)
             }
         })
 
+        homeViewModel.error.observe(this, Observer { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun updateFeaturedProductCard(product: Product) {
+        binding.tvHomeNameProduct.text = product.name
+        binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
+        binding.tvHomeDescriptionProduct.text = product.description
+        Picasso.get()
+            .load(product.image)
+            .into(binding.ivHomeProduct)
     }
 
     private fun navigateToEmailSupport() {
         binding.tvSupport.setOnClickListener {
             val emailIntent =
                 Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
-            startActivity(Intent.createChooser(emailIntent, "enviar email..."))
+            startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
         }
-
     }
 
     private fun initSearchRecyclerView() {
@@ -125,16 +114,15 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
     }
 
-
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-
                     homeViewModel.searchViewController(true)
-                    val filtered =
-                        searchList.filter { product -> product.name.contains(query.toString()) }
+                    val filtered = searchList.filter { product ->
+                        product.name?.contains(query, ignoreCase = true) ?: false
+                    }
                     searchAdapter.update(filtered)
                 } else {
                     homeViewModel.searchViewController(false)
@@ -145,8 +133,9 @@ class HomeActivity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
                     homeViewModel.searchViewController(true)
-                    val filtered =
-                        searchList.filter { product -> product.name.contains(newText.toString()) }
+                    val filtered = searchList.filter { product ->
+                        product.name?.contains(newText, ignoreCase = true) ?: false
+                    }
                     searchAdapter.update(filtered)
                 } else {
                     homeViewModel.searchViewController(false)
@@ -162,6 +151,7 @@ class HomeActivity : AppCompatActivity() {
                 true -> {
                     searchVisibity(result)
                 }
+
                 false -> {
                     searchVisibity(result)
                 }
@@ -169,7 +159,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchVisibity(result:Boolean) {
+    private fun searchVisibity(result: Boolean) {
         binding.cvImageProduct.visible(!result)
         binding.rvHomeProducts.visible(!result)
         binding.rvHomeNameItems.visible(!result)
@@ -177,6 +167,4 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
-
-
 }

@@ -1,25 +1,35 @@
 package com.example.finalproject.data.service
 
+import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.LastUserProductResponse
+import com.example.finalproject.data.dto.response.ProductResponse
+import com.example.finalproject.data.dto.response.ProductTypeResponse
+import com.example.finalproject.data.repository.MockBaseUrl
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeApiServiceImp {
-//    private val retrofit = Retrofit.Builder()
-//        .baseUrl("https://api-users-c9xg.onrender.com")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    private val service = retrofit.create(HomeApiService::class.java)
-//
-//    suspend fun getCategories() = service.getCategories()
-//    suspend fun getProductsByCategory(categoryId: Int) = service.getProductsByCategory(categoryId)
-//    suspend fun searchProducts(
-//        query: String?,
-//        categoryId: Int?,
-//        color: String?,
-//        size: String?,
-//        gender: String?
-//    ) = service.searchProducts(query, categoryId, color, size, gender)
-//
-//    suspend fun getOnSaleProducts() = service.getOnSaleProducts()
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(MockBaseUrl.MOCK_BASE_URL) // URL del API Mock de Prueba.
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val service = retrofit.create(HomeApiService::class.java)
+
+    suspend fun getProducts(): Response<ProductResponse> {
+        return service.getProducts()
+    }
+
+    suspend fun getDailyOffer(): Response<DailyOfferResponse> {
+        return service.getDailyOffer()
+    }
+
+    suspend fun getProductTypes(): Response<ProductTypeResponse> {
+        return service.getProductTypes()
+    }
+
+    suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
+        return service.getLastUserProduct()
+    }
 }
