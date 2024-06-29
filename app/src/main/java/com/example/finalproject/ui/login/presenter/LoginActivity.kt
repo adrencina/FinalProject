@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         binding.containerLoading.visible(false)
     }
     private fun processLogin(data: LoginResponse?) {
-        showToast("Success:" +" "+ TokenManager.getToken(this))
+        showToast("Success:" + data?.message)
         if (!data?.data?.accessToken.isNullOrEmpty()) {
             data?.data?.accessToken?.let { TokenManager.saveAuthToken(this, it) }
             navigateToHome()
