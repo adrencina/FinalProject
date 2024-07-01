@@ -1,6 +1,7 @@
 package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
@@ -31,5 +32,8 @@ class HomeApiServiceImp {
 
     suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
         return service.getLastUserProduct()
+    }
+    suspend fun getFavorites(): Response<FavoritesResponse>{
+        return service.getFavorites()
     }
 }

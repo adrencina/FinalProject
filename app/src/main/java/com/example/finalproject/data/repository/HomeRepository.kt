@@ -1,6 +1,7 @@
 package com.example.finalproject.data.repository
 
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
@@ -66,6 +67,10 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+    //falta crear esta fun
+    suspend fun getFavorites(){
+
     }
 }
 

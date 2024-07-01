@@ -28,6 +28,9 @@ class HomeViewModel : ViewModel() {
     private val _searchResult = MutableLiveData<Boolean>()
     val searchResult : LiveData<Boolean> get() = _searchResult
 
+    private val _favorites = MutableLiveData<List<Product>>()
+    val favorites: LiveData<List<Product>> get() = _favorites
+
     fun fetchCategories() {
         viewModelScope.launch {
             val result = homeRepository.getProductTypes()
@@ -115,6 +118,13 @@ class HomeViewModel : ViewModel() {
             _searchResult.postValue(true)
         }else{
             _searchResult.postValue(false)
+        }
+    }
+    //falta completar la corrutina
+    suspend fun addFavorites(){
+        viewModelScope.launch {
+
+
         }
     }
 }
