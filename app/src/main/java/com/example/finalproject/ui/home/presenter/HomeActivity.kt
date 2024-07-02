@@ -46,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
         homeViewModel.fetchFeaturedProduct()
+
     }
 
     private fun setupRecyclerViews() {
@@ -167,4 +168,5 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
+
 }

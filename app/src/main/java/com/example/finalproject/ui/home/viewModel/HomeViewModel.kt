@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.service.HomeApiServiceImp
 import com.example.finalproject.data.dto.response.ProductType
@@ -26,7 +27,7 @@ class HomeViewModel : ViewModel() {
     val error: LiveData<String?> get() = _error
 
     private val _searchResult = MutableLiveData<Boolean>()
-    val searchResult : LiveData<Boolean> get() = _searchResult
+    val searchResult: LiveData<Boolean> get() = _searchResult
 
     private val _favorites = MutableLiveData<List<Product>>()
     val favorites: LiveData<List<Product>> get() = _favorites
@@ -112,19 +113,38 @@ class HomeViewModel : ViewModel() {
     }
 
     fun searchViewController(
-        result:Boolean,
-    ){
-        if (result){
+        result: Boolean,
+    ) {
+        if (result) {
             _searchResult.postValue(true)
-        }else{
+        } else {
             _searchResult.postValue(false)
         }
     }
-    //falta completar la corrutina
-    suspend fun addFavorites(){
+
+    private suspend fun addFavorites() {
         viewModelScope.launch {
-
-
+            val addFavoritesResult = homeRepository.getFavorites()
+            if (addFavoritesResult.isSuccess) {
+                val addFavorites = addFavoritesResult.getOrNull()
+                if (addFavorites != null) {
+                    val product = Product(
+                        idProduct = addFavorites.idProduct,
+                        name = addFavorites.name,
+                        productType = addFavorites.productType,
+                        currency = addFavorites.currency,
+                        price = addFavorites.price,
+                        image = addFavorites.image,
+                        isFavorite = addFavorites.isFavorite,
+                        description = addFavorites.description
+                    )
+                    _featuredProduct.postValue(product)
+                } else {
+                    _error.postValue("No se pudo obtener el producto destacado")
+                }
+            } else {
+                _error.postValue("No se pudo obtener el producto destacado")
+            }
         }
     }
 }

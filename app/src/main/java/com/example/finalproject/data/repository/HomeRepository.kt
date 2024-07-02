@@ -68,8 +68,20 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
             Result.failure(e)
         }
     }
-    //falta crear esta fun
-    suspend fun getFavorites(){
+
+    suspend fun getFavorites(): Result<FavoritesResponse> {
+        return try {
+            val response = apiService.getFavorites()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("No se pudo obtener el articulo de Favoritos"))
+            } else {
+                Result.failure(Exception("Error en la respuesta de Favotitos"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
 
     }
 }
