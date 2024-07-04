@@ -6,6 +6,8 @@ import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface HomeApiService {
     @GET("/api/v1/products")
@@ -19,4 +21,8 @@ interface HomeApiService {
 
     @GET("/api/v1/products/lasuserproduct")
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
+
+//    @PUT("/api/v1/products/{idProduct}/favorite")
+//    suspend fun addFavoriteProduct(@Path("idProduct") idProduct: Int): Response<Void>
+
 }
