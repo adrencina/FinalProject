@@ -122,9 +122,9 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun addFavorites() {
+    private suspend fun addFavoritesProduct(id:Int) {
         viewModelScope.launch {
-            val addFavoritesResult = homeRepository.getFavorites()
+            val addFavoritesResult = homeRepository.addFavoritesProduct(id)
             if (addFavoritesResult.isSuccess) {
                 val addFavorites = addFavoritesResult.getOrNull()
                 if (addFavorites != null) {

@@ -23,8 +23,8 @@ interface HomeApiService {
     @GET("/api/v1/products/lasuserproduct")
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
 
-    @GET("/api/v1/products/favorites")
-    suspend fun getFavorites(): Response<FavoritesResponse>
+    @PUT("/api/v1/products/{idProduct}/favorite")
+    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
 
 //    @PUT("/api/v1/products/{idProduct}/favorite")
 //    suspend fun addFavoriteProduct(@Path("idProduct") idProduct: Int): Response<Void>

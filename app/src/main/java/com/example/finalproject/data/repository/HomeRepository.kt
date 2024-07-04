@@ -69,9 +69,9 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
         }
     }
 
-    suspend fun getFavorites(): Result<FavoritesResponse> {
+    suspend fun addFavoritesProduct(id:Int): Result<FavoritesResponse> {
         return try {
-            val response = apiService.getFavorites()
+            val response = apiService.addFavoritesProduct(id)
             if (response.isSuccessful) {
                 response.body()?.let {
                     Result.success(it)
