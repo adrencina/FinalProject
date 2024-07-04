@@ -21,6 +21,7 @@ class RegisterViewModel : ViewModel() {
     private val _registerState = MutableLiveData<RegisterState>()
     val registerState: LiveData<RegisterState> get() = _registerState
 
+    // Registrar un usuario
     fun registerUser(email: String, password: String) {
         viewModelScope.launch {
             _registerState.value = RegisterState.Loading
@@ -30,6 +31,7 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
+    // Validaciones de entradas
     fun validateInputs(email: String, password: String, confirmPassword: String) {
         val emailError = when {
             email.isEmpty() -> "Email requerido."

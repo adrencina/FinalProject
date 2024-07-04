@@ -10,3 +10,5 @@ interface RegisterApiService {
     @POST("/api/v1/auth/register")
     suspend fun registerUser(@Body request: RegisterRequest): Response<RegisterResponse>
 }
+
+
