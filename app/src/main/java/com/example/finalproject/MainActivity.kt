@@ -5,7 +5,6 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityMainBinding
-import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.preLogin.presenter.PreLoginActivity
 
 class MainActivity : AppCompatActivity() {
