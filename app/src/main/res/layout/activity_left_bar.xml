@@ -1,20 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+    android:background="#7353BA">
 
     <FrameLayout
         android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintHeight_default="spread"
+        android:background="@color/white"/>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+    <TextView
+        android:id="@+id/nav_imagesFragment"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/imagenes"
+        android:fontFamily="@font/robotoregular"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/nav_descriptionFragment"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nav_descriptionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/descripcion"
+        android:fontFamily="@font/robotoregular"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/nav_financingFragment"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_imagesFragment" />
+
+    <TextView
+        android:id="@+id/nav_financingFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/financiacion"
+        android:fontFamily="@font/robotoregular"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/nav_commentsFragment"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_descriptionFragment" />
+
+    <TextView
+        android:id="@+id/nav_commentsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/comentarios"
+        android:fontFamily="@font/robotoregular"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_financingFragment" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
-        android:orientation="vertical">
-    </com.google.android.material.navigation.NavigationView>
-</androidx.drawerlayout.widget.DrawerLayout>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.144" />
+
+    <ImageView
+        android:id="@+id/backIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:onClick="onSupportNavigateUp"
+        android:layout_marginTop="@dimen/_18dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_back_arrow"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

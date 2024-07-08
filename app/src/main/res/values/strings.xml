@@ -39,4 +39,9 @@
     <string name="textview">textview</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="financiacion">Financiación</string>
+    <string name="descripcion">Descripción</string>
+    <string name="imagenes">Imágenes</string>
+    <string name="back">Icono volver</string>
 </resources>
