@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#7353BA">
 
@@ -16,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="spread"
         app:layout_constraintHeight_default="spread"
-        android:background="@color/white"/>
+        tools:background="@color/white"/>
 
     <TextView
         android:id="@+id/nav_imagesFragment"
