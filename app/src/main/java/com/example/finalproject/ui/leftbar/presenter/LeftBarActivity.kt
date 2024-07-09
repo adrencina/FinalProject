@@ -2,6 +2,7 @@ package com.example.finalproject.ui.leftbar.presenter
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -31,6 +32,14 @@ class LeftBarActivity : AppCompatActivity() {
 
         setupButtonNavigation()
         setupBackIcon()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(this@LeftBarActivity, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
     }
 
     private fun setupButtonNavigation() {
@@ -50,20 +59,14 @@ class LeftBarActivity : AppCompatActivity() {
 
     private fun setupBackIcon() {
         binding.backIcon.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+            onSupportNavigateUp()
         }
     }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
+    override fun onSupportNavigateUp(): Boolean {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
+        return true
     }
 }
