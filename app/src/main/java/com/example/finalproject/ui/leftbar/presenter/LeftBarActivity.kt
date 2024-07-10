@@ -44,17 +44,22 @@ class LeftBarActivity : AppCompatActivity() {
 
     private fun setupButtonNavigation() {
         binding.navImagesFragment.setOnClickListener {
-            navController.navigate(R.id.imagesFragment)
+            navigateToFragment(R.id.imagesFragment)
         }
         binding.navDescriptionFragment.setOnClickListener {
-            navController.navigate(R.id.descriptionFragment)
+            navigateToFragment(R.id.descriptionFragment)
         }
         binding.navFinancingFragment.setOnClickListener {
-            navController.navigate(R.id.financingFragment)
+            navigateToFragment(R.id.financingFragment)
         }
         binding.navCommentsFragment.setOnClickListener {
-            navController.navigate(R.id.commentsFragment)
+            navigateToFragment(R.id.commentsFragment)
         }
+    }
+
+    private fun navigateToFragment(fragmentId: Int) {
+        navController.navigate(fragmentId)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     private fun setupBackIcon() {
