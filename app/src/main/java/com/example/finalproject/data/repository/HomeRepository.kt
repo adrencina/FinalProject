@@ -6,6 +6,7 @@ import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import com.example.finalproject.data.service.HomeApiServiceImp
+import retrofit2.Response
 
 class HomeRepository(private val apiService: HomeApiServiceImp) {
 
@@ -69,20 +70,8 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
         }
     }
 
-    suspend fun addFavoritesProduct(id:Int): Result<FavoritesResponse> {
-        return try {
-            val response = apiService.addFavoritesProduct(id)
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    Result.success(it)
-                } ?: Result.failure(Exception("No se pudo obtener el articulo de Favoritos"))
-            } else {
-                Result.failure(Exception("Error en la respuesta de Favotitos"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-
+    suspend fun addFavoritesProduct(id:Int):Response<FavoritesResponse>{
+        return apiService.addFavoritesProduct(id)
     }
 }
 

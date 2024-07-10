@@ -122,29 +122,29 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun addFavoritesProduct(id:Int) {
-        viewModelScope.launch {
-            val addFavoritesResult = homeRepository.addFavoritesProduct(id)
-            if (addFavoritesResult.isSuccess) {
-                val addFavorites = addFavoritesResult.getOrNull()
-                if (addFavorites != null) {
-                    val product = Product(
-                        idProduct = addFavorites.idProduct,
-                        name = addFavorites.name,
-                        productType = addFavorites.productType,
-                        currency = addFavorites.currency,
-                        price = addFavorites.price,
-                        image = addFavorites.image,
-                        isFavorite = addFavorites.isFavorite,
-                        description = addFavorites.description
-                    )
-                    _featuredProduct.postValue(product)
-                } else {
-                    _error.postValue("No se pudo obtener el producto destacado")
-                }
-            } else {
-                _error.postValue("No se pudo obtener el producto destacado")
-            }
-        }
-    }
+//    private suspend fun addFavoritesProduct(id:Int) {
+//        viewModelScope.launch {
+//            val addFavoritesResult = homeRepository.addFavoritesProduct(id)
+//            if (addFavoritesResult.isSuccessful) {
+//                val addFavorites = addFavoritesResult.getOrNull()
+//                if (addFavorites != null) {
+//                    val product = Product(
+//                        idProduct = addFavorites.idProduct,
+//                        name = addFavorites.name,
+//                        productType = addFavorites.productType,
+//                        currency = addFavorites.currency,
+//                        price = addFavorites.price,
+//                        image = addFavorites.image,
+//                        isFavorite = addFavorites.isFavorite,
+//                        description = addFavorites.description
+//                    )
+//                    _featuredProduct.postValue(product)
+//                } else {
+//                    _error.postValue("No se pudo obtener el producto destacado")
+//                }
+//            } else {
+//                _error.postValue("No se pudo obtener el producto destacado")
+//            }
+//        }
+//    }
 }

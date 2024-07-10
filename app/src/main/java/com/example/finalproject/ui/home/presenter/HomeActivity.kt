@@ -3,6 +3,7 @@ package com.example.finalproject.ui.home.presenter
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
@@ -168,5 +170,15 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
+    fun addFavoritesObserve(){
+        homeViewModel.favorites.observe(this){addResult ->
+            when(addResult){
+
+
+
+                }
+            }
+        }
+
 
 }
