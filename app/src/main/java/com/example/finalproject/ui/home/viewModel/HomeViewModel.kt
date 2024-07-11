@@ -9,6 +9,7 @@ import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.service.HomeApiServiceImp
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.service.dto.HomeState
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
@@ -31,6 +32,9 @@ class HomeViewModel : ViewModel() {
 
     private val _favorites = MutableLiveData<List<Product>>()
     val favorites: LiveData<List<Product>> get() = _favorites
+
+    private val _homeState = MutableLiveData<HomeState>()
+    val homeState : LiveData<HomeState> = _homeState
 
     fun fetchCategories() {
         viewModelScope.launch {
@@ -122,29 +126,19 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-//    private suspend fun addFavoritesProduct(id:Int) {
-//        viewModelScope.launch {
-//            val addFavoritesResult = homeRepository.addFavoritesProduct(id)
-//            if (addFavoritesResult.isSuccessful) {
-//                val addFavorites = addFavoritesResult.getOrNull()
-//                if (addFavorites != null) {
-//                    val product = Product(
-//                        idProduct = addFavorites.idProduct,
-//                        name = addFavorites.name,
-//                        productType = addFavorites.productType,
-//                        currency = addFavorites.currency,
-//                        price = addFavorites.price,
-//                        image = addFavorites.image,
-//                        isFavorite = addFavorites.isFavorite,
-//                        description = addFavorites.description
-//                    )
-//                    _featuredProduct.postValue(product)
-//                } else {
-//                    _error.postValue("No se pudo obtener el producto destacado")
-//                }
-//            } else {
-//                _error.postValue("No se pudo obtener el producto destacado")
-//            }
-//        }
-//    }
+    private suspend fun addFavoritesProduct(id:Int) {
+        viewModelScope.launch {
+            _homeState.postValue(HomeState.Loading)
+            val addFavoritesResponse = homeRepository.addFavoritesProduct(id)
+            if (addFavoritesResponse.isSuccessful){
+                addFavoritesResponse.body()?.let {
+                    _homeState.postValue(HomeState.Success(it))
+                }?: _homeState.postValue(HomeState.Error("Error en el servicio"))
+            }else{
+                _homeState.postValue(HomeState.Error("Error en el servidor"))
+            }
+
+
+        }
+    }
 }

@@ -85,6 +85,14 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         })
+        //observador de consumo a favorite
+        homeViewModel.homeState.observe(this) {favorite ->
+            when (favorite) {
+                is HomeState.Success -> {}
+                is HomeState.Error -> {}
+                is HomeState.Loading -> {}
+            }
+        }
     }
 
     private fun updateFeaturedProductCard(product: Product) {
@@ -170,15 +178,8 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
-    fun addFavoritesObserve(){
-        homeViewModel.favorites.observe(this){addResult ->
-            when(addResult){
 
 
-
-                }
-            }
-        }
 
 
 }

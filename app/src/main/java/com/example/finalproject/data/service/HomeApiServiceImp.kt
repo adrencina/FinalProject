@@ -33,7 +33,7 @@ class HomeApiServiceImp {
     suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
         return service.getLastUserProduct()
     }
-//    suspend fun addFavoritesProduct(id:Int): Response<FavoritesResponse>{
-//        return service.addFavoritesProduct(id)
-//    }
+    suspend fun addFavoritesProduct(id:Int): Response<FavoritesResponse>{
+        return service.addFavoritesProduct(id)
+    }
 }
