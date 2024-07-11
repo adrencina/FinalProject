@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7353BA"
+    app:layoutDescription="@xml/motion_scene">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.144" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintHeight_default="spread"
+        tools:background="@color/white"/>
+
+    <View
+        android:id="@+id/circle_indicator"
+        android:layout_width="27dp"
+        android:layout_height="29dp"
+        android:background="@drawable/circle_background"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="55dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/nav_imagesFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/imagenes"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@id/nav_descriptionFragment"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nav_descriptionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/descripcion"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@id/nav_financingFragment"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_imagesFragment" />
+
+    <TextView
+        android:id="@+id/nav_financingFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/financiacion"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@id/nav_commentsFragment"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_descriptionFragment" />
+
+    <TextView
+        android:id="@+id/nav_commentsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:rotation="-90"
+        android:text="@string/comentarios"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_financingFragment" />
+
+    <ImageView
+        android:id="@+id/backIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="28dp"
+        android:contentDescription="@string/back"
+        android:elevation="20dp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

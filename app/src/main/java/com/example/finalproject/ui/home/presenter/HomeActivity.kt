@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.data.service.dto.HomeState
@@ -18,6 +19,7 @@ import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
+import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
@@ -49,6 +51,11 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.fetchProducts()
         homeViewModel.fetchFeaturedProduct()
 
+        binding.cvImageProduct.setOnClickListener {
+            val intent = Intent(this, LeftBarActivity::class.java)
+            intent.putExtra("initialFragment", R.id.imagesFragment)
+            startActivity(intent)
+        }
     }
 
     private fun setupRecyclerViews() {
@@ -178,8 +185,4 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.visible(result)
 
     }
-
-
-
-
 }
