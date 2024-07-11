@@ -2,6 +2,7 @@ package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.dto.response.RegisterResponse
+import com.example.finalproject.data.repository.BaseUrl
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -11,13 +12,13 @@ import java.util.concurrent.TimeUnit
 class RegisterApiServisImp {
 
     private val client = OkHttpClient.Builder()
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(300, TimeUnit.SECONDS)
+        .readTimeout(300, TimeUnit.SECONDS)
+        .writeTimeout(300, TimeUnit.SECONDS)
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api-users-c9xg.onrender.com")
+        .baseUrl(BaseUrl.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
