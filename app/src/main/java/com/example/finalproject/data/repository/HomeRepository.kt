@@ -1,10 +1,12 @@
 package com.example.finalproject.data.repository
 
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import com.example.finalproject.data.service.HomeApiServiceImp
+import retrofit2.Response
 
 class HomeRepository(private val apiService: HomeApiServiceImp) {
 
@@ -67,6 +69,12 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
             Result.failure(e)
         }
     }
+
+//  todo esto va con el pronto consumo al endpoint de favorite
+
+//    suspend fun addFavoritesProduct(id:Int):Response<FavoritesResponse>{
+//        return apiService.addFavoritesProduct(id)
+//    }
 }
 
 

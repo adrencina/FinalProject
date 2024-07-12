@@ -1,6 +1,7 @@
 package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
@@ -22,7 +23,9 @@ interface HomeApiService {
     @GET("/api/v1/products/lasuserproduct")
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
 
+    //  todo esto va con el pronto consumo al endpoint de favorite
 //    @PUT("/api/v1/products/{idProduct}/favorite")
-//    suspend fun addFavoriteProduct(@Path("idProduct") idProduct: Int): Response<Void>
+//    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
+
 
 }
