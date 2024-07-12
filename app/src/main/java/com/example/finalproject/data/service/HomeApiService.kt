@@ -23,8 +23,9 @@ interface HomeApiService {
     @GET("/api/v1/products/lasuserproduct")
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
 
-    @PUT("/api/v1/products/{idProduct}/favorite")
-    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
+    //  todo esto va con el pronto consumo al endpoint de favorite
+//    @PUT("/api/v1/products/{idProduct}/favorite")
+//    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
 
 
 }

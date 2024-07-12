@@ -33,7 +33,9 @@ class HomeApiServiceImp {
     suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
         return service.getLastUserProduct()
     }
-    suspend fun addFavoritesProduct(id:Int): Response<FavoritesResponse>{
-        return service.addFavoritesProduct(id)
-    }
+
+    //  todo esto va con el pronto consumo al endpoint de favorite
+//    suspend fun addFavoritesProduct(id:Int): Response<FavoritesResponse>{
+//        return service.addFavoritesProduct(id)
+//    }
 }

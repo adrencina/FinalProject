@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         observeViewModel()
         navigateToEmailSupport()
         initSearchRecyclerView()
-
+        setIconFavorite()
         initSearchView()
         searchViewObserver()
 
@@ -92,14 +92,18 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         })
-        //observador de consumo a favorite
-        homeViewModel.homeState.observe(this) {favorite ->
-            when (favorite) {
-                is HomeState.Success -> {}
-                is HomeState.Error -> {}
-                is HomeState.Loading -> {}
-            }
-        }
+        //todo observador de consumo a favorite terminar cuando consumo este ok
+//        homeViewModel.homeState.observe(this) { favorite ->
+//            when (favorite) {
+//                is HomeState.Success -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Error -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Loading -> {}
+//            }
+//        }
     }
 
     private fun updateFeaturedProductCard(product: Product) {
@@ -184,5 +188,17 @@ class HomeActivity : AppCompatActivity() {
         binding.ivLine.visible(!result)
         binding.rvHomeSearch.visible(result)
 
+    }
+
+    private fun setIconFavorite() {
+        var favorite = false
+        binding.iconHeart1.setOnClickListener {
+            if (favorite) {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_1)
+            } else {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_2)
+            }
+            favorite = !favorite
+        }
     }
 }

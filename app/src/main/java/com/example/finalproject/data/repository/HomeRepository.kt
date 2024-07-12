@@ -70,9 +70,11 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
         }
     }
 
-    suspend fun addFavoritesProduct(id:Int):Response<FavoritesResponse>{
-        return apiService.addFavoritesProduct(id)
-    }
+//  todo esto va con el pronto consumo al endpoint de favorite
+
+//    suspend fun addFavoritesProduct(id:Int):Response<FavoritesResponse>{
+//        return apiService.addFavoritesProduct(id)
+//    }
 }
 
 

@@ -126,19 +126,21 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun addFavoritesProduct(id:Int) {
-        viewModelScope.launch {
-            _homeState.postValue(HomeState.Loading)
-            val addFavoritesResponse = homeRepository.addFavoritesProduct(id)
-            if (addFavoritesResponse.isSuccessful){
-                addFavoritesResponse.body()?.let {
-                    _homeState.postValue(HomeState.Success(it))
-                }?: _homeState.postValue(HomeState.Error("Error en el servicio"))
-            }else{
-                _homeState.postValue(HomeState.Error("Error en el servidor"))
-            }
+//  todo esto va con el pronto consumo al endpoint de favorite
 
-
-        }
-    }
+//    private suspend fun addFavoritesProduct(id:Int) {
+//        viewModelScope.launch {
+//            _homeState.postValue(HomeState.Loading)
+//            val addFavoritesResponse = homeRepository.addFavoritesProduct(id)
+//            if (addFavoritesResponse.isSuccessful){
+//                addFavoritesResponse.body()?.let {
+//                    _homeState.postValue(HomeState.Success(it))
+//                }?: _homeState.postValue(HomeState.Error("Error en el servicio"))
+//            }else{
+//                _homeState.postValue(HomeState.Error("Error en el servidor"))
+//            }
+//
+//
+//        }
+//    }
 }
