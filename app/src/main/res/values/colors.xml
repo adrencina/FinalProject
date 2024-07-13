@@ -15,5 +15,6 @@
     <color name="register_loading_bg">#4D000000</color>
     <color name="email_error">#C0392B</color>
     <color name="btn_logIn_error">#D9D9D9</color>
+    <color name="line_fragment">#B7B7B7</color>
 
 </resources>
