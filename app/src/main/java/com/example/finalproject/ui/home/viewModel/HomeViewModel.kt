@@ -16,6 +16,9 @@ class HomeViewModel : ViewModel() {
     private val _categories = MutableLiveData<List<ProductType>>()
     val categories: LiveData<List<ProductType>> get() = _categories
 
+    private val _selectedCategories = MutableLiveData<MutableList<ProductType>>()
+    val selectedCategories: MutableLiveData<MutableList<ProductType>> get() = _selectedCategories
+
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
 
@@ -27,6 +30,22 @@ class HomeViewModel : ViewModel() {
 
     private val _searchResult = MutableLiveData<Boolean>()
     val searchResult : LiveData<Boolean> get() = _searchResult
+
+    fun addSelectCategories(productType: ProductType) {
+        viewModelScope.launch {
+            val currentList = _selectedCategories.value ?: mutableListOf()
+            currentList.add(productType)
+            _selectedCategories.postValue(currentList.toMutableList())
+        }
+    }
+
+    fun delSelectCategories(productType: ProductType) {
+        viewModelScope.launch {
+            val currentList = _selectedCategories.value ?: mutableListOf()
+            currentList.remove(productType)
+            _selectedCategories.postValue(currentList.toMutableList())
+        }
+    }
 
     fun fetchCategories() {
         viewModelScope.launch {
