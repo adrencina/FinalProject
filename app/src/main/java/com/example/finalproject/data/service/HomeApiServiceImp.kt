@@ -1,35 +1,32 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.dto.response.DailyOfferResponse
-import com.example.finalproject.data.dto.response.LastUserProductResponse
-import com.example.finalproject.data.dto.response.ProductResponse
-import com.example.finalproject.data.dto.response.ProductTypeResponse
+import com.example.finalproject.data.dto.request.FavoriteProductRequest
+import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.repository.MockBaseUrl
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class HomeApiServiceImp {
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(MockBaseUrl.MOCK_BASE_URL) // URL del API Mock de Prueba.
+class HomeApiServiceImpl : HomeApiService {
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(MockBaseUrl.MOCK_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val service = retrofit.create(HomeApiService::class.java)
+    private val api: HomeApiService = retrofit.create(HomeApiService::class.java)
 
-    suspend fun getProducts(): Response<ProductResponse> {
-        return service.getProducts()
-    }
+    override suspend fun updateDailyOffer(request: FavoriteProductRequest) =
+        api.updateDailyOffer(request)
 
-    suspend fun getDailyOffer(): Response<DailyOfferResponse> {
-        return service.getDailyOffer()
-    }
+    override suspend fun getProducts(
+        idProductType: Int?,
+        productName: String?,
+        onlyFavorite: Boolean,
+        page: Int,
+        size: Int
+    ) = api.getProducts(idProductType, productName, onlyFavorite, page, size)
 
-    suspend fun getProductTypes(): Response<ProductTypeResponse> {
-        return service.getProductTypes()
-    }
-
-    suspend fun getLastUserProduct(): Response<LastUserProductResponse> {
-        return service.getLastUserProduct()
-    }
+    override suspend fun createProduct(request: NewProductRequest) = api.createProduct(request)
+    override suspend fun markAsFavorite(idProduct: Int) = api.markAsFavorite(idProduct)
+    override suspend fun getProductDetails(idProduct: Int) = api.getProductDetails(idProduct)
+    override suspend fun getProductTypes() = api.getProductTypes()
 }

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.databinding.ItemRvHomeTextProductBinding
 
-class ProductTypesAdapter : RecyclerView.Adapter<ProductTypeViewHolder>() {
+class ProductTypesAdapter : RecyclerView.Adapter<ProductTypesAdapter.ProductTypeViewHolder>() {
 
     private val productTypeList = mutableListOf<ProductType>()
 
@@ -17,8 +17,7 @@ class ProductTypesAdapter : RecyclerView.Adapter<ProductTypeViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductTypeViewHolder {
-        val binding =
-            ItemRvHomeTextProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRvHomeTextProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductTypeViewHolder(binding)
     }
 
@@ -27,7 +26,15 @@ class ProductTypesAdapter : RecyclerView.Adapter<ProductTypeViewHolder>() {
     }
 
     override fun getItemCount(): Int = productTypeList.size
+
+    class ProductTypeViewHolder(private val binding: ItemRvHomeTextProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(productType: ProductType) {
+            binding.tvProductTypeName.text = productType.description
+        }
+    }
 }
+
 
 
 

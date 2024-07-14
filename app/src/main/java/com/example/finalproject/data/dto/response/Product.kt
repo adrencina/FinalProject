@@ -1,14 +1,15 @@
 package com.example.finalproject.data.dto.response
 
-import com.google.gson.annotations.SerializedName
+import com.example.finalproject.data.dto.model.Image
 
 data class Product(
-    @SerializedName("idProduct") val idProduct: Int = 0,
-    @SerializedName("name") val name: String? = "No info",
-    @SerializedName("productType") val productType: ProductType? = null,
-    @SerializedName("currency") val currency: String? = "No info",
-    @SerializedName("price") val price: String? = "No info",
-    @SerializedName("image") val image: String? = null,
-    @SerializedName("isFavorite") val isFavorite: Boolean = false,
-    @SerializedName("description") val description: String? = "No info"
+    val idProduct: Int,
+    val name: String,
+    val productType: ProductType,
+    val currency: String,
+    val price: Double,
+    val images: List<Image>,
+    val description: String,
+    val largeDescription: String,
+    val isFavorite: Boolean
 )

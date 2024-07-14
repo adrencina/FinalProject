@@ -4,117 +4,86 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.data.repository.HomeRepository
-import com.example.finalproject.data.service.HomeApiServiceImp
 import com.example.finalproject.data.dto.response.ProductType
+import com.example.finalproject.data.dto.request.FavoriteProductRequest
+import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.Product
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
-    private val homeRepository: HomeRepository = HomeRepository(HomeApiServiceImp())
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
-    private val _categories = MutableLiveData<List<ProductType>>()
-    val categories: LiveData<List<ProductType>> get() = _categories
-
+    // LD lista de productos
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
 
-    private val _featuredProduct = MutableLiveData<Product?>()
-    val featuredProduct: LiveData<Product?> get() = _featuredProduct
+    // LD lista de tipos de productos
+    private val _productTypes = MutableLiveData<List<ProductType>>()
+    val productTypes: LiveData<List<ProductType>> get() = _productTypes
 
-    private val _error = MutableLiveData<String?>()
-    val error: LiveData<String?> get() = _error
+    // LD oferta diaria
+    private val _dailyOffer = MutableLiveData<Product>()
+    val dailyOffer: LiveData<Product> get() = _dailyOffer
 
-    private val _searchResult = MutableLiveData<Boolean>()
-    val searchResult : LiveData<Boolean> get() = _searchResult
+    // LD detalles del producto
+    private val _productDetails = MutableLiveData<Product>()
+    val productDetails: LiveData<Product> get() = _productDetails
 
+    // LD manejar errores
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+
+    // Fun obtener categorías de productos
     fun fetchCategories() {
         viewModelScope.launch {
-            val result = homeRepository.getProductTypes()
-            if (result.isSuccess) {
-                result.getOrNull()?.let {
-                    _categories.postValue(it.productTypes)
-                } ?: run {
-                    _error.postValue("No se pudieron obtener las categorías")
+            try {
+                val response = repository.getProductTypes()
+                if (response.isSuccessful) {
+                    _productTypes.postValue(response.body())
+                } else {
+                    _error.postValue("Error al obtener categorías")
                 }
-            } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+            } catch (e: Exception) {
+                _error.postValue("Error de red: ${e.message}")
             }
         }
     }
 
-    fun fetchProducts() {
+    // Fun obtener productos con filtros opcionales
+    fun fetchProducts(
+        idProductType: Int? = null,
+        productName: String? = null,
+        onlyFavorite: Boolean = false,
+        page: Int = 1,
+        size: Int = 10
+    ) {
         viewModelScope.launch {
-            val result = homeRepository.getProducts()
-            if (result.isSuccess) {
-                result.getOrNull()?.let {
-                    _products.postValue(it.products)
-                } ?: run {
-                    _error.postValue("No se pudieron obtener los productos")
+            try {
+                val response = repository.getProducts(idProductType, productName, onlyFavorite, page, size)
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    _products.postValue(productResponse?.products ?: emptyList())
+                } else {
+                    _error.postValue("Error al obtener productos")
                 }
-            } else {
-                _error.postValue(result.exceptionOrNull()?.message)
+            } catch (e: Exception) {
+                _error.postValue("Error de red: ${e.message}")
             }
         }
     }
 
+    // Fun obtener el producto destacado del día
     fun fetchFeaturedProduct() {
         viewModelScope.launch {
-            val lastUserProductResult = homeRepository.getLastUserProduct()
-            val lastUserProductResponse = lastUserProductResult.getOrNull()
-
-            val lastUserProduct = lastUserProductResponse?.let {
-                Product(
-                    idProduct = it.idProduct,
-                    name = it.name,
-                    productType = it.productType,
-                    currency = it.currency,
-                    price = it.price,
-                    image = it.image,
-                    isFavorite = it.isFavorite,
-                    description = it.description
-                )
+            try {
+                val response = repository.updateDailyOffer(FavoriteProductRequest(idProduct = 0))
+                if (response.isSuccessful) {
+                    _dailyOffer.postValue(response.body())
+                } else {
+                    _error.postValue("Error al obtener la oferta diaria")
+                }
+            } catch (e: Exception) {
+                _error.postValue("Error de red: ${e.message}")
             }
-
-            if (lastUserProduct != null) {
-                _featuredProduct.postValue(lastUserProduct)
-            } else {
-                fetchDailyOffer()
-            }
-        }
-    }
-
-    private suspend fun fetchDailyOffer() {
-        val dailyOfferResult = homeRepository.getDailyOffer()
-        if (dailyOfferResult.isSuccess) {
-            val dailyOffer = dailyOfferResult.getOrNull()
-            if (dailyOffer != null) {
-                val product = Product(
-                    idProduct = dailyOffer.idProduct,
-                    name = dailyOffer.name,
-                    productType = dailyOffer.productType,
-                    currency = dailyOffer.currency,
-                    price = dailyOffer.price,
-                    image = dailyOffer.image,
-                    isFavorite = dailyOffer.isFavorite,
-                    description = dailyOffer.description
-                )
-                _featuredProduct.postValue(product)
-            } else {
-                _error.postValue("No se pudo obtener el producto destacado")
-            }
-        } else {
-            _error.postValue("No se pudo obtener el producto destacado")
-        }
-    }
-
-    fun searchViewController(
-        result:Boolean,
-    ){
-        if (result){
-            _searchResult.postValue(true)
-        }else{
-            _searchResult.postValue(false)
         }
     }
 }
