@@ -71,6 +71,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
         }
     }
 
+
     // Fun obtener el producto destacado del día
     fun fetchFeaturedProduct() {
         viewModelScope.launch {

@@ -44,4 +44,5 @@ interface HomeApiService {
     // Obtiene una lista de ProductType
     @GET("/api/v1/product-types")
     suspend fun getProductTypes(): Response<List<ProductType>>
+
 }

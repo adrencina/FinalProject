@@ -8,26 +8,42 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.repository.HomeRepository
+import com.example.finalproject.data.service.HomeApiServiceImpl
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
+import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: HomeViewModel
+    private lateinit var repository: HomeRepository
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
-    private val productsAdapter = ProductsAdapter()
+    private val productsAdapter = ProductsAdapter(emptyList())
     private val productTypesAdapter = ProductTypesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // servicio API
+        val apiService = HomeApiServiceImpl()
+
+        // repositorio
+        repository = HomeRepository(apiService)
+
+        // instancia de HomeViewModel usando HomeViewModelFactory
+        val factory = HomeViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
 
         setupRecyclerViews()
         observeViewModel()
@@ -65,8 +81,8 @@ class HomeActivity : AppCompatActivity() {
             productTypesAdapter.submitList(it)
         })
 
-        homeViewModel.products.observe(this, Observer {
-            productsAdapter.submitList(it)
+        homeViewModel.products.observe(this, Observer { products ->
+            productsAdapter.updateData(products)
         })
 
         homeViewModel.dailyOffer.observe(this, Observer { product ->
@@ -87,7 +103,7 @@ class HomeActivity : AppCompatActivity() {
         binding.tvHomeNameProduct.text = product.name ?: "Sin nombre"
         binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
         binding.tvHomeDescriptionProduct.text = product.description
-        Picasso.get().load(product.images[0].link).into(binding.ivHomeProduct)
+        Picasso.get().load(product.images?.link).into(binding.ivHomeProduct)
     }
 
     // Navega a soporte por email
