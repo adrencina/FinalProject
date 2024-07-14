@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.service.HomeApiServiceImp
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.service.dto.HomeState
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
@@ -29,7 +31,13 @@ class HomeViewModel : ViewModel() {
     val error: LiveData<String?> get() = _error
 
     private val _searchResult = MutableLiveData<Boolean>()
-    val searchResult : LiveData<Boolean> get() = _searchResult
+    val searchResult: LiveData<Boolean> get() = _searchResult
+
+    private val _favorites = MutableLiveData<List<Product>>()
+    val favorites: LiveData<List<Product>> get() = _favorites
+
+    private val _homeState = MutableLiveData<HomeState>()
+    val homeState : LiveData<HomeState> = _homeState
 
     fun addSelectCategories(productType: ProductType) {
         viewModelScope.launch {
@@ -128,12 +136,30 @@ class HomeViewModel : ViewModel() {
     }
 
     fun searchViewController(
-        result:Boolean,
-    ){
-        if (result){
+        result: Boolean,
+    ) {
+        if (result) {
             _searchResult.postValue(true)
-        }else{
+        } else {
             _searchResult.postValue(false)
         }
     }
+
+//  todo esto va con el pronto consumo al endpoint de favorite
+
+//    private suspend fun addFavoritesProduct(id:Int) {
+//        viewModelScope.launch {
+//            _homeState.postValue(HomeState.Loading)
+//            val addFavoritesResponse = homeRepository.addFavoritesProduct(id)
+//            if (addFavoritesResponse.isSuccessful){
+//                addFavoritesResponse.body()?.let {
+//                    _homeState.postValue(HomeState.Success(it))
+//                }?: _homeState.postValue(HomeState.Error("Error en el servicio"))
+//            }else{
+//                _homeState.postValue(HomeState.Error("Error en el servidor"))
+//            }
+//
+//
+//        }
+//    }
 }

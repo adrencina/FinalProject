@@ -3,6 +3,7 @@ package com.example.finalproject.ui.home.presenter
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.HomeState
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.recycler.adapter.rvSearchs.SearchAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
@@ -41,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         observeViewModel()
         navigateToEmailSupport()
         initSearchRecyclerView()
-
+        setIconFavorite()
         initSearchView()
         searchViewObserver()
 
@@ -90,6 +92,18 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         })
+        //todo observador de consumo a favorite terminar cuando consumo este ok
+//        homeViewModel.homeState.observe(this) { favorite ->
+//            when (favorite) {
+//                is HomeState.Success -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Error -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Loading -> {}
+//            }
+//        }
     }
 
     private fun updateFeaturedProductCard(product: Product) {
@@ -174,5 +188,17 @@ class HomeActivity : AppCompatActivity() {
         binding.ivLine.visible(!result)
         binding.rvHomeSearch.visible(result)
 
+    }
+
+    private fun setIconFavorite() {
+        var favorite = false
+        binding.iconHeart1.setOnClickListener {
+            if (favorite) {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_1)
+            } else {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_2)
+            }
+            favorite = !favorite
+        }
     }
 }
