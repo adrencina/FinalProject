@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.home.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,8 +11,9 @@ import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.Product
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
+class HomeViewModel : ViewModel() {
 
+    private val repository = HomeRepository()
     // LD lista de productos
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
@@ -34,15 +36,20 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     // Fun obtener categorías de productos
     fun fetchCategories() {
+        Log.i("HOLA","CATEGORY")
         viewModelScope.launch {
             try {
                 val response = repository.getProductTypes()
+                Log.i("HOLA",response.toString())
                 if (response.isSuccessful) {
-                    _productTypes.postValue(response.body())
+                    Log.i("HOLA SUCESS",response.body()?.productTypes.toString() )
+                   _productTypes.postValue(response.body()?.productTypes)
                 } else {
                     _error.postValue("Error al obtener categorías")
+                    Log.i("HOLA","Error al obtener categorías")
                 }
             } catch (e: Exception) {
+                Log.i("HOLA",e.toString())
                 _error.postValue("Error de red: ${e.message}")
             }
         }

@@ -2,14 +2,22 @@ package com.example.finalproject.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.finalproject.R
 
 object TokenManager {
 
     private const val USER_TOKEN = "User_Token"
+    private var user_token = ""
+
+    fun getToken():String{
+        return user_token
+    }
 
     // Guarda el token
     fun saveAuthToken(context: Context, token: String) {
+        user_token = token
+        Log.i("HOLA",token)
         saveString(context, USER_TOKEN, token)
     }
 

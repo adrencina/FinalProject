@@ -3,8 +3,11 @@ package com.example.finalproject.data.repository
 import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.service.HomeApiService
+import com.example.finalproject.data.service.HomeApiServiceImpl
 
-class HomeRepository(private val apiService: HomeApiService) {
+class HomeRepository{
+
+    private val apiService = HomeApiServiceImpl()
 
     suspend fun updateDailyOffer(request: FavoriteProductRequest) =
         apiService.updateDailyOffer(request)
