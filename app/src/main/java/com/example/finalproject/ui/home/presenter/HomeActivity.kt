@@ -29,8 +29,8 @@ class HomeActivity : AppCompatActivity() {
     private val productsAdapter = ProductsAdapter()
     private val productTypesAdapter = ProductTypesAdapter()
 
-    private lateinit var searchList: MutableList<Product>
-    private lateinit var searchAdapter: SearchAdapter
+    //private lateinit var searchList: MutableList<Product>
+    //private lateinit var searchAdapter: SearchAdapter
     private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
@@ -42,10 +42,10 @@ class HomeActivity : AppCompatActivity() {
         setupRecyclerViews()
         observeViewModel()
         navigateToEmailSupport()
-        initSearchRecyclerView()
+        //initSearchRecyclerView()
         setIconFavorite()
-        initSearchView()
-        searchViewObserver()
+        //initSearchView()
+        //searchViewObserver()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -56,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("initialFragment", R.id.imagesFragment)
             startActivity(intent)
         }
+
     }
 
     private fun setupRecyclerViews() {
@@ -122,7 +123,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
         }
     }
-
+/*
     private fun initSearchRecyclerView() {
         searchAdapter = SearchAdapter(
             productLst = searchList,
@@ -131,11 +132,11 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHomeSearch.layoutManager = searchLLmanager
         binding.rvHomeSearch.adapter = searchAdapter
     }
-
+*/
     private fun onItemSelected(position: Product) {
         Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
     }
-
+/*
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -151,7 +152,8 @@ class HomeActivity : AppCompatActivity() {
                 }
                 return true
             }
-
+*/
+    /*
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
                     homeViewModel.searchViewController(true)
@@ -167,6 +169,8 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+     */
+/*
     private fun searchViewObserver() {
         homeViewModel.searchResult.observe(this) { result ->
             when (result) {
@@ -180,7 +184,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-
+*/
     private fun searchVisibity(result: Boolean) {
         binding.cvImageProduct.visible(!result)
         binding.rvHomeProducts.visible(!result)

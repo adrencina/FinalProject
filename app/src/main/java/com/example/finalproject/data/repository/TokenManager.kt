@@ -2,14 +2,22 @@ package com.example.finalproject.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.finalproject.R
 
 object TokenManager {
 
     private const val USER_TOKEN = "User_Token"
+    private var tokenString = ""
+
+    fun getTokenString():String{
+        return tokenString
+    }
 
     // Guarda el token
     fun saveAuthToken(context: Context, token: String) {
+        tokenString = token
+        Log.i("HOLATOKEN", tokenString)
         saveString(context, USER_TOKEN, token)
     }
 
@@ -35,6 +43,7 @@ object TokenManager {
         )
         return prefs.getString(key, null)
     }
+
 
     // Elimina todos los datos almacenados en SharedPreferences
     fun clearData(context: Context) {

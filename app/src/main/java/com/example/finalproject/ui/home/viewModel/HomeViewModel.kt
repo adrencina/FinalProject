@@ -17,10 +17,10 @@ class HomeViewModel : ViewModel() {
 
     private val _categories = MutableLiveData<List<ProductType>>()
     val categories: LiveData<List<ProductType>> get() = _categories
-
+/*
     private val _selectedCategories = MutableLiveData<MutableList<ProductType>>()
     val selectedCategories: MutableLiveData<MutableList<ProductType>> get() = _selectedCategories
-
+*/
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
 
@@ -39,6 +39,7 @@ class HomeViewModel : ViewModel() {
     private val _homeState = MutableLiveData<HomeState>()
     val homeState : LiveData<HomeState> = _homeState
 
+   /*
     fun addSelectCategories(productType: ProductType) {
         viewModelScope.launch {
             val currentList = _selectedCategories.value ?: mutableListOf()
@@ -54,6 +55,7 @@ class HomeViewModel : ViewModel() {
             _selectedCategories.postValue(currentList.toMutableList())
         }
     }
+  */
 
     fun fetchCategories() {
         viewModelScope.launch {

@@ -2,6 +2,7 @@ package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.dto.response.RegisterResponse
+import com.example.finalproject.data.repository.BaseUrl
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -17,7 +18,7 @@ class RegisterApiServisImp {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api-users-c9xg.onrender.com")
+        .baseUrl(BaseUrl.AUTH)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

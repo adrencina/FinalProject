@@ -96,10 +96,12 @@ class LoginActivity : AppCompatActivity() {
         binding.containerLoading.visible(false)
     }
     private fun processLogin(data: LoginResponse?) {
-        showToast("Success:" + data?.message)
-        if (!data?.data?.accessToken.isNullOrEmpty()) {
-            data?.data?.accessToken?.let { TokenManager.saveAuthToken(this, it) }
-            navigateToHome()
+        showToast("Success:" + data.toString())
+        if (!data?.accessToken.isNullOrEmpty()) {
+            data?.accessToken?.let {
+                TokenManager.saveAuthToken(this, it)
+                navigateToHome()
+            }
         }
     }
     private fun processError(msg: String?) {
