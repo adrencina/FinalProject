@@ -38,7 +38,11 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
             try {
                 val response = repository.getProductTypes()
                 if (response.isSuccessful) {
-                    _productTypes.postValue(response.body())
+                    response.body()?.let { productTypesList ->
+                        _productTypes.postValue(productTypesList)
+                    } ?: run {
+                        _error.postValue("Error al obtener categorías")
+                    }
                 } else {
                     _error.postValue("Error al obtener categorías")
                 }
