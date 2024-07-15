@@ -17,14 +17,14 @@ import com.example.finalproject.data.service.HomeApiServiceImpl
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
-import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
+//import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: HomeViewModel
-    private lateinit var repository: HomeRepository
+    private  var viewModel: HomeViewModel = HomeViewModel()
+    //private lateinit var repository: HomeRepository
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
     private val productsAdapter = ProductsAdapter(emptyList())
@@ -35,6 +35,8 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+       // viewModel.fetchCategories()
+        /*
         // servicio API
         val apiService = HomeApiServiceImpl()
 
@@ -44,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
         // instancia de HomeViewModel usando HomeViewModelFactory
         val factory = HomeViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
-
+*/
         setupRecyclerViews()
         observeViewModel()
         navigateToEmailSupport()
@@ -58,6 +60,8 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("initialFragment", R.id.imagesFragment)
             startActivity(intent)
         }
+
+
     }
 
     // Config RV

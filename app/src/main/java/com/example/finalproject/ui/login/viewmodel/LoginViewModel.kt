@@ -31,7 +31,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 val response = userRepo.loginUser(loginRequest = loginRequest)
                 if (response?.isSuccessful == true) {
                     // Guarda el token de acceso
-                    response.body()?.data?.accessToken?.let {
+                    response.body()?.accessToken?.let {
                         TokenManager.saveAuthToken(getApplication(), it)
                     }
                     loginResult.value = LoginState.Success(response.body())

@@ -5,6 +5,7 @@ import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductResponse
+import com.example.finalproject.data.dto.response.ProductTypeResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -43,6 +44,6 @@ interface HomeApiService {
 
     // Obtiene una lista de ProductType
     @GET("/api/v1/product-types")
-    suspend fun getProductTypes(): Response<List<ProductType>>
+    suspend fun getProductTypes(): Response<ProductTypeResponse>
 
 }

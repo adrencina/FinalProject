@@ -24,7 +24,7 @@ object RemoteDataSource {
         get() {
             if (mRetrofit == null) {
                 mRetrofit = Retrofit.Builder()
-                    .baseUrl(BaseUrl.BASE_URL)
+                    .baseUrl(BaseUrl.BASE_URL_AUTH)
                     .client(mOkHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
