@@ -3,7 +3,6 @@ package com.example.finalproject.data.service
 import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.repository.BaseUrl
-import com.example.finalproject.data.repository.MockBaseUrl
 import com.example.finalproject.data.repository.TokenManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -20,8 +19,6 @@ class AuthInterceptor(private val token: String) : Interceptor {
         return chain.proceed(modifiedRequest)
     }
 }
-
-
 
 class HomeApiServiceImpl : HomeApiService {
     private val okHttpClient = OkHttpClient.Builder()

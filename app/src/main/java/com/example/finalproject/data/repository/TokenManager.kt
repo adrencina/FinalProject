@@ -14,6 +14,8 @@ object TokenManager {
         return user_token
     }
 
+    private var token: String? = null
+
     // Guarda el token
     fun saveAuthToken(context: Context, token: String) {
         user_token = token

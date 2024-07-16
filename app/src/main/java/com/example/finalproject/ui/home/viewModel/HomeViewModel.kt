@@ -36,25 +36,19 @@ class HomeViewModel : ViewModel() {
 
     // Fun obtener categorías de productos
     fun fetchCategories() {
-        Log.i("HOLA","CATEGORY")
         viewModelScope.launch {
             try {
                 val response = repository.getProductTypes()
-                Log.i("HOLA",response.toString())
                 if (response.isSuccessful) {
-                    Log.i("HOLA SUCESS",response.body()?.productTypes.toString() )
-                   _productTypes.postValue(response.body()?.productTypes)
-                    response.body()?.let { productTypesList ->
-                        _productTypes.postValue(productTypesList)
+                    response.body()?.let { productTypeResponse ->
+                        _productTypes.postValue(productTypeResponse.productTypes)
                     } ?: run {
                         _error.postValue("Error al obtener categorías")
                     }
                 } else {
                     _error.postValue("Error al obtener categorías")
-                    Log.i("HOLA","Error al obtener categorías")
                 }
             } catch (e: Exception) {
-                Log.i("HOLA",e.toString())
                 _error.postValue("Error de red: ${e.message}")
             }
         }

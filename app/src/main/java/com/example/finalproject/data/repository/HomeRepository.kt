@@ -2,8 +2,9 @@ package com.example.finalproject.data.repository
 
 import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
-import com.example.finalproject.data.dto.response.ProductType
-import com.example.finalproject.data.service.HomeApiService
+import com.example.finalproject.data.dto.response.ProductTypeResponse
+import com.example.finalproject.data.service.HomeApiServiceImpl
+import retrofit2.Response
 
 class HomeRepository{
 
@@ -26,7 +27,7 @@ class HomeRepository{
 
     suspend fun getProductDetails(idProduct: Int) = apiService.getProductDetails(idProduct)
 
-    suspend fun getProductTypes(): Response<List<ProductType>> {
+    suspend fun getProductTypes(): Response<ProductTypeResponse> {
         return apiService.getProductTypes()
     }
 }

@@ -1,6 +1,5 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.Product
