@@ -2,7 +2,7 @@ package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
-import com.example.finalproject.data.repository.BaseUrl
+import com.example.finalproject.data.repository.MockBaseUrl
 import com.example.finalproject.data.repository.TokenManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -26,7 +26,7 @@ class HomeApiServiceImpl : HomeApiService {
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BaseUrl.BASE_URL_API)
+        .baseUrl(MockBaseUrl.MOCK_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()

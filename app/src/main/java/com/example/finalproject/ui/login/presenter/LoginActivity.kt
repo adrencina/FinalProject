@@ -41,18 +41,24 @@ class LoginActivity : AppCompatActivity() {
                 is LoginState.Error -> {
                     stopLoading()
                     showToast(loginState.msg ?: "Error desconocido")
+                    onErrorManager()
                 }
 
                 else -> {
                     stopLoading()
                     showToast("Error desconocido")
+                    onErrorManager()
                 }
             }
         }
 
         // listeners botones
+        binding.checkBoxPassword.setOnClickListener {
+            checkBoxSwitcher()
+        }
         binding.cvLogIn.setOnClickListener { login() }
         binding.btnGoToRegister.setOnClickListener { navigateToRegister() }
+        initInputListeners()
     }
 
     // Fun nav a HomeActivity
@@ -89,5 +95,36 @@ class LoginActivity : AppCompatActivity() {
     // Fun mostrar un Toast
     private fun showToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkBoxSwitcher(){
+        val passwordBox = binding.inputPassword
+        val checkBox = binding.checkBoxPassword
+        loginViewModel.checkBoxChecker(checkBox,passwordBox)
+    }
+    private fun onErrorManager(){
+        val errorTextBox = binding.emailErrorMessage
+        val btnOK = binding.cvLogIn
+        val btnError = binding.cvLogInError
+        loginViewModel.btnSwitcher(errorTextBox,btnOK,btnError)
+    }
+
+    private fun initInputListeners(){
+        inputEmailChangeListener()
+        inputPasswordChangeListener()
+    }
+    private fun inputEmailChangeListener(){
+        val emailBox = binding.inputEmail
+        val btnOK = binding.cvLogIn
+        val btnError = binding.cvLogInError
+        val errorTextBox = binding.emailErrorMessage
+        loginViewModel.emailListenerChange(errorTextBox,emailBox, btnOK, btnError)
+    }
+    private fun inputPasswordChangeListener(){
+        val passwordBox = binding.inputPassword
+        val btnOK = binding.cvLogIn
+        val btnError = binding.cvLogInError
+        val errorTextBox = binding.emailErrorMessage
+        loginViewModel.passwordListenerChange(errorTextBox, passwordBox, btnOK, btnError)
     }
 }
