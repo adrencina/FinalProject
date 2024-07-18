@@ -30,7 +30,7 @@
             tools:layout="@layout/fragment_financing" />
         <fragment
             android:id="@+id/descriptionFragment"
-            android:name="com.example.finalproject.DescriptionFragment"
+            android:name="com.example.finalproject.ui.descriptionFragment.presenter.DescriptionFragment"
             android:label="fragment_description"
             tools:layout="@layout/fragment_description" />
         <fragment

@@ -42,10 +42,10 @@ class HomeActivity : AppCompatActivity() {
         setupRecyclerViews()
         observeViewModel()
         navigateToEmailSupport()
-        initSearchRecyclerView()
+        //initSearchRecyclerView()
         setIconFavorite()
-        initSearchView()
-        searchViewObserver()
+       // initSearchView()
+        //searchViewObserver()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()

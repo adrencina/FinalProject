@@ -18,7 +18,7 @@
             android:name=".ui.leftbar.presenter.LeftBarActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.presenter.HomeActivity"
+            android:name=".ui.preLogin.presenter.PreLoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.presenter.LoginActivity"
@@ -27,7 +27,7 @@
             android:name=".ui.register.presenter.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.preLogin.presenter.PreLoginActivity"
+            android:name=".ui.home.presenter.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
