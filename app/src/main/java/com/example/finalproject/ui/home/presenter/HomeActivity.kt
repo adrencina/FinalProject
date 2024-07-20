@@ -4,71 +4,60 @@ import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.HomeRepository
-import com.example.finalproject.data.service.HomeApiServiceImpl
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
-//import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
-import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
-import com.squareup.picasso.Picasso
+import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 
 class HomeActivity : AppCompatActivity() {
 
-    private  var viewModel: HomeViewModel = HomeViewModel()
-    //private lateinit var repository: HomeRepository
     private lateinit var binding: ActivityHomeBinding
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val productTypesAdapter = ProductTypesAdapter(emptyList())
     private val productsAdapter = ProductsAdapter(emptyList())
-    private val productTypesAdapter = ProductTypesAdapter()
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-       // viewModel.fetchCategories()
-        /*
-        // servicio API
-        val apiService = HomeApiServiceImpl()
+        val repository = HomeRepository(this)
+        homeViewModel =
+            ViewModelProvider(this, HomeViewModelFactory(repository))[HomeViewModel::class.java]
 
-        // repositorio
-        repository = HomeRepository(apiService)
 
-        // instancia de HomeViewModel usando HomeViewModelFactory
-        val factory = HomeViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
-*/
         setupRecyclerViews()
         observeViewModel()
-        navigateToEmailSupport()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
         homeViewModel.fetchFeaturedProduct()
 
-        binding.cvImageProduct.setOnClickListener {
-            val intent = Intent(this, LeftBarActivity::class.java)
-            intent.putExtra("initialFragment", R.id.imagesFragment)
-            startActivity(intent)
-        }
+//        navigateToEmailSupport()
 
+        homeViewModel.fetchCategories()
+        homeViewModel.fetchProducts()
+
+        val sharedPreferences = getSharedPreferences("user_preferences", MODE_PRIVATE)
+        val lastVisitedProductId = sharedPreferences.getInt("last_visited_product_id", 0)
+        if (lastVisitedProductId != 0) {
+            homeViewModel.fetchLastVisitedProduct(lastVisitedProductId)
+        }
 
     }
 
     // Config RV
     private fun setupRecyclerViews() {
         binding.rvHomeNameItems.apply {
-            layoutManager =
-                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
         }
         // Config RV para los productos
@@ -81,44 +70,71 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el VM
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this, Observer {
-            productTypesAdapter.submitList(it)
+        homeViewModel.productTypes.observe(this, Observer { productTypes ->
+            productTypesAdapter.updateData(productTypes)
         })
 
         homeViewModel.products.observe(this, Observer { products ->
-            productsAdapter.updateData(products)
+            if (products.isNotEmpty()) {
+                productsAdapter.updateData(products)
+                Log.d("HomeActivity", "Productos mostrados: ${products.size}")
+            } else {
+                Log.d("HomeActivity", "No se encontraron productos")
+            }
         })
 
-        homeViewModel.dailyOffer.observe(this, Observer { product ->
-            product?.let {
-                updateFeaturedProductCard(it)
+        homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
+            dailyOffer?.let { product ->
+                updateFeaturedProduct(product)
+            }
+        })
+
+        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
+            lastVisitedProduct?.let { product ->
+                updateFeaturedProduct(product)
             }
         })
 
         homeViewModel.error.observe(this, Observer { errorMessage ->
-            errorMessage?.let {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+            Log.e("HomeActivity", "Error: $errorMessage")
         })
     }
 
-    // Actualiza CV de Home
-    private fun updateFeaturedProductCard(product: Product) {
-        binding.tvHomeNameProduct.text = product.name ?: "Sin nombre"
-        binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
-        binding.tvHomeDescriptionProduct.text = product.description
-        Picasso.get().load(product.images?.link).into(binding.ivHomeProduct)
+    private fun updateFeaturedProduct(product: Product) {
+        binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
+        binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
+        binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
+        binding.ivHomeProduct.setImageURI(Uri.parse(product.image))
     }
 
-    // Navega a soporte por email
-    private fun navigateToEmailSupport() {
-        binding.tvSupport.setOnClickListener {
-            val emailIntent =
-                Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rla.support@gmail.com", null))
-            startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
+    // Actualiza CV de Home
+//    private fun updateFeaturedProductCard(product: Product) {
+//        binding.featuredProductLayout.apply {
+//            binding.tvHomeNameProduct.text = product.name ?: "Sin nombre"
+//            binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
+//            binding.tvHomeDescriptionProduct.text = product.description
+//            Picasso.get().load(product.images?.link).into(binding.ivHomeProduct)
+//            root.setOnClickListener {
+//                val intent = Intent(this@HomeActivity, LeftBarActivity::class.java)
+//                intent.putExtra("productId", product.id)
+//                startActivity(intent)
+//            }
+//        }
+
+        // Navega a soporte por email
+        fun navigateToEmailSupport() {
+            binding.tvSupport.setOnClickListener {
+                val emailIntent =
+                    Intent(
+                        Intent.ACTION_SENDTO,
+                        Uri.fromParts("mailto", "rla.support@gmail.com", null)
+                    )
+                startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
+            }
         }
     }
-}
+//}
 
 
 // Éste codigo de abajo es para el SearchView que se trabajará en proximos días...

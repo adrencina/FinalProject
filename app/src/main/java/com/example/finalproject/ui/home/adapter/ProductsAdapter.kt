@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,11 +35,19 @@ class ProductsAdapter(
         fun bind(product: Product) {
             binding.nameRecyclerProduct.text = product.name ?: "No Data"
             binding.tvRecyclerPrice.text = product.price?.toString() ?: "No Data"
-            val imageUrl = product.images?.link ?: ""
+
+            val imageUrl = product.image ?: ""
             if (imageUrl.isNotEmpty()) {
-                Picasso.get().load(imageUrl).into(binding.ivRecyclerProduct)
+                Log.d("ProductsAdapter", "Cargando imagen desde URL: $imageUrl")
+
+                Picasso.get()
+                    .load(imageUrl)
+                    .placeholder(R.drawable.imgerror) // Imagen placeholder mientras se carga
+                    .error(R.drawable.imgerror) // Imagen por defecto en caso de error
+                    .into(binding.ivRecyclerProduct)
             } else {
-                binding.ivRecyclerProduct.setImageResource(R.drawable.ic_launcher_background) // Imagen Placeholder
+                Log.d("ProductsAdapter", "URL de imagen vacía, mostrando imagen por defecto")
+                binding.ivRecyclerProduct.setImageResource(R.drawable.imgerror) // Imagen Placeholder
             }
         }
     }

@@ -8,7 +8,8 @@ data class DailyOfferResponse(
     @SerializedName("productType") val productType: ProductType,
     @SerializedName("currency") val currency: String,
     @SerializedName("price") val price: String,
-    @SerializedName("image") val image: String,
+    @SerializedName("images") val image: String,
     @SerializedName("isFavorite") val isFavorite: Boolean,
-    @SerializedName("description") val description: String
+    @SerializedName("description") val description: String,
+    @SerializedName("dailyOffer") val dailyOffer: Boolean
 )

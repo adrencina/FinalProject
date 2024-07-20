@@ -41,8 +41,7 @@ interface HomeApiService {
     @GET("/api/v1/products/{idProduct}")
     suspend fun getProductDetails(@Path("idProduct") idProduct: Int): Response<Product>
 
-    // Obtiene una lista de ProductType
+    // Obtiene una lista de tipos de productos
     @GET("/api/v1/product-types")
     suspend fun getProductTypes(): Response<ProductTypeResponse>
-
 }

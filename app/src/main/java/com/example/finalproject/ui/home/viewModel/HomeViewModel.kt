@@ -11,9 +11,8 @@ import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.Product
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
-    private val repository = HomeRepository()
     // LD lista de productos
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
@@ -25,6 +24,10 @@ class HomeViewModel : ViewModel() {
     // LD oferta diaria
     private val _dailyOffer = MutableLiveData<Product>()
     val dailyOffer: LiveData<Product> get() = _dailyOffer
+
+    // LD último producto visitado
+    private val _lastVisitedProduct = MutableLiveData<Product>()
+    val lastVisitedProduct: LiveData<Product> get() = _lastVisitedProduct
 
     // LD detalles del producto
     private val _productDetails = MutableLiveData<Product>()
@@ -43,12 +46,14 @@ class HomeViewModel : ViewModel() {
                     response.body()?.let { productTypeResponse ->
                         _productTypes.postValue(productTypeResponse.productTypes)
                     } ?: run {
-                        _error.postValue("Error al obtener categorías")
+                        _error.postValue("Respuesta vacía")
                     }
                 } else {
-                    _error.postValue("Error al obtener categorías")
+                    Log.e("HomeView", "Error: ${response.errorBody()?.string()}")
+                    _error.postValue("${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
+                Log.e("HomeViewModel", "Error de red: ${e.message}")
                 _error.postValue("Error de red: ${e.message}")
             }
         }
@@ -64,19 +69,33 @@ class HomeViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                val response = repository.getProducts(idProductType, productName, onlyFavorite, page, size)
+                val response =
+                    repository.getProducts(idProductType, productName, onlyFavorite, page, size)
                 if (response.isSuccessful) {
                     val productResponse = response.body()
-                    _products.postValue(productResponse?.products ?: emptyList())
+                    if (productResponse != null) {
+                        _products.postValue(productResponse.products)
+                        Log.d("HomeViewModel", "Productos obtenidos: ${productResponse.products}")
+                        productResponse.products.forEach { product ->
+                            Log.d("HomeViewModel", "Producto: ${product.name}, Imagen URL: ${product.image}")
+                        }
+                    } else {
+                        _error.postValue("Respuesta vacía del servidor")
+                    }
                 } else {
-                    _error.postValue("Error al obtener productos")
+                    _error.postValue(
+                        "Error al obtener productos: ${
+                            response.errorBody()?.string()
+                        }"
+                    )
+                    Log.e("HomeViewModel", "Error: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
                 _error.postValue("Error de red: ${e.message}")
+                Log.e("HomeViewModel", "Error de red: ${e.message}")
             }
         }
     }
-
 
     // Fun obtener el producto destacado del día
     fun fetchFeaturedProduct() {
@@ -93,4 +112,20 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+
+    fun fetchLastVisitedProduct(productId: Int) {
+        viewModelScope.launch {
+            try {
+                val response = repository.getProductDetails(productId)
+                if (response.isSuccessful) {
+                    _lastVisitedProduct.postValue(response.body())
+                } else {
+                    _error.postValue("Error al obtener el producto visitado")
+                }
+            } catch (e: Exception) {
+                _error.postValue("Error de red: ${e.message}")
+            }
+        }
+    }
+
 }
