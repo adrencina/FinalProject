@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
@@ -21,6 +22,11 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val productTypesAdapter = ProductTypesAdapter(emptyList())
+    { product ->
+        onItemSelected(
+            product
+        )
+    }
     private val productsAdapter = ProductsAdapter(emptyList())
     private lateinit var homeViewModel: HomeViewModel
 
@@ -52,10 +58,12 @@ class HomeActivity : AppCompatActivity() {
             homeViewModel.fetchLastVisitedProduct(lastVisitedProductId)
         }
 
+
     }
 
     // Config RV
     private fun setupRecyclerViews() {
+
         binding.rvHomeNameItems.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
@@ -106,6 +114,11 @@ class HomeActivity : AppCompatActivity() {
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
         binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
         binding.ivHomeProduct.setImageURI(Uri.parse(product.image))
+    }
+
+    private fun onItemSelected(productType: ProductType){
+
+                productsAdapter.filtered(productType)
     }
 
     // Actualiza CV de Home
