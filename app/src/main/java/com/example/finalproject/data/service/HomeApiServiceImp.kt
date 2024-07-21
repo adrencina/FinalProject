@@ -1,10 +1,10 @@
 package com.example.finalproject.data.service
 
 import android.content.Context
-import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
+import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
-import com.example.finalproject.data.repository.MockBaseUrl
+import com.example.finalproject.data.repository.BaseUrl
 import com.example.finalproject.data.repository.TokenManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -34,15 +34,16 @@ class HomeApiServiceImpl(context: Context) : HomeApiService {
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(MockBaseUrl.MOCK_BASE_URL)
+        .baseUrl(BaseUrl.BASE_URL_API)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
     private val api: HomeApiService = retrofit.create(HomeApiService::class.java)
 
-    override suspend fun updateDailyOffer(request: FavoriteProductRequest) =
-        api.updateDailyOffer(request)
+    override suspend fun getDailyOffer(): retrofit2.Response<DailyOfferResponse> {
+        return api.getDailyOffer()
+    }
 
     override suspend fun getProducts(
         idProductType: Int?,

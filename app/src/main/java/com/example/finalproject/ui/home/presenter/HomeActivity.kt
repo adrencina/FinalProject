@@ -7,15 +7,19 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.R
+import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
+import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -33,18 +38,13 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel =
             ViewModelProvider(this, HomeViewModelFactory(repository))[HomeViewModel::class.java]
 
-
+        navigateToEmailSupport()
         setupRecyclerViews()
         observeViewModel()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
         homeViewModel.fetchFeaturedProduct()
-
-//        navigateToEmailSupport()
-
-        homeViewModel.fetchCategories()
-        homeViewModel.fetchProducts()
 
         val sharedPreferences = getSharedPreferences("user_preferences", MODE_PRIVATE)
         val lastVisitedProductId = sharedPreferences.getInt("last_visited_product_id", 0)
@@ -57,7 +57,8 @@ class HomeActivity : AppCompatActivity() {
     // Config RV
     private fun setupRecyclerViews() {
         binding.rvHomeNameItems.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
         }
         // Config RV para los productos
@@ -85,15 +86,16 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
             dailyOffer?.let { product ->
+                Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
         })
 
-        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
-            lastVisitedProduct?.let { product ->
-                updateFeaturedProduct(product)
-            }
-        })
+//        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
+//            lastVisitedProduct?.let { product ->
+//                updateFeaturedProduct(product)
+//            }
+//        })
 
         homeViewModel.error.observe(this, Observer { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
@@ -101,40 +103,42 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateFeaturedProduct(product: Product) {
+    private fun updateFeaturedProduct(product: DailyOfferResponse) {
+        Log.d("HomeActivity", "Actualizando producto destacado: $product")
+
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
         binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
-        binding.ivHomeProduct.setImageURI(Uri.parse(product.image))
-    }
 
-    // Actualiza CV de Home
-//    private fun updateFeaturedProductCard(product: Product) {
-//        binding.featuredProductLayout.apply {
-//            binding.tvHomeNameProduct.text = product.name ?: "Sin nombre"
-//            binding.tvHomePriceProduct.text = "${product.currency} ${product.price}"
-//            binding.tvHomeDescriptionProduct.text = product.description
-//            Picasso.get().load(product.images?.link).into(binding.ivHomeProduct)
-//            root.setOnClickListener {
-//                val intent = Intent(this@HomeActivity, LeftBarActivity::class.java)
-//                intent.putExtra("productId", product.id)
-//                startActivity(intent)
-//            }
-//        }
+        Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
+        binding.titleDailyOffer.visible(true)
 
-        // Navega a soporte por email
-        fun navigateToEmailSupport() {
-            binding.tvSupport.setOnClickListener {
-                val emailIntent =
-                    Intent(
-                        Intent.ACTION_SENDTO,
-                        Uri.fromParts("mailto", "rla.support@gmail.com", null)
-                    )
-                startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
-            }
+        val imageUrl = product.images?.firstOrNull()?.link ?: ""
+        if (imageUrl.isNotEmpty()) {
+            Log.d("HomeActivity", "Cargando imagen desde URL: $imageUrl")
+            Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.imgerror)
+                .error(R.drawable.imgerror)
+                .into(binding.ivHomeProduct)
+        } else {
+            Log.d("HomeActivity", "URL de imagen vacía, mostrando imagen por defecto")
+            binding.ivHomeProduct.setImageResource(R.drawable.imgerror)
         }
     }
-//}
+
+    // Navega a soporte por email
+    private fun navigateToEmailSupport() {
+        binding.tvSupport.setOnClickListener {
+            val emailIntent =
+                Intent(
+                    Intent.ACTION_SENDTO,
+                    Uri.fromParts("mailto", "rla.support@gmail.com", null)
+                )
+            startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
+        }
+    }
+}
 
 
 // Éste codigo de abajo es para el SearchView que se trabajará en proximos días...

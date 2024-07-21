@@ -1,7 +1,7 @@
 package com.example.finalproject.data.service
 
-import com.example.finalproject.data.dto.request.FavoriteProductRequest
 import com.example.finalproject.data.dto.request.NewProductRequest
+import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
@@ -9,15 +9,14 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HomeApiService {
 
-    // Actualiza la oferta diaria
-    @PUT("/api/v1/products/daily-offer")
-    suspend fun updateDailyOffer(@Body request: FavoriteProductRequest): Response<Product>
+    // Obtiene la oferta diaria
+    @GET("/api/v1/products/daily-offer")
+    suspend fun getDailyOffer(): Response<DailyOfferResponse>
 
     // Obtiene una lista de productos
     @GET("/api/v1/products")

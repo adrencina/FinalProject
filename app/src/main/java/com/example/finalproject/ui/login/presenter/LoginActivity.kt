@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.Utils.visible
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

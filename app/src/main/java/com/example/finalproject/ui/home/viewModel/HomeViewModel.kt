@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.dto.response.ProductType
-import com.example.finalproject.data.dto.request.FavoriteProductRequest
+import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.Product
 import kotlinx.coroutines.launch
@@ -22,8 +22,8 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val productTypes: LiveData<List<ProductType>> get() = _productTypes
 
     // LD oferta diaria
-    private val _dailyOffer = MutableLiveData<Product>()
-    val dailyOffer: LiveData<Product> get() = _dailyOffer
+    private val _dailyOffer = MutableLiveData<DailyOfferResponse>()
+    val dailyOffer: LiveData<DailyOfferResponse> get() = _dailyOffer
 
     // LD último producto visitado
     private val _lastVisitedProduct = MutableLiveData<Product>()
@@ -77,7 +77,10 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
                         _products.postValue(productResponse.products)
                         Log.d("HomeViewModel", "Productos obtenidos: ${productResponse.products}")
                         productResponse.products.forEach { product ->
-                            Log.d("HomeViewModel", "Producto: ${product.name}, Imagen URL: ${product.image}")
+                            Log.d(
+                                "HomeViewModel",
+                                "Producto: ${product.name}, Imagen URL: ${product.image}"
+                            )
                         }
                     } else {
                         _error.postValue("Respuesta vacía del servidor")
@@ -101,18 +104,25 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     fun fetchFeaturedProduct() {
         viewModelScope.launch {
             try {
-                val response = repository.updateDailyOffer(FavoriteProductRequest(idProduct = 0))
+                val response = repository.getDailyOffer()
                 if (response.isSuccessful) {
-                    _dailyOffer.postValue(response.body())
+                    response.body()?.let {
+                        _dailyOffer.postValue(it)
+                    } ?: run {
+                        _error.postValue("Respuesta vacía del servidor")
+                    }
                 } else {
                     _error.postValue("Error al obtener la oferta diaria")
+                    Log.e("HomeViewModel", "Error: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
                 _error.postValue("Error de red: ${e.message}")
+                Log.e("HomeViewModel", "Error de red: ${e.message}")
             }
         }
     }
 
+    // Fun para marcar un producto como ultimo visitado
     fun fetchLastVisitedProduct(productId: Int) {
         viewModelScope.launch {
             try {
@@ -127,5 +137,4 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
             }
         }
     }
-
 }
