@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
@@ -24,7 +25,7 @@ import com.squareup.picasso.Picasso
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val productTypesAdapter = ProductTypesAdapter(emptyList())
+    private val productTypesAdapter = ProductTypesAdapter(emptyList(), onClickListener = {productType -> onItemSelected(productType)  })
     private val productsAdapter = ProductsAdapter(emptyList())
     private lateinit var homeViewModel: HomeViewModel
 
@@ -165,6 +166,23 @@ class HomeActivity : AppCompatActivity() {
             favorite = !favorite
         }
     }
+
+
+    private fun onItemSelected(productType: ProductType){
+        if (productType.idProductType.toString().isNotEmpty()) {
+            homeViewModel.products.observe(this, Observer { products ->
+                if (products.isNotEmpty()) {
+                    productsAdapter.updateData(products)
+                    productsAdapter.filtered(productType)
+                    Log.d("HomeActivity", "Productos mostrados: ${products.size}")
+                } else {
+                    Log.d("HomeActivity", "No se encontraron productos")
+                }
+            })
+        }
+    }
+
+
 }
 
 

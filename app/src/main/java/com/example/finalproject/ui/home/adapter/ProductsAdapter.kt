@@ -1,11 +1,13 @@
 package com.example.finalproject.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.databinding.ItemRvHomeProductsBinding
 import com.squareup.picasso.Picasso
 
@@ -27,6 +29,25 @@ class ProductsAdapter(
 
     fun updateData(newProductList: List<Product>) {
         products = newProductList
+        notifyDataSetChanged()
+    }
+
+    fun filtered(productType: ProductType) {
+
+        val filtered = products.filter { filt ->
+            filt.productType?.idProductType.toString().lowercase().contains(productType.idProductType.toString().lowercase()) }
+
+        updateFilter(filtered)
+        Log.i("asd", products.toString())
+        Log.i("asd", productType.toString())
+        Log.i("asd", filtered.toString())
+    }
+
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateFilter(product: List<Product>){
+        products = product
         notifyDataSetChanged()
     }
 
