@@ -184,6 +184,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/robotolight"
+            android:maxLines="1"
             android:textSize="12sp"
             tools:text="@string/buzo_canguro_capucha_ncon_cordon" />
 

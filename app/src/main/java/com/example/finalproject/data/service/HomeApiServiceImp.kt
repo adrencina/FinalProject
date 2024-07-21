@@ -3,9 +3,7 @@ package com.example.finalproject.data.service
 import android.content.Context
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.DailyOfferResponse
-import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
-import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import com.example.finalproject.data.repository.BaseUrl
 import com.example.finalproject.data.repository.TokenManager
@@ -29,6 +27,7 @@ class AuthInterceptor(private val context: Context) : Interceptor {
 }
 
 class HomeApiServiceImpl(context: Context) : HomeApiService {
+
     private val okHttpClient: OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(context))
         .connectTimeout(60, TimeUnit.SECONDS) // Tiempo conexión
@@ -64,6 +63,10 @@ class HomeApiServiceImpl(context: Context) : HomeApiService {
 
     override suspend fun getProductTypes(): retrofit2.Response<ProductTypeResponse> {
         return api.getProductTypes()
+    }
+
+    override suspend fun getLastUserProduct(): retrofit2.Response<LastUserProductResponse> {
+        return api.getLastUserProduct()
     }
 
     //  todo esto va con el pronto consumo al endpoint de favorite

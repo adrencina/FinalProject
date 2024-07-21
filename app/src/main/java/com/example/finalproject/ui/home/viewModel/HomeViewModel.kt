@@ -45,7 +45,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val favorites: LiveData<List<Product>> get() = _favorites
 
     private val _homeState = MutableLiveData<HomeState>()
-    val homeState : LiveData<HomeState> = _homeState
+    val homeState: LiveData<HomeState> = _homeState
 
     fun fetchCategories() {
         viewModelScope.launch {
@@ -144,17 +144,17 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
             } catch (e: Exception) {
                 _error.postValue("Error de red: ${e.message}")
             }
-    fun searchViewController(
-        result: Boolean,
-    ) {
-        if (result) {
-            _searchResult.postValue(true)
-        } else {
-            _searchResult.postValue(false)
-        }
-    }
+            fun searchViewController(
+                result: Boolean,
+            ) {
+                if (result) {
+                    _searchResult.postValue(true)
+                } else {
+                    _searchResult.postValue(false)
+                }
             }
         }
+    }
     }
 
 //  todo esto va con el pronto consumo al endpoint de favorite

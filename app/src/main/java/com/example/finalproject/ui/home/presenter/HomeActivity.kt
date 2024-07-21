@@ -103,6 +103,7 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
         })
+
         //todo observador de consumo a favorite terminar cuando consumo este ok
 //        homeViewModel.homeState.observe(this) { favorite ->
 //            when (favorite) {
@@ -152,6 +153,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
         }
     }
+
     private fun setIconFavorite() {
         var favorite = false
         binding.iconHeart1.setOnClickListener {
