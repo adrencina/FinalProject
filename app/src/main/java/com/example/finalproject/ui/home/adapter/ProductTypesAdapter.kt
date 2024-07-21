@@ -34,6 +34,7 @@ class ProductTypesAdapter(
 
     override fun getItemCount(): Int = productTypes.size
 
+
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newProductTypes: List<ProductType>) {
         productTypes = newProductTypes
