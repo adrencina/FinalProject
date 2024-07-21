@@ -4,24 +4,27 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RemoteDataSource {
-    var mHttpLoggingInterceptor = HttpLoggingInterceptor()
+    private var mHttpLoggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
 
-    var mOkHttpClient = OkHttpClient
+    private var mOkHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(mHttpLoggingInterceptor)
+        .connectTimeout(60, TimeUnit.SECONDS)  // Tiempo de conexión
+        .readTimeout(60, TimeUnit.SECONDS)     // Tiempo de lectura
+        .writeTimeout(60, TimeUnit.SECONDS)    // Tiempo de escritura
         .build()
 
-    var mRetrofit: Retrofit? = null
-
+    private var mRetrofit: Retrofit? = null
 
     val client: Retrofit?
         get() {
-            if(mRetrofit == null){
+            if (mRetrofit == null) {
                 mRetrofit = Retrofit.Builder()
-                    .baseUrl(BaseUrl.BASE_URL)
+                    .baseUrl(BaseUrl.BASE_URL_AUTH)
                     .client(mOkHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

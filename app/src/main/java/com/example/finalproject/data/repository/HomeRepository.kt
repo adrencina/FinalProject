@@ -1,59 +1,36 @@
 package com.example.finalproject.data.repository
 
+import android.content.Context
+import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.DailyOfferResponse
-import com.example.finalproject.data.dto.response.FavoritesResponse
 import com.example.finalproject.data.dto.response.LastUserProductResponse
-import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
-import com.example.finalproject.data.service.HomeApiServiceImp
 import retrofit2.Response
+import com.example.finalproject.data.service.HomeApiServiceImpl
 
-class HomeRepository(private val apiService: HomeApiServiceImp) {
+class HomeRepository(private val context: Context) {
 
-    suspend fun getProducts(): Result<ProductResponse> {
-        return try {
-            val response = apiService.getProducts()
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    Result.success(it)
-                } ?: Result.failure(Exception("No se pudo obtener los productos"))
-            } else {
-                Result.failure(Exception("Error en la respuesta de productos"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
+    private val apiService = HomeApiServiceImpl(context)
+
+    suspend fun getDailyOffer(): Response<DailyOfferResponse> {
+        return apiService.getDailyOffer()
     }
 
-    suspend fun getDailyOffer(): Result<DailyOfferResponse> {
-        return try {
-            val response = apiService.getDailyOffer()
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    Result.success(it)
-                } ?: Result.failure(Exception("No se pudo obtener la oferta diaria"))
-            } else {
-                Result.failure(Exception("Error en la respuesta de oferta diaria"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
+    suspend fun getProducts(
+        idProductType: Int?,
+        productName: String?,
+        onlyFavorite: Boolean,
+        page: Int,
+        size: Int
+    ) = apiService.getProducts(idProductType, productName, onlyFavorite, page, size)
 
-    suspend fun getProductTypes(): Result<ProductTypeResponse> {
-        return try {
-            val response = apiService.getProductTypes()
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    Result.success(it)
-                } ?: Result.failure(Exception("No se pudieron obtener los tipos de producto"))
-            } else {
-                Result.failure(Exception("Error en la respuesta de tipos de producto"))
-            }
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
+    suspend fun createProduct(request: NewProductRequest) = apiService.createProduct(request)
+
+    suspend fun markAsFavorite(idProduct: Int) = apiService.markAsFavorite(idProduct)
+
+    suspend fun getProductDetails(idProduct: Int) = apiService.getProductDetails(idProduct)
+
+    suspend fun getProductTypes(): Response<ProductTypeResponse> = apiService.getProductTypes()
 
     suspend fun getLastUserProduct(): Result<LastUserProductResponse> {
         return try {
@@ -76,5 +53,4 @@ class HomeRepository(private val apiService: HomeApiServiceImp) {
 //        return apiService.addFavoritesProduct(id)
 //    }
 }
-
 

@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20dp"
         android:layout_marginTop="@dimen/_5dp"
+        android:maxLines="1"
         tools:text="@string/short_verano"
         android:textSize="@dimen/_12sp"
         android:fontFamily="@font/robotolight"

@@ -9,6 +9,7 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
+    // Endpoint para el login de usuario
     @POST("/api/v1/auth/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
 

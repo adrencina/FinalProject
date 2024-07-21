@@ -1,20 +1,10 @@
 package com.example.finalproject
 
+import android.util.Log
 import android.view.View
 import java.util.regex.Pattern
 
 object Utils {
-//    val PASSWORD_PATTERN: Pattern = Pattern.compile(
-//        "^"
-//                + "(?=.*[0-9])" //minimum one number
-//                + "(?=.*[a-z])" //minimum one lower case character
-//                + "(?=.*[A-Z])" //minimum one UPPER case character
-//                + "(?=.*[a-zA-Z])" //any character
-//                + "(?=.*[@#$%^&+=])" //minimum one special character
-//                + "(?=\\S+$)" //no white spaces
-//                + ".{6,}" //minimum length 6 characters
-//                + "$"
-//    )
 
     val PASSWORD_UPPERCASE_PATTERN: Pattern = Pattern.compile("(?=.*[A-Z])" + ".*")
 
@@ -24,25 +14,16 @@ object Utils {
 
     val PASSWORD_SPECIAL_CHARACTER_PATTERN: Pattern = Pattern.compile("(?=.*[@#$%^&+=])" + ".*")
 
-
-    fun View.visible(isVisible :Boolean){
-        visibility = if(isVisible) View.VISIBLE else View.GONE
+    fun View.visible(isVisible: Boolean) {
+        Log.d(
+            "Utils Chequeo",
+            "Setting visibility to ${if (isVisible) "VISIBLE" else "GONE"} for view with id: $id"
+        )
+        visibility = if (isVisible) View.VISIBLE else View.GONE
     }
-    fun View.enable(enabled:Boolean){
+
+    fun View.enable(enabled: Boolean) {
         isEnabled = enabled
         alpha = if (enabled) 1f else 0.5f
     }
-
-    // logOut onDestroy method
-
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        if (isDestroyed){
-//            TokenManager.clearData(this)
-//            val intent = Intent(this, PreLoginActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-//            startActivity(intent)
-//        }
-//    }
 }

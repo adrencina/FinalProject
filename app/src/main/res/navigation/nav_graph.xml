@@ -19,6 +19,11 @@
         android:name="com.example.finalproject.ui.leftbar.presenter.LeftBarActivity"
         android:label="Left Bar">
         <fragment
+            android:id="@+id/imagesFragment"
+            android:name="com.example.finalproject.ImagesFragment"
+            android:label="Images Fragment"
+            tools:layout="@layout/fragment_images" />
+        <fragment
             android:id="@+id/commentsFragment"
             android:name="com.example.finalproject.CommentsFragment"
             android:label="fragment_comments"
@@ -33,10 +38,5 @@
             android:name="com.example.finalproject.DescriptionFragment"
             android:label="fragment_description"
             tools:layout="@layout/fragment_description" />
-        <fragment
-            android:id="@+id/imagesFragment"
-            android:name="com.example.finalproject.ImagesFragment"
-            android:label="fragment_images"
-            tools:layout="@layout/fragment_images" />
     </activity>
 </navigation>
