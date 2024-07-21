@@ -5,10 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.dto.response.DailyOfferResponse
-import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.service.dto.HomeState
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
@@ -32,12 +33,20 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     // LD detalles del producto
     private val _productDetails = MutableLiveData<Product>()
     val productDetails: LiveData<Product> get() = _productDetails
+    private val _searchResult = MutableLiveData<Boolean>()
+    val searchResult: LiveData<Boolean> get() = _searchResult
 
     // LD manejar errores
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
     // Fun obtener categorías de productos
+    private val _favorites = MutableLiveData<List<Product>>()
+    val favorites: LiveData<List<Product>> get() = _favorites
+
+    private val _homeState = MutableLiveData<HomeState>()
+    val homeState : LiveData<HomeState> = _homeState
+
     fun fetchCategories() {
         viewModelScope.launch {
             try {
@@ -135,6 +144,33 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
             } catch (e: Exception) {
                 _error.postValue("Error de red: ${e.message}")
             }
+    fun searchViewController(
+        result: Boolean,
+    ) {
+        if (result) {
+            _searchResult.postValue(true)
+        } else {
+            _searchResult.postValue(false)
         }
     }
-}
+            }
+        }
+    }
+
+//  todo esto va con el pronto consumo al endpoint de favorite
+
+//    private suspend fun addFavoritesProduct(id:Int) {
+//        viewModelScope.launch {
+//            _homeState.postValue(HomeState.Loading)
+//            val addFavoritesResponse = homeRepository.addFavoritesProduct(id)
+//            if (addFavoritesResponse.isSuccessful){
+//                addFavoritesResponse.body()?.let {
+//                    _homeState.postValue(HomeState.Success(it))
+//                }?: _homeState.postValue(HomeState.Error("Error en el servicio"))
+//            }else{
+//                _homeState.postValue(HomeState.Error("Error en el servidor"))
+//            }
+//
+//
+//        }
+//    }

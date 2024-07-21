@@ -41,6 +41,8 @@ class HomeActivity : AppCompatActivity() {
         navigateToEmailSupport()
         setupRecyclerViews()
         observeViewModel()
+        navigateToEmailSupport()
+        setIconFavorite()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -101,6 +103,18 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
         })
+        //todo observador de consumo a favorite terminar cuando consumo este ok
+//        homeViewModel.homeState.observe(this) { favorite ->
+//            when (favorite) {
+//                is HomeState.Success -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Error -> {
+//                    binding.iconHeart1.isEnabled = true
+//                }
+//                is HomeState.Loading -> {}
+//            }
+//        }
     }
 
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
@@ -136,6 +150,17 @@ class HomeActivity : AppCompatActivity() {
                     Uri.fromParts("mailto", "rla.support@gmail.com", null)
                 )
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."))
+        }
+    }
+    private fun setIconFavorite() {
+        var favorite = false
+        binding.iconHeart1.setOnClickListener {
+            if (favorite) {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_1)
+            } else {
+                binding.iconHeart1.setImageResource(R.drawable.ic_heart_2)
+            }
+            favorite = !favorite
         }
     }
 }
@@ -215,3 +240,5 @@ class HomeActivity : AppCompatActivity() {
 //        binding.rvHomeSearch.isVisible = result
 //    }
 //}
+
+

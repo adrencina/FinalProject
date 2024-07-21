@@ -3,6 +3,9 @@ package com.example.finalproject.data.service
 import android.content.Context
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.FavoritesResponse
+import com.example.finalproject.data.dto.response.LastUserProductResponse
+import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import com.example.finalproject.data.repository.BaseUrl
 import com.example.finalproject.data.repository.TokenManager
@@ -62,4 +65,9 @@ class HomeApiServiceImpl(context: Context) : HomeApiService {
     override suspend fun getProductTypes(): retrofit2.Response<ProductTypeResponse> {
         return api.getProductTypes()
     }
+
+    //  todo esto va con el pronto consumo al endpoint de favorite
+//    suspend fun addFavoritesProduct(id:Int): Response<FavoritesResponse>{
+//        return service.addFavoritesProduct(id)
+//    }
 }

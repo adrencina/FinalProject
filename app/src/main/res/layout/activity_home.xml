@@ -163,16 +163,7 @@
             android:contentDescription="@string/imageview"
             android:src="@drawable/ic_heart_1" />
 
-        <ImageView
-            android:id="@+id/icon_heart_2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="@string/imageview"
-            android:src="@drawable/ic_heart_2"
-            android:visibility="gone" />
+
 
         <TextView
             android:id="@+id/tv_home_name_product"

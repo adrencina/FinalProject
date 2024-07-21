@@ -3,6 +3,7 @@ package com.example.finalproject.data.service
 import com.example.finalproject.data.dto.request.NewProductRequest
 import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.dto.response.LastUserProductResponse
 import com.example.finalproject.data.dto.response.ProductResponse
 import com.example.finalproject.data.dto.response.ProductTypeResponse
 import retrofit2.Response
@@ -43,4 +44,13 @@ interface HomeApiService {
     // Obtiene una lista de tipos de productos
     @GET("/api/v1/product-types")
     suspend fun getProductTypes(): Response<ProductTypeResponse>
+
+    @GET("/api/v1/products/lasuserproduct")
+    suspend fun getLastUserProduct(): Response<LastUserProductResponse>
+
+    //  todo esto va con el pronto consumo al endpoint de favorite
+//    @PUT("/api/v1/products/{idProduct}/favorite")
+//    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
+
+
 }
