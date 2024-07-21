@@ -117,8 +117,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onItemSelected(productType: ProductType){
+        if (!productType.idProductType.toString().isNullOrEmpty()) {
+            homeViewModel.products.observe(this, Observer { products ->
+                if (products.isNotEmpty()) {
+                    productsAdapter.updateData(products)
+                    Log.d("HomeActivity", "Productos mostrados: ${products.size}")
+                } else {
+                    Log.d("HomeActivity", "No se encontraron productos")
+                }
+            })
+        }
 
-                productsAdapter.filtered(productType)
+
+
     }
 
     // Actualiza CV de Home
