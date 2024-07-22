@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.ui.financingFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.finalproject.databinding.FragmentImagesBinding
+import com.example.finalproject.R
+import com.example.finalproject.databinding.FragmentFinancingBinding
 
-class ImagesFragment : Fragment() {
-    private lateinit var binding: FragmentImagesBinding
-
+class FinancingFragment : Fragment() {
+    private lateinit var binding: FragmentFinancingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -22,25 +21,21 @@ class ImagesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentImagesBinding.inflate(inflater, container, false)
+        binding = FragmentFinancingBinding.inflate(inflater, container, false)
         return binding.root
-
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvDescriptionFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
         }
-        binding.tvFinancingFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
+        binding.tvImagesFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
+            findNavController().navigate(R.id.action_financingFragment_to_commentsFragment)
         }
-
     }
-
-
-
 }
