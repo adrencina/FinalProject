@@ -14,8 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.finalproject.R
 import com.example.finalproject.ui.register.viewmodel.RegisterViewModel
-import com.example.finalproject.Utils.enable
-import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.Utils.enable
+import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding

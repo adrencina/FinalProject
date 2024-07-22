@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.LoginState
-import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.databinding.ActivityLoginBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.register.presenter.RegisterActivity

@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.data.service.dto
 
 import android.util.Log
 import android.view.View

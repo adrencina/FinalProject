@@ -10,7 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.request.LoginRequest
 import com.example.finalproject.data.dto.response.LoginResponse
 import com.example.finalproject.data.repository.UserRepository
