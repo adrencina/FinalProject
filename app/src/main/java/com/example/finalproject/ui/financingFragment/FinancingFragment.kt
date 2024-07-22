@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentFinancingBinding
-import com.example.finalproject.ui.commentsFragment.CommentsFragment
-import com.example.finalproject.ui.imagesFragment.ImagesFragment
 
 class FinancingFragment : Fragment() {
     private lateinit var binding: FragmentFinancingBinding

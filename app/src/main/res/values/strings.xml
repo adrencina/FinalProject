@@ -44,4 +44,7 @@
     <string name="descripcion">Descripción</string>
     <string name="imagenes">Imágenes</string>
     <string name="back">Icono volver</string>
+    <string name="comentario">Comentarios</string>
+    <string name="_24_840">$ 24.840</string>
+    <string name="comprar">comprar</string>
 </resources>

@@ -94,6 +94,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="@dimen/_20dp"
         android:layout_marginTop="@dimen/_20dp"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back_arrow"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
@@ -101,7 +102,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comentarios"
+        android:text="@string/comentario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="80dp"
@@ -226,10 +227,10 @@ but also the leap "/>
         android:layout_marginBottom="80dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="80dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="$ 24.840"
+        android:text="@string/_24_840"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -242,8 +243,8 @@ but also the leap "/>
         android:layout_marginBottom="20dp"
         android:textColor="@color/white"
         android:fontFamily="@font/robotobold"
-        android:text="comprar"
-        android:textSize="@dimen/_10dp"
+        android:text="@string/comprar"
+        android:textSize="10sp"
         android:background="@drawable/custom_rectangle_shape2"/>
 
 
