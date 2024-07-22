@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DescriptionFragment">
+    tools:context=".ui.descriptionFragment.presenter.DescriptionFragment">
 
     <LinearLayout
         android:id="@+id/ll_left_bar"
-        android:layout_width="50dp"
+        android:layout_width="53dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:background="#7353BA"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_images_Fragment"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/robotoregular"
             android:padding="0dp"
-            android:layout_marginTop="120dp"
             android:rotation="-90"
-            android:layout_gravity="center"
             android:text="@string/imagenes"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_description_Fragment"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
             android:layout_gravity="center"
             android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
             android:rotation="-90"
             android:text="@string/descripcion"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_financing_Fragment"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
             android:layout_gravity="center"
             android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
             android:rotation="-90"
             android:text="@string/financiacion"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_comments_Fragment"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
             android:layout_gravity="center"
             android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
             android:rotation="-90"
             android:text="@string/comentarios"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
-
-
-
+            android:textSize="16sp" />
 
 
     </LinearLayout>
@@ -79,21 +79,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="descripcion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/iv_circle_indicator"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="35sp"
         android:layout_marginTop="280dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/circle_background"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
