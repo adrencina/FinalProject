@@ -5,16 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentDescriptionBinding
+import com.example.finalproject.ui.descriptionFragment.state.DescriptionState
+import com.example.finalproject.ui.descriptionFragment.viewModel.DescriptionViewModel
 
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
+    val descriptionViewModel by viewModels<DescriptionViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
+
+
     }
 
     override fun onCreateView(
@@ -28,14 +34,45 @@ class DescriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvImagesFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_descriptionFragment_to_imagesFragment)
+        navigateToFragment()
+        observeViewModel()
+        showDescription()
+    }
+
+        private fun navigateToFragment() {
+            binding.tvImagesFragment.setOnClickListener {
+                findNavController().navigate(R.id.action_descriptionFragment_to_imagesFragment)
+            }
+            binding.tvFinancingFragment.setOnClickListener {
+                findNavController().navigate(R.id.action_descriptionFragment_to_financingFragment)
+            }
+            binding.tvCommentsFragment.setOnClickListener {
+                findNavController().navigate(R.id.action_descriptionFragment_to_commentsFragment)
+            }
         }
-        binding.tvFinancingFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_descriptionFragment_to_financingFragment)
+
+    private fun observeViewModel() {
+        descriptionViewModel.descriptionState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is DescriptionState.Success -> {
+                    // Manejar el estado de éxito aquí
+                }
+                is DescriptionState.Error -> {
+                    // Manejar el estado de error aquí
+                }
+                is DescriptionState.Loading -> {
+                    // Manejar el estado de carga aquí
+                }
+            }
         }
-        binding.tvCommentsFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_descriptionFragment_to_commentsFragment)
-        }
+
+
+
+    }
+    fun showDescription(){
+//        binding.tvTitleProduct.text
+//        binding.tvDescription.text
+//        binding.tvPriceProduct.text
+
     }
 }
