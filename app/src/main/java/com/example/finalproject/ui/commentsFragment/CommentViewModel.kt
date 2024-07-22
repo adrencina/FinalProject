@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.example.finalproject.data.dto.response.Product
 
 class CommentViewModel : ViewModel() {
-    private val _comment = MutableLiveData<List<Product>>()
-    val comment: LiveData<List<Product>> get() = _comment
+    private val _commentt = MutableLiveData<List<Product>>()
+    val comment: LiveData<List<Product>> get() = _commentt
 
 
 
