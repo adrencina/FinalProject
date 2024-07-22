@@ -7,7 +7,8 @@ import retrofit2.Response
 
 class UserRepository {
 
-    suspend fun loginUser(loginRequest:LoginRequest): Response<LoginResponse>? {
-        return  AuthApi.getApi()?.loginUser(loginRequest = loginRequest)
+    // Llama a la API para el login de usuario
+    suspend fun loginUser(loginRequest: LoginRequest): Response<LoginResponse>? {
+        return AuthApi.getApi()?.loginUser(loginRequest = loginRequest)
     }
 }

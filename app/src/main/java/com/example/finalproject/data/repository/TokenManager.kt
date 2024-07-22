@@ -2,20 +2,27 @@ package com.example.finalproject.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.finalproject.R
 
 object TokenManager {
 
     private const val USER_TOKEN = "User_Token"
+    private var user_token = ""
 
-    // Guarda el token
-    fun saveAuthToken(context: Context, token: String) {
-        saveString(context, USER_TOKEN, token)
+    // Obtiene el token almacenado en memoria o SharedPreferences
+    fun getToken(context: Context): String {
+        if (user_token.isEmpty()) {
+            user_token = getString(context, USER_TOKEN) ?: ""
+        }
+        return user_token
     }
 
-    // Obtiene el token
-    fun getToken(context: Context): String? {
-        return getString(context, USER_TOKEN)
+    // Guarda el token en memoria y SharedPreferences
+    fun saveAuthToken(context: Context, token: String) {
+        user_token = token
+        Log.d("TokenManager", "Token: $token")
+        saveString(context, USER_TOKEN, token)
     }
 
     // Guarda un string en SharedPreferences
@@ -38,6 +45,7 @@ object TokenManager {
 
     // Elimina todos los datos almacenados en SharedPreferences
     fun clearData(context: Context) {
+        user_token = ""
         val editor = context.getSharedPreferences(
             context.getString(R.string.app_name), Context.MODE_PRIVATE
         ).edit()
