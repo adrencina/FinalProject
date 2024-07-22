@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentFinancingBinding
+import com.example.finalproject.ui.commentsFragment.CommentsFragment
+import com.example.finalproject.ui.imagesFragment.ImagesFragment
 
 class FinancingFragment : Fragment() {
     private lateinit var binding: FragmentFinancingBinding
@@ -28,14 +30,14 @@ class FinancingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvDescriptionFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
-        }
+
         binding.tvImagesFragment.setOnClickListener {
             findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
+        binding.tvDescriptionFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
+        }
         binding.tvCommentsFragment.setOnClickListener {
             findNavController().navigate(R.id.action_financingFragment_to_commentsFragment)
-        }
     }
-}
+}}

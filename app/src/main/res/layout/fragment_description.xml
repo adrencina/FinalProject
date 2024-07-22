@@ -76,6 +76,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="descripcion"
@@ -84,6 +85,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_goto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
 
     <View
         android:id="@+id/iv_circle_indicator"
