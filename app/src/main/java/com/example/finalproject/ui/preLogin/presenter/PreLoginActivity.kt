@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.finalproject.databinding.ActivityPreLoginBinding
 import com.example.finalproject.ui.register.presenter.RegisterActivity
 import com.example.finalproject.ui.login.presenter.LoginActivity
@@ -14,6 +15,7 @@ class PreLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = ActivityPreLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

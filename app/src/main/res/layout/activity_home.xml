@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/white"
     tools:context=".ui.home.presenter.HomeActivity">
 
     <LinearLayout
@@ -42,9 +42,9 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_home"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -100,12 +100,12 @@
     <ImageView
         android:id="@+id/iv_line"
         android:layout_width="match_parent"
-        android:contentDescription="@string/imageview"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/_20dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="40dp"
         android:background="#EDEAEA"
+        android:contentDescription="@string/imageview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_home_products" />
@@ -121,6 +121,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rv_home_products">
 
+        <ImageView
+            android:id="@+id/iv_home_product"
+            android:layout_width="213dp"
+            android:layout_height="222dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/imageview"
+            android:scaleType="center"
+            android:src="@drawable/imgerror" />
+
         <TextView
             android:id="@+id/title_visit"
             android:layout_width="220dp"
@@ -129,7 +139,19 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/robotocondensedsemibold"
             android:text="@string/ultimo_visitado"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/titleDailyOffer"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/robotocondensedsemibold"
+            android:text="Oferta del día"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/icon_heart_1"
@@ -143,16 +165,6 @@
 
 
 
-        <ImageView
-            android:id="@+id/iv_home_product"
-            android:layout_width="213dp"
-            android:layout_height="222dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:contentDescription="@string/imageview"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_example" />
-
         <TextView
             android:id="@+id/tv_home_name_product"
             android:layout_width="match_parent"
@@ -161,8 +173,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="90dp"
             android:fontFamily="@font/robotocondensedsemibold"
-            tools:text="@string/rusty"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:text="@string/rusty" />
 
         <TextView
             android:id="@+id/tv_home_description_product"
@@ -172,8 +184,9 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/robotolight"
-            tools:text="@string/buzo_canguro_capucha_ncon_cordon"
-            android:textSize="12sp" />
+            android:maxLines="1"
+            android:textSize="12sp"
+            tools:text="@string/buzo_canguro_capucha_ncon_cordon" />
 
         <TextView
             android:id="@+id/tv_home_price_product"
@@ -183,8 +196,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/robotoregular"
-            tools:text="@string/_52_000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="@string/_52_000" />
 
 
     </androidx.cardview.widget.CardView>
@@ -194,9 +207,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/robotolight"
         android:text="@string/en_caso_de_problemas_comunicarse_con"
         android:textSize="@dimen/_12sp"
-        android:fontFamily="@font/robotolight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -211,17 +224,5 @@
         android:textSize="@dimen/_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/rv_home_search"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/_50dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_support"
-        tools:listitem="@layout/item_rv_home_search_list"
-        app:layout_constraintTop_toBottomOf="@+id/cv_searchview"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/_30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

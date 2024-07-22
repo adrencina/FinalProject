@@ -4,285 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7353BA"
-    app:layoutDescription="@xml/motion_scene"
     tools:context=".ui.descriptionFragment.presenter.DescriptionFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.144" />
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/ll_left_bar"
+        android:layout_width="53dp"
         android:layout_height="0dp"
+        android:background="#7353BA"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_images_Fragment"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
+            android:rotation="-90"
+            android:text="@string/imagenes"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_description_Fragment"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
+            android:rotation="-90"
+            android:text="@string/descripcion"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_financing_Fragment"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
+            android:rotation="-90"
+            android:text="@string/financiacion"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_comments_Fragment"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:padding="0dp"
+            android:rotation="-90"
+            android:text="@string/comentarios"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="descripcion"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="spread"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_default="spread"
-        tools:background="@color/white" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/circle_indicator"
-        android:layout_width="27dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="340dp"
+        android:id="@+id/iv_circle_indicator"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="35sp"
+        android:layout_marginTop="280dp"
         android:background="@drawable/circle_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title_product"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_20dp"
-        android:fontFamily="@font/robotocondensedsemibold"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintBottom_toTopOf="@+id/line_top_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        tools:text="Buzo Rusty" />
-
-
-    <View
-        android:id="@+id/line_top_fragment"
-        android:layout_width="264dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="120dp"
-        android:background="@color/line_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-        android:layout_width="264dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_20dp"
-        android:layout_marginBottom="@dimen/_20dp"
-        app:layout_constraintBottom_toTopOf="@+id/line_bottom_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/line_top_fragment">
-
-        <TextView
-            android:id="@+id/tv_description_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="jsjsjdndne
-kekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-gkekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-g
-kekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-gkekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-gkekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-gkekdeimfiemfirf
-fmiremfiremfierf
-fgregethtrhtr
-ehgreghergheg
-gergethg5thg54
-eg5gggggggggggggggggggggg
-ggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggggg
-gggggggggggggggggggggggggggggggggggggg
-ggggggggggggggggggggggggggggggggggg
-g
-,ofrmfo3mfo3" />
-
-    </ScrollView>
-
-    <View
-        android:id="@+id/line_bottom_fragment"
-        android:layout_width="264dp"
-        android:layout_height="2dp"
-        android:layout_marginBottom="205dp"
-        android:background="@color/line_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-    <TextView
-        android:id="@+id/price_product"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:fontFamily="@font/robotomedium"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        tools:text="$24.840" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_buy"
-        android:layout_width="85dp"
-        android:layout_height="25dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="@dimen/_20dp"
-        app:cardBackgroundColor="@color/btn_pre_login"
-        app:cardCornerRadius="7dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/robotoregular"
-            android:gravity="center"
-            android:text="@string/comprar"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/nav_imagesFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoregular"
-        android:gravity="center"
-        android:padding="16dp"
-        android:rotation="-90"
-        android:text="@string/imagenes"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toTopOf="@id/nav_descriptionFragment"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nav_descriptionFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoregular"
-        android:gravity="center"
-        android:padding="16dp"
-        android:rotation="-90"
-        android:text="@string/descripcion"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toTopOf="@id/nav_financingFragment"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nav_imagesFragment" />
-
-    <TextView
-        android:id="@+id/nav_financingFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoregular"
-        android:gravity="center"
-        android:padding="16dp"
-        android:rotation="-90"
-        android:text="@string/financiacion"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toTopOf="@id/nav_commentsFragment"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nav_descriptionFragment" />
-
-    <TextView
-        android:id="@+id/nav_commentsFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoregular"
-        android:gravity="center"
-        android:padding="16dp"
-        android:rotation="-90"
-        android:text="@string/comentarios"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nav_financingFragment" />
-
-    <ImageView
-        android:id="@+id/backIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="28dp"
-        android:contentDescription="@string/back"
-        android:elevation="20dp"
-        android:src="@drawable/ic_back_arrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
