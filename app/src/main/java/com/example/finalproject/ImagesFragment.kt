@@ -1,27 +1,46 @@
 package com.example.finalproject
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.finalproject.databinding.FragmentImagesBinding
 
 class ImagesFragment : Fragment() {
+    private lateinit var binding: FragmentImagesBinding
 
-    private var _binding: FragmentImagesBinding? = null
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentImagesBinding.inflate(inflater, container, false)
+        binding = FragmentImagesBinding.inflate(inflater, container, false)
         return binding.root
+
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tvDescriptionFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_descriptionFragment)
+        }
+        binding.tvFinancingFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
+        }
+        binding.tvCommentsFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
+        }
+
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
+
 }
