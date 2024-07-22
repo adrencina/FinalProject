@@ -99,7 +99,7 @@
     <View
         android:id="@+id/v_line_fragment"
         android:layout_width="280dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="112dp"
         android:background="@color/line_fragment"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,15 +108,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_title_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:fontFamily="@font/robotobold"
+        android:text="Buzo rusty"
         android:textSize="@dimen/_18sp"
         app:layout_constraintBottom_toTopOf="@+id/v_line_fragment"
-        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
-        android:layout_marginBottom="@dimen/_10dp"
-        android:text="Buzo rusty"/>
+        app:layout_constraintStart_toEndOf="@+id/ll_left_bar" />
 
     <ScrollView
         android:id="@+id/scroll_description"
@@ -132,7 +133,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+            android:text="dddddddddd
+            dddddddddddddddddddddd
+            dddddddddddddddddddddddddddddddddddddddddddddddd
 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 dddddddddddddddddddddddddddddd
@@ -165,13 +168,45 @@ dddddddddddddddddddddddddddddddddddddddddddddddddddd" />
     <View
         android:id="@+id/v_line_fragment_button"
         android:layout_width="280dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="@dimen/_10dp"
         android:background="@color/line_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
         app:layout_constraintTop_toBottomOf="@+id/scroll_description" />
 
+    <TextView
+        android:id="@+id/tv_price_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/robotobold"
+        android:text="$ 24.840"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
+        app:layout_constraintTop_toBottomOf="@+id/v_line_fragment_button" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_btn_buy"
+        android:layout_width="85dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/btn_pre_login"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_product">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comprar"
+            android:textSize="@dimen/_12sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"/>
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
