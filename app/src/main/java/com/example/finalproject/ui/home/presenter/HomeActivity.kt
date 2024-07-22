@@ -20,6 +20,7 @@ import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
+import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
@@ -44,6 +45,7 @@ class HomeActivity : AppCompatActivity() {
         observeViewModel()
         navigateToEmailSupport()
         setIconFavorite()
+        navigateToFragment()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -179,6 +181,12 @@ class HomeActivity : AppCompatActivity() {
                     Log.d("HomeActivity", "No se encontraron productos")
                 }
             })
+        }
+    }
+    fun navigateToFragment(){
+        binding.cvImageProduct.setOnClickListener {
+            val intent = Intent(this, LeftBarActivity::class.java)
+            startActivity(intent)
         }
     }
 

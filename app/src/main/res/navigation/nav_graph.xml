@@ -5,17 +5,22 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/imagesFragment">
 
-    <activity
-        android:id="@+id/leftBarActivity"
-        android:name="com.example.finalproject.ui.leftbar.presenter.LeftBarActivity"
-        android:label="LeftBarActivity"
-        tools:layout="@layout/activity_left_bar"/>
+
     <fragment
         android:id="@+id/commentsFragment"
         android:name="com.example.finalproject.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
+        <action
+            android:id="@+id/action_commentsFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_commentsFragment_to_financingFragment"
+            app:destination="@id/financingFragment" />
+        <action
+            android:id="@+id/action_commentsFragment_to_imagesFragment"
+            app:destination="@id/imagesFragment" />
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
@@ -24,6 +29,15 @@
         tools:layout="@layout/fragment_description" >
 
 
+        <action
+            android:id="@+id/action_descriptionFragment_to_imagesFragment"
+            app:destination="@id/imagesFragment" />
+        <action
+            android:id="@+id/action_descriptionFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_descriptionFragment_to_financingFragment"
+            app:destination="@id/financingFragment" />
     </fragment>
     <fragment
         android:id="@+id/imagesFragment"
@@ -31,6 +45,15 @@
         android:label="fragment_images"
         tools:layout="@layout/fragment_images" >
 
+        <action
+            android:id="@+id/action_imagesFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_imagesFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_imagesFragment_to_financingFragment"
+            app:destination="@id/financingFragment" />
     </fragment>
     <fragment
         android:id="@+id/financingFragment"
@@ -38,5 +61,14 @@
         android:label="fragment_financing"
         tools:layout="@layout/fragment_financing" >
 
+        <action
+            android:id="@+id/action_financingFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_financingFragment_to_imagesFragment"
+            app:destination="@id/imagesFragment" />
+        <action
+            android:id="@+id/action_financingFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
 </navigation>

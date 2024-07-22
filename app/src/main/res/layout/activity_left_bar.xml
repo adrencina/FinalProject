@@ -5,76 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.leftbar.presenter.LeftBarActivity">
 
-    <LinearLayout
-        android:layout_width="70dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_graph_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:background="#7353BA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <TextView
-            android:id="@+id/nav_imagesFragment"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
-            android:layout_marginTop="120dp"
-            android:rotation="-90"
-            android:layout_gravity="center"
-            android:text="@string/imagenes"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
-        <TextView
-            android:id="@+id/nav_descriptionFragment"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:rotation="-90"
-            android:text="@string/descripcion"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
-        <TextView
-            android:id="@+id/nav_financingFragment"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:rotation="-90"
-            android:text="@string/financiacion"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
-        <TextView
-            android:id="@+id/nav_comentariFragment"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:rotation="-90"
-            android:text="@string/comentarios"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
 
-
-
-
-    </LinearLayout>
 
 
 
