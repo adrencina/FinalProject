@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.data.service.dto.Utils.visible
@@ -13,6 +14,7 @@ import com.example.finalproject.databinding.ActivityLoginBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.register.presenter.RegisterActivity
 import com.example.finalproject.ui.login.viewmodel.LoginViewModel
+import com.example.finalproject.ui.login.viewmodel.LoginViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,6 +26,12 @@ class LoginActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val loginViewModel = ViewModelProvider(
+            this,
+            LoginViewModelFactory(application)
+        )[LoginViewModel::class.java]
+
 
         // Verifica si ya hay un token almacenado
         val token = TokenManager.getToken(this)
