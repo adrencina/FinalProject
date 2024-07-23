@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.imagesFragment
+package com.example.finalproject.ui.leftbar.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.databinding.FragmentImagesBinding
+import com.example.finalproject.databinding.FragmentCommentsBinding
 
-class ImagesFragment : Fragment() {
-    private lateinit var binding: FragmentImagesBinding
+class CommentsFragment : Fragment() {
+    private lateinit var binding: FragmentCommentsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
         }
     }
 
@@ -21,7 +22,7 @@ class ImagesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentImagesBinding.inflate(inflater, container, false)
+        binding = FragmentCommentsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,13 +30,13 @@ class ImagesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvDescriptionFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_commentsFragment_to_descriptionFragment)
         }
         binding.tvFinancingFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
+            findNavController().navigate(R.id.action_commentsFragment_to_financingFragment)
         }
-        binding.tvCommentsFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
+        binding.tvImagesFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_commentsFragment_to_imagesFragment)
         }
     }
 }

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/commentsFragment"
-        android:name="com.example.finalproject.ui.commentsFragment.CommentsFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.example.finalproject.ui.descriptionFragment.presenter.DescriptionFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
 
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/imagesFragment"
-        android:name="com.example.finalproject.ui.imagesFragment.ImagesFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.ImagesFragment"
         android:label="fragment_images"
         tools:layout="@layout/fragment_images" >
 
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/financingFragment"
-        android:name="com.example.finalproject.ui.financingFragment.FinancingFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.FinancingFragment"
         android:label="fragment_financing"
         tools:layout="@layout/fragment_financing" >
 

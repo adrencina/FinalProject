@@ -1,30 +1,15 @@
 package com.example.finalproject.data.service
 
+import android.content.Context
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.dto.response.RegisterResponse
-import com.example.finalproject.data.repository.BaseUrl
-import okhttp3.OkHttpClient
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
-class RegisterApiServisImp {
+class RegisterApiServisImp(context: Context) {
 
-    private val client = OkHttpClient.Builder()
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .build()
+    private val api = RetrofitInstance.getAuthRetrofit(context).create(RegisterApiService::class.java)
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BaseUrl.BASE_URL_AUTH)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
-
-    private val service = retrofit.create(RegisterApiService::class.java)
     suspend fun registerUser(request: RegisterRequest): Response<RegisterResponse> {
-        return service.registerUser(request)
+        return api.registerUser(request)
     }
 }

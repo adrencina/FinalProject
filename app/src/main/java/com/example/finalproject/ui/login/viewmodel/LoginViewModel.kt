@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.login.viewmodel
 
 import android.app.Application
+import android.content.Context
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.CheckBox
@@ -10,7 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.Utils.visible
+import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.request.LoginRequest
 import com.example.finalproject.data.dto.response.LoginResponse
 import com.example.finalproject.data.repository.UserRepository
@@ -27,7 +28,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         var switcherB: Boolean = false
     }
 
-    private val userRepo = UserRepository()
+    private val userRepo = UserRepository(application.applicationContext)
     val loginResult: MutableLiveData<LoginState<LoginResponse>> = MutableLiveData()
 
     // Fun iniciar sesión
