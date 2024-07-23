@@ -37,15 +37,15 @@ class ImagesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Observa los cambios en el LiveData del producto
-        viewModel.product.observe(viewLifecycleOwner, Observer { product ->
-            product?.let {
-                binding.tvName.text = it.name ?: "Nombre no disponible"
-            }
-        })
-
-
-        val productId = 1
-        viewModel.fetchProductById(productId)
+//        viewModel.product.observe(viewLifecycleOwner, Observer { product ->
+//            product?.let {
+//                binding.tvName.text = it.name ?: "Nombre no disponible"
+//            }
+//        })
+//
+//
+//        val productId = 3
+//        viewModel.fetchProductById(productId)
 
 
         binding.tvDescriptionFragment.setOnClickListener {
