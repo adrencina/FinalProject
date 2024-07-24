@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.leftbar.fragments
+package com.example.finalproject.ui.leftbar.fragments.description.presenter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.databinding.FragmentDescriptionBinding
-import com.example.finalproject.ui.descriptionFragment.state.DescriptionState
-import com.example.finalproject.ui.descriptionFragment.viewModel.DescriptionViewModel
+import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
+import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
 
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
-    val descriptionViewModel by viewModels<DescriptionViewModel>()
+    private val descriptionViewModel by viewModels<DescriptionViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,7 +37,7 @@ class DescriptionFragment : Fragment() {
 
         navigateToFragment()
         observeViewModel()
-        showDescription()
+
     }
 
         private fun navigateToFragment() {
@@ -55,7 +56,7 @@ class DescriptionFragment : Fragment() {
         descriptionViewModel.descriptionState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is DescriptionState.Success -> {
-                    // Manejar el estado de éxito aquí
+                    showDescription(product = state.data)
                 }
                 is DescriptionState.Error -> {
                     // Manejar el estado de error aquí
@@ -69,10 +70,10 @@ class DescriptionFragment : Fragment() {
 
 
     }
-    fun showDescription(){
-//        binding.tvTitleProduct.text
-//        binding.tvDescription.text
-//        binding.tvPriceProduct.text
+    private fun showDescription(product: Product){
+        binding.tvTitleProduct.text = product.name
+        binding.tvDescription.text = product.description
+        binding.tvPriceProduct.text = product.price.toString()
 
     }
 }
