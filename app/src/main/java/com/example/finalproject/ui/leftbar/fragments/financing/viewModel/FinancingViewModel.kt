@@ -26,6 +26,7 @@ class FinancingViewModel (private val repository: PaymentRepository) : ViewModel
                 val response = repository.getPaymentMethods()
                 if (response.isSuccessful) {
                     response.body()?.let { paymentMethods ->
+                        Log.i("DATA1",paymentMethods.paymentMethods.toString())
                         _paymentMethods.postValue(paymentMethods.paymentMethods)
                     } ?: run {
                         _error.postValue("Respuesta vacía")

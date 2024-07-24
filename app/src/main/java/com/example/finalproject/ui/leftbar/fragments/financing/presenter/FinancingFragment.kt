@@ -65,13 +65,11 @@ class FinancingFragment : Fragment() {
 
     // Config RV
     private fun setupRecyclerViews() {
-
         binding.rvFinancingItems.apply {
             layoutManager =
-                LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(this@FinancingFragment.context, LinearLayoutManager.VERTICAL, false)
             adapter = financingAdapter
         }
-
     }
 
     // Observamos el VM
@@ -79,7 +77,7 @@ class FinancingFragment : Fragment() {
         financingViewModel.paymentMethods.observe(viewLifecycleOwner,Observer { paymentMetho ->
             if (paymentMetho.isNotEmpty()) {
                 financingAdapter.updateData(paymentMetho)
-                Log.d("FragmentFinancing", "Productos mostrados")
+                Log.d("FragmentFinancing", "Productos mostrados"+paymentMetho.toString())
             } else {
                 Log.d("FragmentFinancing", "No se encontraron productos")
             }

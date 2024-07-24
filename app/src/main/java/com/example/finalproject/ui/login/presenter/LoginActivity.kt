@@ -2,6 +2,7 @@ package com.example.finalproject.ui.login.presenter
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Verifica si ya hay un token almacenado
         val token = TokenManager.getToken(this)
+        Log.i("DATA-Login",token)
         if (!token.isNullOrBlank()) {
             navigateToHome()
         }
