@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-       <!--     Cuerpo del fragment-->
+       <!-- Cuerpo del fragment -->
 
     <ImageView
         android:id="@+id/Btn_back"
@@ -101,12 +101,12 @@
         android:layout_height="30dp"/>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_name_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:fontFamily="@font/robotobold"
-        android:text="Buzo Rusty"
+        tools:text="Buzo Rusty"
         android:textSize="18sp"
         android:textColor="@color/black"
         android:layout_marginStart="80dp"
@@ -149,22 +149,25 @@
             android:background="@drawable/circle_heart_white"/>
 
         <ImageView
+            android:id="@+id/iv_ic_heart"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="216dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="13dp"
+            android:contentDescription="@string/icon_heart"
             android:src="@drawable/ic_heart_1"
             />
 
         <ImageView
+            android:id="@+id/iv_product"
             android:layout_width="167dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
             android:layout_marginTop="48dp"
             android:layout_marginBottom="48dp"
-            android:contentDescription="img_product"
-            android:src="@drawable/imgerror">
+            android:contentDescription="@string/img_product"
+            tools:src="@drawable/img_example">
 
         </ImageView>
     </androidx.cardview.widget.CardView>
@@ -278,7 +281,7 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_cointype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -291,9 +294,10 @@
     </TextView>
 
     <TextView
+        android:id="@+id/tv_price_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="24.840"
+        tools:text="24.840"
         android:textSize="20sp"
         android:layout_marginTop="@dimen/_62dp"
         android:layout_marginStart="95dp"
@@ -302,7 +306,7 @@
     </TextView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/btn_buy"
+        android:id="@+id/cv_btn_buy"
         android:layout_width="85dp"
         android:layout_height="25dp"
         app:cardBackgroundColor="#5DADE2"

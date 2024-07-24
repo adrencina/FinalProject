@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         )[LoginViewModel::class.java]
 
 
-        // Verifica si ya hay un token almacenado
+//         Verifica si ya hay un token almacenado
         val token = TokenManager.getToken(this)
         if (!token.isNullOrBlank()) {
             navigateToHome()

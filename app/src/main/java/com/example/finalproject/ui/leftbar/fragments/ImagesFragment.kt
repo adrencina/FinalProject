@@ -35,16 +35,16 @@ class ImagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Observa los cambios en el LiveData del producto
+//
+//        val productId = arguments?.getInt("idProduct") ?: 0
+//
 //        viewModel.product.observe(viewLifecycleOwner, Observer { product ->
 //            product?.let {
-//                binding.tvName.text = it.name ?: "Nombre no disponible"
+//                binding.tvNameProduct.text = it.name ?: "Nombre no disponible"
+//                binding.tvPriceProduct.text = it.price.toString() ?: "Precio no disponible"
 //            }
 //        })
 //
-//
-//        val productId = 3
 //        viewModel.fetchProductById(productId)
 
 

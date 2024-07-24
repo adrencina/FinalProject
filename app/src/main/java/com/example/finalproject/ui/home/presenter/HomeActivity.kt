@@ -183,7 +183,7 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
-    fun navigateToFragment(){
+    private fun navigateToFragment(){
         binding.cvImageProduct.setOnClickListener {
             val intent = Intent(this, LeftBarActivity::class.java)
             startActivity(intent)

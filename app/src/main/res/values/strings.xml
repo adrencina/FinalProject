@@ -44,4 +44,6 @@
     <string name="descripcion">Descripción</string>
     <string name="imagenes">Imágenes</string>
     <string name="back">Icono volver</string>
+    <string name="icon_heart">icon heart</string>
+    <string name="img_product">img_product</string>
 </resources>
