@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.descriptionFragment.presenter
+package com.example.finalproject.ui.leftbar.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

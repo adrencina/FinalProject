@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.financingFragment
+package com.example.finalproject.ui.leftbar.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.databinding.FragmentFinancingBinding
+import com.example.finalproject.databinding.FragmentImagesBinding
 
-class FinancingFragment : Fragment() {
-    private lateinit var binding: FragmentFinancingBinding
+class ImagesFragment : Fragment() {
+    private lateinit var binding: FragmentImagesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -21,7 +21,7 @@ class FinancingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFinancingBinding.inflate(inflater, container, false)
+        binding = FragmentImagesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,13 +29,13 @@ class FinancingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvDescriptionFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_imagesFragment_to_descriptionFragment)
         }
-        binding.tvImagesFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
+        binding.tvFinancingFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_financingFragment_to_commentsFragment)
+            findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
         }
     }
 }

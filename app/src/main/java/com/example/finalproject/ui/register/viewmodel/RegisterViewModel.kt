@@ -1,22 +1,23 @@
 package com.example.finalproject.ui.register.viewmodel
 
+import android.content.Context
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.Utils.PASSWORD_LOWERCASE_PATTERN
-import com.example.finalproject.Utils.PASSWORD_NUMBER_PATTERN
-import com.example.finalproject.Utils.PASSWORD_SPECIAL_CHARACTER_PATTERN
-import com.example.finalproject.Utils.PASSWORD_UPPERCASE_PATTERN
+import com.example.finalproject.data.service.dto.Utils.PASSWORD_LOWERCASE_PATTERN
+import com.example.finalproject.data.service.dto.Utils.PASSWORD_NUMBER_PATTERN
+import com.example.finalproject.data.service.dto.Utils.PASSWORD_SPECIAL_CHARACTER_PATTERN
+import com.example.finalproject.data.service.dto.Utils.PASSWORD_UPPERCASE_PATTERN
 import com.example.finalproject.data.dto.request.RegisterRequest
 import com.example.finalproject.data.repository.RegisterRepository
 import com.example.finalproject.data.service.RegisterApiServisImp
 import com.example.finalproject.data.service.dto.RegisterState
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : ViewModel() {
-    private val registerRepository = RegisterRepository(RegisterApiServisImp())
+class RegisterViewModel(context: Context) : ViewModel() {
+    private val registerRepository = RegisterRepository(RegisterApiServisImp(context))
 
     private val _registerState = MutableLiveData<RegisterState>()
     val registerState: LiveData<RegisterState> get() = _registerState
