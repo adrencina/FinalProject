@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.DescriptionFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.description.presenter.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
 

@@ -21,13 +21,7 @@ class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() 
     private val _paymentMethods = MutableLiveData<PaymentMethodsResponse>()
     val paymentMethods: LiveData<PaymentMethodsResponse> get() = _paymentMethods
 
-    // Función para obtener un producto por su id
-    fun fetchProductById(idProduct: Int) {
-        viewModelScope.launch {
-            val result = repository.getProductById(idProduct)
-            _product.postValue(result)
-        }
-    }
+
 
     // Función para obtener todos los productos
     fun fetchAllProducts() {
