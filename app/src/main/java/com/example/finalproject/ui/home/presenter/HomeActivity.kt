@@ -16,6 +16,7 @@ import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
+import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -29,6 +30,8 @@ class HomeActivity : AppCompatActivity() {
     private val productTypesAdapter = ProductTypesAdapter(emptyList(), onClickListener = {productType -> onItemSelected(productType)  })
     private val productsAdapter = ProductsAdapter(emptyList())
     private lateinit var homeViewModel: HomeViewModel
+
+    private var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,6 +134,8 @@ class HomeActivity : AppCompatActivity() {
         Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
         binding.titleDailyOffer.visible(true)
 
+        id = product.idProduct ?: 0
+
         val imageUrl = product.images?.firstOrNull()?.link ?: ""
         if (imageUrl.isNotEmpty()) {
             Log.d("HomeActivity", "Cargando imagen desde URL: $imageUrl")
@@ -171,6 +176,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun onItemSelected(productType: ProductType){
+        ID_PRODUCT = productType.idProductType
         if (productType.idProductType.toString().isNotEmpty()) {
             homeViewModel.products.observe(this, Observer { products ->
                 if (products.isNotEmpty()) {
@@ -185,6 +191,7 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun navigateToFragment(){
         binding.cvImageProduct.setOnClickListener {
+            ID_PRODUCT = id
             val intent = Intent(this, LeftBarActivity::class.java)
             startActivity(intent)
         }

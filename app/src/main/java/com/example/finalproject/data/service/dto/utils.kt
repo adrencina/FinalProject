@@ -14,6 +14,8 @@ object Utils {
 
     val PASSWORD_SPECIAL_CHARACTER_PATTERN: Pattern = Pattern.compile("(?=.*[@#$%^&+=])" + ".*")
 
+    var ID_PRODUCT: Int? = 0
+
     fun View.visible(isVisible: Boolean) {
         Log.d(
             "Utils Chequeo",
