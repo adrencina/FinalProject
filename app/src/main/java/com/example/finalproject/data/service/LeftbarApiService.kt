@@ -23,6 +23,5 @@ interface LeftbarApiService {
     @GET("api/v1/payment-methods")
     suspend fun getPaymentMethods(): PaymentMethodsResponse
 
-    @GET("api/v1/products")
-    suspend fun getDescription(): Response<Product>
+
 }

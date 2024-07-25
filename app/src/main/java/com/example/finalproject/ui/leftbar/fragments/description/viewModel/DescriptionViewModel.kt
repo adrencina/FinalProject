@@ -13,16 +13,11 @@ class DescriptionViewModel(private val repository: LeftbarRepository ) : ViewMod
     private val _descriptionState = MutableLiveData<DescriptionState>()
     val descriptionState: LiveData<DescriptionState> = _descriptionState
 
-    fun getDescription() {
+    // Función para obtener un producto por su id
+    fun fetchProductById(idProduct: Int) {
         viewModelScope.launch {
-           val response = repository.getAllProducts()
-            if (response.isSuccessful){
-                response.body()?.let {
-                    _descriptionState.postValue(DescriptionState.Success(it))
-                }?: _descriptionState.postValue(DescriptionState.Error("Error"))
-            }else{
-                _descriptionState.postValue(DescriptionState.Error("Error"))
-            }
+            val result = repository.getProductById(idProduct)
+            _descriptionState.postValue(DescriptionState.Success(result))
         }
     }
 }

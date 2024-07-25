@@ -27,9 +27,6 @@ class LeftbarApiServiceImp(context: Context): LeftbarApiService {
         return api.getPaymentMethods()
     }
 
-    override suspend fun getDescription(): Response<Product> {
-        return api.getDescription()
-    }
 
 
 }
