@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.data.repository.DescriptionRepository
+import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import kotlinx.coroutines.launch
 
-class DescriptionViewModel(private val repository: DescriptionRepository = DescriptionRepository()) : ViewModel() {
+class DescriptionViewModel(private val repository: LeftbarRepository ) : ViewModel() {
 
     private val _descriptionState = MutableLiveData<DescriptionState>()
     val descriptionState: LiveData<DescriptionState> = _descriptionState
 
     fun getDescription() {
         viewModelScope.launch {
-           val response = repository.getDescription()
+           val response = repository.getAllProducts()
             if (response.isSuccessful){
                 response.body()?.let {
                     _descriptionState.postValue(DescriptionState.Success(it))

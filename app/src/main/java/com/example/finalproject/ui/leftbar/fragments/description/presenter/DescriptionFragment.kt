@@ -6,16 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
+import com.example.finalproject.data.repository.HomeRepository
+import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentDescriptionBinding
+import com.example.finalproject.ui.home.viewModel.HomeViewModel
+import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
+import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
 
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
-    private val descriptionViewModel by viewModels<DescriptionViewModel>()
+    private lateinit var descriptionViewModel :DescriptionViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -28,7 +34,12 @@ class DescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentDescriptionBinding.inflate(inflater, container, false)
+        val repository = LeftbarRepository(requireContext())
+        descriptionViewModel =
+            ViewModelProvider(this, DescriptionViewModelFactory(repository))[DescriptionViewModel::class.java]
+
         return binding.root
     }
 

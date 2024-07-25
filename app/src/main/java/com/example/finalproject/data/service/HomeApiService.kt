@@ -25,8 +25,8 @@ interface HomeApiService {
         @Query("idProductType") idProductType: Int?,
         @Query("productName") productName: String?,
         @Query("onlyFavorite") onlyFavorite: Boolean = false,
-        @Query("page") page: Int = 1,
-        @Query("size") size: Int = 10
+        @Query("page") page: Int ,
+        @Query("size") size: Int
     ): Response<ProductResponse>
 
     // Crea un producto
