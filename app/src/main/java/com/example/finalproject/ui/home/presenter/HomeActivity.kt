@@ -39,6 +39,16 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+
+        val productId = 123
+        val intent = Intent(this, LeftBarActivity::class.java)
+        intent.putExtra("idProduct", productId)
+        startActivity(intent)
+
+
+
         val repository = HomeRepository(this)
         homeViewModel =
             ViewModelProvider(this, HomeViewModelFactory(repository))[HomeViewModel::class.java]

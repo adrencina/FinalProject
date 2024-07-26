@@ -7,24 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.data.repository.LeftbarRepository
-import com.example.finalproject.data.service.LeftbarApiService
-import com.example.finalproject.data.service.LeftbarApiServiceImp
-import com.example.finalproject.data.service.RetrofitInstance
 import com.example.finalproject.databinding.FragmentImagesBinding
 import com.example.finalproject.ui.leftbar.viewModel.LeftbarViewModelFactory
+import com.example.finalproject.ui.leftbar.viewModel.ProductIdListener
 
-class ImagesFragment : Fragment() {
+class ImagesFragment : Fragment(), ProductIdListener {
+
     private lateinit var binding: FragmentImagesBinding
     private val viewModel: LeftbarViewModel by viewModels {
-        val context = requireContext()
-        val apiService = RetrofitInstance.getGeneralRetrofit(context).create(LeftbarApiService::class.java)
-        val repository = LeftbarRepository(LeftbarApiServiceImp(apiService))
-        LeftbarViewModelFactory(repository)
+        LeftbarViewModelFactory(LeftbarRepository(requireContext()))
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,5 +53,9 @@ class ImagesFragment : Fragment() {
         binding.tvCommentsFragment.setOnClickListener {
             findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
         }
+    }
+
+    override fun onProductIdReceived(productId: Int) {
+        binding.tvNameProduct.text = "ID del producto recibido: $productId"
     }
 }

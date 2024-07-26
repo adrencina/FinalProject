@@ -12,5 +12,11 @@ class LeftBarActivity : AppCompatActivity() {
         binding = ActivityLeftBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        val receivedProductId = intent.getIntExtra("Product_id", -1)
+
+
+
+
     }
 }
