@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.finalproject.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentImagesBinding
+import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModelFactory
-import com.squareup.picasso.Picasso
 
 class ImagesFragment : Fragment() {
 
@@ -61,29 +61,24 @@ class ImagesFragment : Fragment() {
 
     private fun showLoading() {
 //        binding.progressBar.visibility = View.VISIBLE
+//        binding.contentLayout.visibility = View.GONE
         binding.ivImgError.visibility = View.GONE
     }
 
     private fun showProductDetails(product: Product) {
-//        binding.progressBar.visibility = View.GONE
         binding.ivImgError.visibility = View.GONE
+
         binding.tvNameProduct.text = product.name
         binding.tvPriceProduct.text = product.price.toString()
 
-        // Aquí se obtiene la primera imagen de la lista de imágenes
-//        val imageUrl = product.images?.firstOrNull()?.link ?: ""
 
-        Picasso.get()
-            .load(product.image)
-            .centerInside()
-            .placeholder(R.drawable.imgerror)
-            .error(R.drawable.errornotphoto)
-            .into(binding.ivProduct)
-        Log.d("ImagesFragment", "Image URL: ${product.image}")
+        val adapter = ImagesAdapter(product.images ?: emptyList())
+        binding.rvImgfragment.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvImgfragment.adapter = adapter
     }
 
+
     private fun showError() {
-//        binding.progressBar.visibility = View.GONE
         binding.ivImgError.visibility = View.VISIBLE
         binding.ivIcError.visibility = View.VISIBLE
         binding.tvErrorMessage.text = View.VISIBLE.toString()
