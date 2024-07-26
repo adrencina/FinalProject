@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentImagesBinding
@@ -49,6 +51,10 @@ class ImagesFragment : Fragment() {
             viewModel.fetchProductById(productId)
         }
 
+
+        navigateToFragment()
+
+
         // Observa los cambios en el estado
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -82,5 +88,17 @@ class ImagesFragment : Fragment() {
         binding.ivImgError.visibility = View.VISIBLE
         binding.ivIcError.visibility = View.VISIBLE
         binding.tvErrorMessage.text = View.VISIBLE.toString()
+    }
+
+    private fun navigateToFragment() {
+        binding.tvFinancingFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
+        }
+        binding.tvCommentsFragment.setOnClickListener {
+            findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
+        }
+//        binding.tvDescriptionFragment.setOnClickListener {
+//            findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
+//        }
     }
 }
