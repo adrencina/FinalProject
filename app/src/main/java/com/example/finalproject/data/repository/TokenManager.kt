@@ -12,10 +12,13 @@ object TokenManager {
 
     // Obtiene el token almacenado en memoria o SharedPreferences
     fun getToken(context: Context): String {
+
         if (user_token.isEmpty()) {
             user_token = getString(context, USER_TOKEN) ?: ""
         }
         return user_token
+
+         //return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBcGkgVXNlcnMgU3ViamVjdCIsInJvbGUiOjEsImlzcyI6IkFwaSBVc2VycyIsInVzZXJJZCI6MSwiaWF0IjoxNzIxOTY4MTA3LCJqdGkiOiIwMjA0ZjQxMi04YWFjLTQxNjQtYmRkZC0xZWVkYzJkMTRkMzIifQ.EYUraZhIzphOQ1iXKYwIAPSJLxo0NZh0uUN5DDNR0LA"
     }
 
     // Guarda el token en memoria y SharedPreferences

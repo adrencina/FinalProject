@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/financingFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.FinancingFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.financing.presenter.FinancingFragment"
         android:label="fragment_financing"
         tools:layout="@layout/fragment_financing" >
 
