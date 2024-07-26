@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/imagesFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.ImagesFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.images.presenter.ImagesFragment"
         android:label="fragment_images"
         tools:layout="@layout/fragment_images" >
 
