@@ -23,6 +23,9 @@ object RetrofitInstance {
     private const val BASE_URL_PAYMENT = "https://api-payments-1ztc.onrender.com/"
 
 
+    private const val BASE_URL_COMMENTS = "https://api-comments-3yzc.onrender.com/"
+
+
     // Cliente HTTP con interceptor para logs
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -52,6 +55,15 @@ object RetrofitInstance {
     fun getPaymentRetrofit(context: Context): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_PAYMENT)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(getClient(context))
+            .build()
+    }
+
+    // Retrofit para los endpoints de comments
+    fun getCommentsRetrofit(context: Context): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL_COMMENTS)
             .addConverterFactory(GsonConverterFactory.create())
             .client(getClient(context))
             .build()

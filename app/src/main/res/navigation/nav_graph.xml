@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/commentsFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.CommentsFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.comments.presenter.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 

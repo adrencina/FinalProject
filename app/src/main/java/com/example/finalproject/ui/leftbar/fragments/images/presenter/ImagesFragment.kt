@@ -1,7 +1,6 @@
 package com.example.finalproject.ui.leftbar.fragments.images.presenter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,9 +90,9 @@ class ImagesFragment : Fragment() {
     }
 
     private fun navigateToFragment() {
-        binding.tvFinancingFragment.setOnClickListener {
-            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
-        }
+//        binding.tvFinancingFragment.setOnClickListener {
+//            findNavController().navigate(R.id.action_imagesFragment_to_financingFragment)
+//        }
         binding.tvCommentsFragment.setOnClickListener {
             findNavController().navigate(R.id.action_imagesFragment_to_commentsFragment)
         }

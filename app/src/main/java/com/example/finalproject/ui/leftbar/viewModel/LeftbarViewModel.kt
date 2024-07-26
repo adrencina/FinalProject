@@ -1,4 +1,3 @@
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -8,7 +7,7 @@ import com.example.finalproject.data.dto.response.CommentsResponse
 import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
-import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
+import com.example.finalproject.ui.leftbar.fragments.comments.state.CommentsState
 
 class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel()  {
 
@@ -25,13 +24,10 @@ class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() 
     private val _paymentMethods = MutableLiveData<PaymentMethodsResponse>()
     val paymentMethods: LiveData<PaymentMethodsResponse> get() = _paymentMethods
 
-    // Función para obtener un producto por su id
-    fun fetchProductById(productId: Int) {
-        viewModelScope.launch {
-            val fetchedProduct = repository.getProductById(productId)
-            _product.postValue(fetchedProduct)
-        }
-    }
+    // LiveData para el estado
+    private val _state = MutableLiveData<CommentsState>()
+    val state: LiveData<CommentsState> get() = _state
+
 
 
     // Función para obtener todos los productos
@@ -42,13 +38,6 @@ class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() 
         }
     }
 
-    // Función para obtener comentarios por id de producto
-    fun fetchComments(idProduct: Int) {
-        viewModelScope.launch {
-            val result = repository.getComments(idProduct)
-            _comments.postValue(result)
-        }
-    }
 
     // Función para obtener métodos de pago
     fun fetchPaymentMethods() {
