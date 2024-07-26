@@ -59,6 +59,8 @@ class FinancingAdapter(
                 binding.constraintLayout.background = ContextCompat.getDrawable(binding.root.context, R.drawable.item_fg_bg_orange)
             }
 
+
+
             Picasso.get()
                 .load(imageReturn(paymentMethod.entity))
                 .into(binding.imageView)
