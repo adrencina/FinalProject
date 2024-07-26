@@ -25,8 +25,8 @@ interface HomeApiService {
         @Query("idProductType") idProductType: Int?,
         @Query("productName") productName: String?,
         @Query("onlyFavorite") onlyFavorite: Boolean = false,
-        @Query("page") page: Int = 1,
-        @Query("size") size: Int = 10
+        @Query("page") page: Int ,
+        @Query("size") size: Int
     ): Response<ProductResponse>
 
     // Crea un producto
@@ -49,7 +49,7 @@ interface HomeApiService {
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
 
     //  todo esto va con el pronto consumo al endpoint de favorite
-//    @PUT("/api/v1/products/{idProduct}/favorite")
+//    @POST("/api/v1/products/{idProduct}/favorite")
 //    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
 
 

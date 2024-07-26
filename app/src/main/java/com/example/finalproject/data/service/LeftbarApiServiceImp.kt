@@ -1,24 +1,32 @@
 package com.example.finalproject.data.service
 
+import android.content.Context
 import com.example.finalproject.data.dto.response.CommentsResponse
 import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
 
-class LeftbarApiServiceImp(private val apiService: LeftbarApiService) {
+import retrofit2.Response
 
-    suspend fun getProductById(idProduct: Int): Product {
-        return apiService.getProductById(idProduct)
+
+class LeftbarApiServiceImp(context: Context): LeftbarApiService {
+
+    private val api = RetrofitInstance.getGeneralRetrofit(context).create(LeftbarApiService::class.java)
+    override suspend fun getProductById(idProduct: Int): Product {
+        return api.getProductById(idProduct)
     }
 
-    suspend fun getAllProducts(): List<Product> {
-        return apiService.getAllProducts()
+    override suspend fun getAllProducts(): List<Product> {
+        return api.getAllProducts()
     }
 
-    suspend fun getComments(idProduct: Int): CommentsResponse {
-        return apiService.getComments(idProduct)
+    override suspend fun getComments(idProduct: Int): CommentsResponse {
+        return api.getComments(idProduct)
     }
 
-    suspend fun getPaymentMethods(): PaymentMethodsResponse {
-        return apiService.getPaymentMethods()
+    override suspend fun getPaymentMethods(): PaymentMethodsResponse {
+        return api.getPaymentMethods()
     }
+
+
+
 }
