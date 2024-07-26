@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -57,6 +60,7 @@ dependencies {
     // Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation (libs.okhttp3.logging.interceptor)
     // Picasso
     implementation (libs.squareup.picasso)
     testImplementation(libs.junit)

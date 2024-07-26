@@ -1,3 +1,48 @@
 <resources>
+
+    <string name="refactoring_life_nacademy">Refactoring Life\nAcademy</string>
+    <string name="register">Register</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="logo_rla">logo_rla</string>
     <string name="app_name">FinalProject</string>
+    <string name="en_caso_de_tener_problemas_comunicarse_con_soporte">En caso de tener problemas comunicarse con soporte</string>
+
+
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="icono_de_password">icono de password</string>
+    <string name="mostrar_contrase_a">Mostrar contraseña</string>
+    <string name="Confirmacontraseña">Confirmar contraseña</string>
+    <string name="text_error_register">Error en el usuario o contraseña!</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="si_no_tienes_una_cuenta">Si no tienes una cuenta,</string>
+    <string name="error_en_el_usuario_o_contrase_a">Error en el usuario o contraseña</string>
+    <string name="registrate_aqui">registrate aqui</string>
+    <string name="inicia_sesion_aqui">inicia sesión aquí</string>
+    <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
+    <string name="et_email">Email</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="icono_de_mail">icono de mail</string>
+    <string name="Entrar">Entrar</string>
+    <string name="imageview">imageView</string>
+    <string name="pants">Pants</string>
+    <string name="ultimo_visitado">Ultimo visitado</string>
+    <string name="rusty">Rusty</string>
+    <string name="buzo_canguro_capucha_ncon_cordon">Buzo canguro capucha con\ncordon</string>
+    <string name="_52_000">$ 52.000</string>
+    <string name="soporte">soporte</string>
+    <string name="en_caso_de_problemas_comunicarse_con">En caso de problemas comunicarse con</string>
+    <string name="short_verano">Short verano</string>
+    <string name="_12_000">$ 12.000</string>
+    <string name="error_en_passwords">Error en Passwords</string>
+    <string name="textview">textview</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="financiacion">Financiación</string>
+    <string name="descripcion">Descripción</string>
+    <string name="imagenes">Imágenes</string>
+    <string name="back">Icono volver</string>
+    <string name="comprar">Comprar</string>
 </resources>
