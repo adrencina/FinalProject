@@ -72,13 +72,13 @@ class ImagesFragment : Fragment() {
 
         // Aquí se obtiene la primera imagen de la lista de imágenes
 //        val imageUrl = product.images?.firstOrNull()?.link ?: ""
-
-        Picasso.get()
-            .load(product.image)
-            .centerInside()
-            .placeholder(R.drawable.imgerror)
-            .error(R.drawable.errornotphoto)
-            .into(binding.ivProduct)
+//
+//        Picasso.get()
+//            .load(product.image)
+//            .centerInside()
+//            .placeholder(R.drawable.imgerror)
+//            .error(R.drawable.errornotphoto)
+//            .into(binding.rvImgfragment)
         Log.d("ImagesFragment", "Image URL: ${product.image}")
     }
 

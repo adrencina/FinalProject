@@ -127,6 +127,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_imgfragment"
+        android:layout_width="0dp"
+        android:layout_height="276dp"
+        android:layout_marginTop="@dimen/_136dp"
+        android:layout_marginStart="24dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_rv_imgfragment" />
+    
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_left_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="1"
+        />
 
 
     <androidx.cardview.widget.CardView
@@ -135,41 +155,42 @@
         android:layout_height="276dp"
         android:layout_marginTop="@dimen/_136dp"
         app:cardBackgroundColor="#EEEEEE"
+        android:visibility="gone"
         app:cardCornerRadius="16dp"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
         app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="211dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:layout_marginEnd="@dimen/_8dp"
-            android:background="@drawable/circle_heart_white"/>
+<!--        <View-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="211dp"-->
+<!--            android:layout_marginTop="@dimen/_8dp"-->
+<!--            android:layout_marginEnd="@dimen/_8dp"-->
+<!--            android:background="@drawable/circle_heart_white"/>-->
 
-        <ImageView
-            android:id="@+id/iv_ic_heart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="216dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="13dp"
-            android:contentDescription="@string/icon_heart"
-            android:src="@drawable/ic_heart_1"
-            />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_ic_heart"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginStart="216dp"-->
+<!--            android:layout_marginTop="14dp"-->
+<!--            android:layout_marginEnd="13dp"-->
+<!--            android:contentDescription="@string/icon_heart"-->
+<!--            android:src="@drawable/ic_heart_1"-->
+<!--            />-->
 
-        <ImageView
-            android:id="@+id/iv_product"
-            android:layout_width="167dp"
-            android:layout_height="180dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="48dp"
-            android:contentDescription="@string/img_product"
-            tools:src="@drawable/img_example">
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_product"-->
+<!--            android:layout_width="167dp"-->
+<!--            android:layout_height="180dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="48dp"-->
+<!--            android:layout_marginBottom="48dp"-->
+<!--            android:contentDescription="@string/img_product"-->
+<!--            tools:src="@drawable/img_example">-->
 
-        </ImageView>
+<!--        </ImageView>-->
 
 <!--        Casos de error -->
 
@@ -201,6 +222,7 @@
 
         <TextView
             android:id="@+id/tv_error_Message"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Error"
@@ -215,12 +237,12 @@
         android:id="@+id/btn_product"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="63dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp"
-        android:layout_marginStart="22dp"
         app:layout_constraintStart_toEndOf="@+id/btn_colors"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/rv_imgfragment">
 
         <ImageView
             android:layout_width="35dp"
@@ -253,33 +275,31 @@
         android:id="@+id/btn_colors"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="63dp"
         app:cardBackgroundColor="#F39C12"
         app:cardCornerRadius="16dp"
-        android:layout_marginStart="24dp"
         app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/rv_imgfragment">
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="27dp"
             android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="17dp"
-            android:src="@drawable/ic_remera">
-        </ImageView>
+            android:layout_marginBottom="27dp"
+            android:src="@drawable/ic_remera"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Producto"
-            android:fontFamily="@font/robotoregular"
-            android:textSize="12sp"
             android:layout_marginStart="@dimen/_12dp"
             android:layout_marginTop="53dp"
-            android:layout_marginBottom="3dp">
-        </TextView>
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="Producto"
+            android:textSize="12sp"></TextView>
 
     </androidx.cardview.widget.CardView>
 
@@ -289,37 +309,39 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="63dp"
+        android:layout_marginStart="22dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp"
-        android:layout_marginStart="22dp"
         app:layout_constraintStart_toEndOf="@+id/btn_product"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/rv_imgfragment">
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="27dp"
             android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="17dp"
+            android:layout_marginBottom="27dp"
             android:src="@drawable/ic_simil">
+
         </ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Similares"
-            android:fontFamily="@font/robotoregular"
-            android:textSize="12sp"
             android:layout_marginStart="@dimen/_12dp"
             android:layout_marginTop="53dp"
-            android:layout_marginBottom="3dp">
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="Similares"
+            android:textSize="12sp">
+
         </TextView>
     </androidx.cardview.widget.CardView>
 
 
     <TextView
-        android:id="@+id/tv_cointype"
+        android:id="@+id/tv_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
