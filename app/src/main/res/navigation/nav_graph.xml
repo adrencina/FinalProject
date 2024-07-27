@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/commentsFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.CommentsFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.comment.presenter.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/imagesFragment"
-        android:name="com.example.finalproject.ui.leftbar.fragments.ImagesFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.images.presenter.ImagesFragment"
         android:label="fragment_images"
         tools:layout="@layout/fragment_images" >
 

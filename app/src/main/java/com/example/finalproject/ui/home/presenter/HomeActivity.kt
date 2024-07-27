@@ -189,10 +189,11 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
-    fun navigateToFragment(){
+    private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
-            ID_PRODUCT = id
+            Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
+            intent.putExtra("idProduct", id)
             startActivity(intent)
         }
     }
