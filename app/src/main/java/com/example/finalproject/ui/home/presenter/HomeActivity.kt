@@ -22,6 +22,7 @@ import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
+import com.example.finalproject.ui.search.presenter.SearchActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
@@ -49,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
         navigateToEmailSupport()
         setIconFavorite()
         navigateToFragment()
+        initSearchView()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -196,7 +198,12 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+    private fun initSearchView() {
+        binding.svHome.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }
 
