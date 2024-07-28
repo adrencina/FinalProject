@@ -6,24 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.model.Comment
-import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.service.CommentsRepository
 import com.example.finalproject.databinding.FragmentCommentsBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.fragments.comment.adapter.CommentsAdapter
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
-import com.example.finalproject.ui.leftbar.fragments.comment.state.commProductState
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 
 class CommentsFragment : Fragment() {
     private lateinit var binding: FragmentCommentsBinding
+    private val sharedViewModel : sharedViewModel by  activityViewModels()
     private val viewModel : CommentsViewModel by viewModels{
         CommentsViewModelFactory(CommentsRepository(requireContext()))
     }
@@ -31,13 +32,18 @@ class CommentsFragment : Fragment() {
     companion object{
         private const val ARG_PRODUCT_ID = "product_id"
 
+
+
         fun newInstance(productId : Int) : CommentsFragment{
             val instanceFragmentComm = CommentsFragment()
             val args = Bundle()
             args.putInt(ARG_PRODUCT_ID, productId)
             instanceFragmentComm.arguments = args
+
             return  instanceFragmentComm
         }
+
+
     }
 
 
@@ -60,14 +66,15 @@ class CommentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val productId = arguments?.getInt(ARG_PRODUCT_ID, -1) ?: -1
-
         if (productId != -1) {
             viewModel.fetchCommentsByProductId(productId)
 
         }
 
         if (productId != -1) {
-
+            sharedViewModel.product.observe(viewLifecycleOwner,{
+                binding.tvPrice.text = "$${it}"
+            })
             viewModel.getProductById(productId)
         }
 
@@ -83,14 +90,7 @@ class CommentsFragment : Fragment() {
             }
         }
 
-        viewModel.product.observe(viewLifecycleOwner) { product ->
-            when (product) {
 
-                is commProductState.Success -> showPrice(product.product)
-                is commProductState.Error -> showError()
-                is commProductState.Loading -> showLoading()
-            }
-        }
 
 
 
@@ -119,37 +119,21 @@ class CommentsFragment : Fragment() {
 //        binding.progressBar.visibility = View.VISIBLE
 //        binding.contentLayout.visibility = View.GONE
 //        binding.ivImgError.visibility = View.GONE
-        binding.tvPrice.text = "hola"
+        binding.rvComments.visibility = View.GONE
 
     }
-
-private fun showDetails(product: Product) {
-    binding.tvPrice.text = product.price.toString()
-    }
-
-
     private fun showComments(comments: List<Comment>) {
-//        binding.progressBar.visibility = View.GONE
-//        binding.contentLayout.visibility = View.VISIBLE
-//        binding.errorLayout.visibility = View.GONE
 
-
+        binding.rvComments.visibility = View.VISIBLE
 
 //         Adaptador para los comentarios
         val adapter = CommentsAdapter(comments)
         binding.rvComments.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvComments.adapter = adapter
     }
-    private fun showPrice(product: Product){
-        binding.tvPrice.text = product.price.toString()
-    }
-
 
     private fun showError() {
-
-        binding.tvPrice.text = "error"
-
-
+        binding.rvComments.visibility = View.GONE
 
     }
 
