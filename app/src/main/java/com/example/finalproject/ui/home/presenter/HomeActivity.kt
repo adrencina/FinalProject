@@ -16,7 +16,6 @@ import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -31,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
     private val productTypesAdapter = ProductTypesAdapter(
         emptyList(),
         onClickListener = { productType -> onItemSelected(productType) })
-    private val productsAdapter = ProductsAdapter(emptyList())
+    private lateinit var productsAdapter: ProductsAdapter
     private lateinit var homeViewModel: HomeViewModel
     private var id = 0
     private var productPrice = 0
@@ -46,11 +45,11 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel =
             ViewModelProvider(this, HomeViewModelFactory(repository))[HomeViewModel::class.java]
 
+        navigateToFragment()
         setupRecyclerViews()
         observeViewModel()
         navigateToEmailSupport()
         setIconFavorite()
-        navigateToFragment()
         initSearchView()
 
         homeViewModel.fetchCategories()
@@ -64,12 +63,15 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Config RV
+    // Configuración de RecyclerViews
     private fun setupRecyclerViews() {
         binding.rvHomeNameItems.apply {
             layoutManager =
                 LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
+        }
+        productsAdapter = ProductsAdapter(emptyList()) { idProduct, productPrice ->
+            navigateToLeftBarActivity(idProduct, productPrice)
         }
         binding.rvHomeProducts.apply {
             layoutManager =
@@ -78,7 +80,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Observamos el VM
+    // Observamos el ViewModel
     private fun observeViewModel() {
         homeViewModel.productTypes.observe(this, Observer { productTypes ->
             productTypesAdapter.updateData(productTypes)
@@ -105,8 +107,8 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    // Actualiza el producto destacado
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
-        Log.d("HomeActivity", "Actualizando producto destacado: $product")
 
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
@@ -143,6 +145,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    // Configura el ícono de favorito
     private fun setIconFavorite() {
         var favorite = false
         binding.iconHeart1.setOnClickListener {
@@ -155,24 +158,28 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    // Maneja la selección de un tipo de producto
     private fun onItemSelected(productType: ProductType) {
-        ID_PRODUCT = productType.idProductType
-        if (productType.idProductType.toString().isNotEmpty()) {
-            homeViewModel.products.observe(this) { products ->
-                if (products.isNotEmpty()) {
-                    productsAdapter.updateData(products)
-                    productsAdapter.filtered(productType)
-                    Log.d("HomeActivity", "Productos mostrados: ${products.size}")
-                } else {
-                    Log.d("HomeActivity", "No se encontraron productos")
-                }
+        homeViewModel.products.observe(this) { products ->
+            val filteredProducts = products.filter { product ->
+                product.productType?.idProductType == productType.idProductType
             }
+            productsAdapter.updateData(filteredProducts)
         }
     }
 
+    // Navega a LeftBarActivity
+    private fun navigateToLeftBarActivity(idProduct: Int, productPrice: Double) {
+        val intent = Intent(this, LeftBarActivity::class.java).apply {
+            putExtra("idProduct", idProduct)
+            putExtra("productPrice", productPrice)
+        }
+        startActivity(intent)
+    }
+
+    // Navega a LeftBarActivity
     private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
-            Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
             intent.putExtra("idProduct", id)
             intent.putExtra("productPrice", productPrice)
@@ -180,6 +187,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    // Inicializa la barra de búsqueda
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -199,6 +207,7 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    // Navega a la actividad de búsqueda
     private fun goToSearch(query: String) {
         val intent = Intent(this, SearchActivity::class.java)
         intent.putExtra("search", query)
@@ -206,53 +215,5 @@ class HomeActivity : AppCompatActivity() {
     }
 }
 
-
-
-
-// Éste codigo de abajo es para el SearchView que se trabajará en proximos días...
-
-//initSearchRecyclerView()
-//initSearchView()
-//searchViewObserver()
-
-//private lateinit var searchList: MutableList<Product>
-//private lateinit var searchAdapter: SearchAdapter
-//private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-//
-//    // Inicializa RecyclerView de búsqueda
-//    private fun initSearchRecyclerView() {
-//        searchAdapter = SearchAdapter(
-//            productLst = searchList,
-//            onClickListener = { product -> onItemSelected(product) }
-//        )
-//        binding.rvHomeSearch.layoutManager = searchLLmanager
-//        binding.rvHomeSearch.adapter = searchAdapter
-//    }
-//
-//    // Acción cuando se selecciona un ítem en la búsqueda
-//    private fun onItemSelected(product: Product) {
-//        Toast.makeText(this, "Seleccionado: ${product.name}", Toast.LENGTH_SHORT).show()
-//    }
-//
-    // Inicializar SearchView
-
-//
-//    // Observar cambios en el resultado de búsqueda
-//    private fun searchViewObserver() {
-//        homeViewModel.searchResult.observe(this) { result ->
-//            searchVisibility(result)
-//        }
-//    }
-//
-//    // Controlar visibilidad del resultado de búsqueda
-//    private fun searchVisibility(result: Boolean) {
-//        binding.cvImageProduct.isVisible = !result
-//        binding.rvHomeProducts.isVisible = !result
-//        binding.rvHomeNameItems.isVisible = !result
-//        binding.ivLine.isVisible = !result
-//        binding.rvHomeSearch.isVisible = result
-//    }
-//}
 
 
