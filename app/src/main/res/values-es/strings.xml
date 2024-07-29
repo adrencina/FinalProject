@@ -15,7 +15,7 @@
     <string name="entrar">Entrar</string>
     <string name="si_no_tienes_una_cuenta">Si no tienes una cuenta,</string>
     <string name="error_en_el_usuario_o_contrase_a">Error en el usuario o contraseña</string>
-    <string name="registrate_aqui">registrate aqui</string>
+    <string name="registrate_aqui">registrate aquí</string>
     <string name="inicia_sesion_aqui">inicia sesión aquí</string>
     <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
     <string name="et_email">Email</string>
@@ -24,7 +24,7 @@
     <string name="Entrar">Entrar</string>
     <string name="imageview">imageView</string>
     <string name="pants">Pants</string>
-    <string name="ultimo_visitado">Ultimo visitado</string>
+    <string name="ultimo_visitado">Último visitado</string>
     <string name="rusty">Rusty</string>
     <string name="buzo_canguro_capucha_ncon_cordon">Buzo canguro capucha con\ncordon</string>
     <string name="_52_000">$ 52.000</string>
@@ -46,11 +46,24 @@
     <string name="volver">Volver</string>
     <string name="comentario">Comentarios</string>
     <string name="_24_840">$ 24.840</string>
-    <string name="hay_un_problema">Hay un problema con la carga de imagenes</string>
+    <string name="hay_un_problema">Hay un problema con la carga de imágenes</string>
     <string name="oferta_del_d_a">Oferta del día</string>
     <string name="colores">Colores</string>
     <string name="producto">Producto</string>
     <string name="similares">Similares</string>
     <string name="AAA">$</string>
     <string name="ver">ver</string>
+    <string name="soport">soporte</string>
+    <string name="en_caso_de_problemas_comunicate_con">En caso de Problemas comunicate con</string>
+    <string name="e">E:</string>
+    <string name="coloress">Colores</string>
+    <string name="similaress">Similares</string>
+    <string name="hola">hola</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="dawdawdawdawd">dawdawdawdawd</string>
+    <string name="buytext">buyText</string>
+    <string name="okK">okk</string>
+    <string name="el_vendedor_se_comunicara_con_vos_en_breve">El vendedor se comunicara con vos en breve</string>
+    <string name="testseller">TestSeller</string>
+    <string name="vendedor">Vendedor:</string>
 </resources>

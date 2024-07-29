@@ -19,6 +19,9 @@ class SharedFragViewModel : ViewModel() {
     private val _productName = MutableLiveData<String>()
     val productName: LiveData<String> get() = _productName
 
+    private val _productCurrency = MutableLiveData<String>()
+    val productCurrency: LiveData<String> get() = _productCurrency
+
 
     fun productIdvalue(new: Int) {
         _productId.value = new
@@ -33,5 +36,9 @@ class SharedFragViewModel : ViewModel() {
     }
     fun productName(new: String) {
         _productName.value = new
+    }
+
+    fun productCurrency(new: String) {
+        _productCurrency.value = new
     }
 }

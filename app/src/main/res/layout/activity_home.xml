@@ -203,13 +203,15 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:layout_width="@dimen/_260dp"
+        android:id="@+id/comunication"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_78dp"
-        android:layout_marginBottom="@dimen/_20dp"
-        android:fontFamily="@font/robotolight"
-        android:text="@string/en_caso_de_problemas_comunicarse_con"
-        android:textSize="@dimen/_12sp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="@string/en_caso_de_problemas_comunicate_con"
+        android:textSize="@dimen/_14sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -217,12 +219,13 @@
         android:id="@+id/tv_support"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_78dp"
-        android:layout_marginBottom="@dimen/_20dp"
-        android:fontFamily="@font/robotocondensedsemibold"
-        android:text="@string/soporte"
-        android:textSize="@dimen/_12sp"
+        android:layout_marginStart="@dimen/_6dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="@string/soport"
+        android:textSize="@dimen/_14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/comunication"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

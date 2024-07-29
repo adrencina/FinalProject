@@ -32,6 +32,13 @@ class LeftBarActivity : AppCompatActivity() {
         Log.i("asd",receivedProductName.toString())
         sharedViewModel.productName(receivedProductName.toString())
 
+        val receivedProductCurrency = intent.getStringExtra("productCurrency")
+        sharedViewModel.productCurrency(receivedProductCurrency.toString())
+
+        sharedViewModel.productCurrency.observe(this,{
+            binding.tvCurrency.text = it
+        })
+
         sharedViewModel.productPrice.observe(this) {
             binding.tvPrice.text = it.toString()
         }
