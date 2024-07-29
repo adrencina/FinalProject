@@ -36,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
     private var id = 0
     private var productPrice = 0
     private var name = "name"
+    private var currencyType = "currency"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +123,8 @@ class HomeActivity : AppCompatActivity() {
 
         id = product.idProduct ?: 0
         productPrice = product.price?.toInt() ?: 0
+        name = product.name.toString()
+        currencyType = product.currency.toString()
 
         val imageUrl = product.images?.firstOrNull()?.link ?: ""
         if (imageUrl.isNotEmpty()) {

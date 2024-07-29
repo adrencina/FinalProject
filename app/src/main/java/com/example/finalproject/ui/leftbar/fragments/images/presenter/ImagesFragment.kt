@@ -47,6 +47,9 @@ class ImagesFragment : Fragment() {
             }
         }
 
+        sharedViewModel.productName.observe(viewLifecycleOwner,{
+            sharedViewModel.fragmentTittle(it)
+        })
         navigateToFragment()
 
 

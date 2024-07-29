@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.leftbar.presenter
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityLeftBarBinding
@@ -23,6 +24,7 @@ class LeftBarActivity : AppCompatActivity() {
         sharedViewModel.productIdvalue(receivedProductId)
 
         val receivedProductName = intent.getStringExtra("productName")
+        Log.i("asd",receivedProductName.toString())
         sharedViewModel.productName(receivedProductName.toString())
 
         sharedViewModel.productPrice.observe(this,{
