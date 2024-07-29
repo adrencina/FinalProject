@@ -40,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
         if (!token.isNullOrBlank()) {
             navigateToHome()
         }
-
         // Observa los resultados del login
         loginViewModel.loginResult.observe(this) { loginState ->
             when (loginState) {
