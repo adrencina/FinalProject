@@ -12,7 +12,6 @@ interface CommentsApiService {
     suspend fun getCommentsByProductId(
         @Query("idProduct") idProduct: Int
     ): Response<CommentsResponse>
-
     @GET("api/v1/products/{idProduct}")
     suspend fun getProductById(@Path("idProduct") idProduct:Int): Product
 }

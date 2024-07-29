@@ -5,20 +5,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -31,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val productTypesAdapter = ProductTypesAdapter(emptyList(), onClickListener = {productType -> onItemSelected(productType)  })
-    private val productsAdapter = ProductsAdapter(emptyList())
+    private val productsAdapter = ProductsAdapter(emptyList(), onClickListener = {product -> onSelectedItem(product)  })
     private lateinit var homeViewModel: HomeViewModel
 
     private var id = 0
@@ -85,25 +82,25 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el VM
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this,  { productTypes ->
+        homeViewModel.productTypes.observe(this) { productTypes ->
             productTypesAdapter.updateData(productTypes)
-        })
+        }
 
-        homeViewModel.products.observe(this, { products ->
+        homeViewModel.products.observe(this) { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
                 Log.d("HomeActivity", "Productos mostrados: ${products.size}")
             } else {
                 Log.d("HomeActivity", "No se encontraron productos")
             }
-        })
+        }
 
-        homeViewModel.dailyOffer.observe(this, { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this) { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
-        })
+        }
 
 //        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
 //            lastVisitedProduct?.let { product ->
@@ -111,10 +108,10 @@ class HomeActivity : AppCompatActivity() {
 //            }
 //        })
 
-        homeViewModel.error.observe(this, { errorMessage ->
+        homeViewModel.error.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
-        })
+        }
 
         //todo observador de consumo a favorite terminar cuando consumo este ok
 //        homeViewModel.homeState.observe(this) { favorite ->
@@ -130,12 +127,16 @@ class HomeActivity : AppCompatActivity() {
 //        }
     }
 
-    private fun updateFeaturedProduct(product: DailyOfferResponse) {
-        Log.d("HomeActivity", "Actualizando producto destacado: $product")
 
+    private fun updateFeaturedProduct(product: DailyOfferResponse) {
+        val price = product.price
+        val currency = product.currency
+        val prodPrice = "${currency+price} "
+
+        Log.d("HomeActivity", "Actualizando producto destacado: $product")
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
-        binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
+        binding.tvHomePriceProduct.text = prodPrice
 
         Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
         binding.titleDailyOffer.visible(true)
@@ -183,7 +184,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun onItemSelected(productType: ProductType){
-        ID_PRODUCT = productType.idProductType
+
         if (productType.idProductType.toString().isNotEmpty()) {
             homeViewModel.products.observe(this, { products ->
                 if (products.isNotEmpty()) {
@@ -196,6 +197,10 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
+
+    private fun onSelectedItem(product: Product){
+        recyclerNavigateToFragment(product)
+    }
     private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
             Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
@@ -204,6 +209,12 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("productPrice",productPrice)
             startActivity(intent)
         }
+    }
+    private fun recyclerNavigateToFragment(product: Product){
+        val intent = Intent(this,LeftBarActivity::class.java)
+        intent.putExtra("idProduct",product.idProduct)
+        intent.putExtra("productPrice",product.price?.toInt())
+        startActivity(intent)
     }
 
 
@@ -220,9 +231,6 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (!newText.isNullOrEmpty()) {
-                    goToSearch(newText)
-                }
                 return true
             }
         })

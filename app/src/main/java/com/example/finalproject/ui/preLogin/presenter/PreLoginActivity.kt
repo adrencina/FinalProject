@@ -22,7 +22,7 @@ class PreLoginActivity : AppCompatActivity() {
 
         navigateToEmailSupport()
         navigate()
-
+        navigateToRegister()
     }
 
     private fun navigate() {
@@ -30,11 +30,13 @@ class PreLoginActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun navigateToRegister(){
         binding.cvRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun navigateToEmailSupport() {
