@@ -187,6 +187,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
     // Inicializa la barra de búsqueda
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,

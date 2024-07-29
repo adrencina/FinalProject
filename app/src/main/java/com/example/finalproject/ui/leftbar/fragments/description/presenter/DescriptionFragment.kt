@@ -7,17 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
+import com.example.finalproject.data.service.CommentsRepository
+import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.FragmentDescriptionBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
+import com.example.finalproject.ui.home.viewModel.HomeViewModel
+import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
+import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
+import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
 import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
+import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class DescriptionFragment : Fragment() {
 
