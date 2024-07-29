@@ -19,31 +19,32 @@ class LeftBarActivity : AppCompatActivity() {
         binding = ActivityLeftBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val receivedProductPrice = intent.getIntExtra("productPrice", -1)
-        sharedViewModel.productvalue(receivedProductPrice.toString())
+        sharedViewModel.productPricevalue(receivedProductPrice.toString())
 
 
         val receivedProductId = intent.getIntExtra("idProduct", -1)
+        sharedViewModel.productIdvalue(receivedProductId)
 
 
 
 
 
-        if (savedInstanceState == null) {
-
-            // Instancias de los Fragments
-//            val instanceFragmentImg = ImagesFragment.newInstance(receivedProductId)
-            val instanceFragmentComm = CommentsFragment.newInstance(receivedProductId)
-//            val instanceFragmentFin = FinancingFragment.newInstance(receivedProductId)
-//            val instanceFragmentDesc = DescriptionFragment.newInstance(receivedProductId)
-
-            // Esto añade los Instance Fragments al contenedor
-            supportFragmentManager.beginTransaction()
-                .add(R.id.nav_graph_fragment, instanceFragmentComm)
-
-
-
-                .commit()
-        }
+//        if (savedInstanceState == null) {
+//
+//            // Instancias de los Fragments
+////            val instanceFragmentImg = ImagesFragment.newInstance(receivedProductId)
+//            val instanceFragmentComm = CommentsFragment.newInstance(receivedProductId)
+////            val instanceFragmentFin = FinancingFragment.newInstance(receivedProductId)
+////            val instanceFragmentDesc = DescriptionFragment.newInstance(receivedProductId)
+//
+//            // Esto añade los Instance Fragments al contenedor
+//            supportFragmentManager.beginTransaction()
+//                .add(R.id.nav_graph_fragment, instanceFragmentComm)
+//
+//
+//
+//                .commit()
+//        }
     }
 }
 
