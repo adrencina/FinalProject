@@ -178,7 +178,7 @@ class HomeActivity : AppCompatActivity() {
     private fun onItemSelected(productType: ProductType) {
         ID_PRODUCT = productType.idProductType
         if (productType.idProductType.toString().isNotEmpty()) {
-            homeViewModel.products.observe(this, { products ->
+            homeViewModel.products.observe(this) { products ->
                 if (products.isNotEmpty()) {
                     productsAdapter.updateData(products)
                     productsAdapter.filtered(productType)
@@ -186,7 +186,7 @@ class HomeActivity : AppCompatActivity() {
                 } else {
                     Log.d("HomeActivity", "No se encontraron productos")
                 }
-            })
+            }
         }
     }
 
@@ -194,7 +194,6 @@ class HomeActivity : AppCompatActivity() {
         binding.cvImageProduct.setOnClickListener {
             Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
-            intent.putExtra("idProduct", id)
             intent.putExtra("idProduct", id)
             intent.putExtra("productPrice",productPrice)
             startActivity(intent)
