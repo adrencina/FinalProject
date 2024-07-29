@@ -1,6 +1,6 @@
 package com.example.finalproject.ui.leftbar.fragments.images.presenter
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,17 +15,16 @@ import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentImagesBinding
-import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModelFactory
-import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class ImagesFragment : Fragment() {
 
     private lateinit var binding: FragmentImagesBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedViewModel: sharedViewModel by activityViewModels()
     private val viewModel: ImagesViewModel by viewModels {
         ImagesViewModelFactory(LeftbarRepository(requireContext()))
     }
@@ -48,16 +47,9 @@ class ImagesFragment : Fragment() {
             }
         }
 
-        sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
-            binding.tvPriceProduct.text = "${price}"
-        }
-
         navigateToFragment()
 
-        binding.BtnBack.setOnClickListener {
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun navigateToFragment() {
@@ -90,7 +82,7 @@ class ImagesFragment : Fragment() {
 
     private fun showProductDetails(product: Product) {
         binding.ivImgError.visibility = View.GONE
-        binding.tvNameProduct.text = product.name
+
 
         val adapter = ImagesAdapter(product.images ?: emptyList())
         binding.rvImgfragment.layoutManager =

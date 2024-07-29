@@ -17,15 +17,16 @@ import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentDescriptionBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
+import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
-import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class DescriptionFragment : Fragment() {
 
     private lateinit var binding: FragmentDescriptionBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedViewModel: sharedViewModel by activityViewModels()
     private val viewModel: DescriptionViewModel by viewModels {
         DescriptionViewModelFactory(LeftbarRepository(requireContext()))
     }
@@ -47,24 +48,17 @@ class DescriptionFragment : Fragment() {
             Log.d("DescriptionFragment", "productId observado: $id")
             if (id != -1) {
                 viewModel.fetchProductById(id)
-                observeViewModel()
             }
         }
 
         // Observar cambios en el precio del producto en el ViewModel compartido
-        sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
-            Log.d("DescriptionFragment", "productPrice observado: $price")
-            binding.tvPriceProduct.text = "$${price}"
-        }
 
+        observeViewModel()
         // Configurar la navegación entre fragmentos
         setupNavigation()
 
         // Configurar el botón de regreso a HomeActivity
-        binding.BtnBack.setOnClickListener {
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun setupNavigation() {
@@ -80,13 +74,13 @@ class DescriptionFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.descriptionState.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.descriptionState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is DescriptionState.Loading -> showLoading()
-                is DescriptionState.Success -> showDescription(state.data)
+                is DescriptionState.Success -> showDescription(state.product)
                 is DescriptionState.Error -> showError(state.message)
             }
-        })
+        }
     }
 
     private fun showLoading() {
@@ -96,8 +90,10 @@ class DescriptionFragment : Fragment() {
 
     private fun showDescription(product: Product) {
         Log.d("DescriptionFragment", "Descripción mostrada: $product")
-        binding.tvTitleProduct.text = product.name
+
         binding.tvDescription.text = product.description
+
+
     }
 
     private fun showError(message: String) {
