@@ -74,7 +74,7 @@
         android:contentDescription="@string/okK"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/ok"
+        android:background="@drawable/validd"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/_150dp"
         app:layout_constraintStart_toStartOf="parent"

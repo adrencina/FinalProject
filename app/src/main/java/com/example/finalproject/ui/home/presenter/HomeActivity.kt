@@ -208,6 +208,7 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("idProduct",product.idProduct)
         intent.putExtra("productPrice",product.price?.toInt())
         intent.putExtra("productName",product.name)
+        intent.putExtra("productCurrency",product.currency)
         P = product
         startActivity(intent)
     }
@@ -233,6 +234,7 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("idProduct", id)
             intent.putExtra("productPrice", productPrice)
             intent.putExtra("productName",name)
+            intent.putExtra("productCurrency",currencyType)
             startActivity(intent)
         }
     }
