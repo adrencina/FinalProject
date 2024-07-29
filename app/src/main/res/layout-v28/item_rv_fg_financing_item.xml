@@ -63,7 +63,7 @@
             android:layout_marginTop="@dimen/_55dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute" />
+             />
 
         <TextView
             android:id="@+id/textfinancing2"
@@ -77,7 +77,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textfinancing3"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="UnusedAttribute" />
+             />
 
         <TextView
             android:id="@+id/textfinancing3"
@@ -90,7 +90,7 @@
             android:text="@string/textview"
             app:layout_constraintBottom_toTopOf="@+id/textfinancing4"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="UnusedAttribute" />
+             />
 
         <TextView
             android:id="@+id/textfinancing4"
@@ -103,7 +103,7 @@
             android:text="@string/textview"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="UnusedAttribute" />
+             />
 
         <TextView
             android:id="@+id/textfinancing5"
