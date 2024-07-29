@@ -120,10 +120,10 @@ class CommentsFragment : Fragment() {
 
         binding.tvDescriptionFragment.setOnClickListener {
 //            fragmentManager?.beginTransaction()?.replace(R.id.nav_graph_fragment, ImagesFragment())?.commit()
-//            findNavController().navigate(R.id.action_commentsFragment_to_descriptionFragment)
+            findNavController().navigate(R.id.action_commentsFragment_to_descriptionFragment)
         }
         binding.tvFinancingFragment.setOnClickListener {
-//            findNavController().navigate(R.id.action_commentsFragment_to_financingFragment)
+            findNavController().navigate(R.id.action_commentsFragment_to_financingFragment)
         }
         binding.tvImagesFragment.setOnClickListener {
             findNavController().navigate(R.id.action_commentsFragment_to_imagesFragment)

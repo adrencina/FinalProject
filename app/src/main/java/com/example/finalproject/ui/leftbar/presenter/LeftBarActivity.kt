@@ -3,10 +3,10 @@ package com.example.finalproject.ui.leftbar.presenter
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.finalproject.R
 import com.example.finalproject.databinding.ActivityLeftBarBinding
-import com.example.finalproject.ui.leftbar.fragments.comment.presenter.CommentsFragment
+
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
+
 
 class LeftBarActivity : AppCompatActivity() {
 
