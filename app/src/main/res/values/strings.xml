@@ -1,60 +1,62 @@
+
 <resources>
+
 
     <string name="refactoring_life_nacademy">Refactoring Life\nAcademy</string>
     <string name="register">Register</string>
-    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="iniciar_sesi_n">Log in</string>
     <string name="logo_rla">logo_rla</string>
     <string name="app_name">FinalProject</string>
     <string name="en_caso_de_tener_problemas_comunicarse_con_soporte">En caso de tener problemas comunicarse con soporte</string>
 
 
     <string name="email">Email</string>
-    <string name="password">Contraseña</string>
-    <string name="icono_de_password">icono de password</string>
-    <string name="mostrar_contrase_a">Mostrar contraseña</string>
-    <string name="Confirmacontraseña">Confirmar contraseña</string>
-    <string name="text_error_register">Error en el usuario o contraseña!</string>
-    <string name="contrase_a">Contraseña</string>
-    <string name="entrar">Entrar</string>
-    <string name="si_no_tienes_una_cuenta">Si no tienes una cuenta,</string>
-    <string name="error_en_el_usuario_o_contrase_a">Error en el usuario o contraseña</string>
-    <string name="registrate_aqui">registrate aqui</string>
-    <string name="inicia_sesion_aqui">inicia sesión aquí</string>
-    <string name="si_ya_tienes_una_cuenta">Si ya tienes una cuenta,</string>
+    <string name="password">Password</string>
+    <string name="icono_de_password">Password icon</string>
+    <string name="mostrar_contrase_a">Show password</string>
+    <string name="Confirmacontraseña">Confirm password</string>
+    <string name="text_error_register">Error in username or password</string>
+    <string name="contrase_a">Password</string>
+    <string name="entrar">Enter</string>
+    <string name="si_no_tienes_una_cuenta">if you dont have an account,</string>
+    <string name="error_en_el_usuario_o_contrase_a">Error in username or password</string>
+    <string name="registrate_aqui">sign up here</string>
+    <string name="inicia_sesion_aqui">log in here</string>
+    <string name="si_ya_tienes_una_cuenta">if you already have an account,</string>
     <string name="et_email">Email</string>
-    <string name="registrarse">Registrarse</string>
-    <string name="icono_de_mail">icono de mail</string>
-    <string name="Entrar">Entrar</string>
+    <string name="registrarse">check in</string>
+    <string name="icono_de_mail">Email icon</string>
+    <string name="Entrar">Enter</string>
     <string name="imageview">imageView</string>
     <string name="pants">Pants</string>
-    <string name="ultimo_visitado">Ultimo visitado</string>
+    <string name="ultimo_visitado">last visited</string>
     <string name="rusty">Rusty</string>
-    <string name="buzo_canguro_capucha_ncon_cordon">Buzo canguro capucha con\ncordon</string>
+    <string name="buzo_canguro_capucha_ncon_cordon">Kangaroo hoodie with drawstring</string>
     <string name="_52_000">$ 52.000</string>
-    <string name="soporte">soporte</string>
-    <string name="en_caso_de_problemas_comunicarse_con">En caso de problemas comunicarse con</string>
-    <string name="short_verano">Short verano</string>
+    <string name="soporte">support</string>
+    <string name="en_caso_de_problemas_comunicarse_con">In case of problems, contact</string>
+    <string name="short_verano">summer shorts</string>
     <string name="_12_000">$ 12.000</string>
-    <string name="error_en_passwords">Error en Passwords</string>
+    <string name="error_en_passwords">Passwords error</string>
     <string name="textview">textview</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="comentarios">Comentarios</string>
-    <string name="financiacion">Financiación</string>
-    <string name="descripcion">Descripción</string>
-    <string name="imagenes">Imágenes</string>
+    <string name="comentarios">Comments</string>
+    <string name="financiacion">Financing</string>
+    <string name="descripcion">Description</string>
+    <string name="imagenes">Images</string>
     <string name="back">Icono volver</string>
-    <string name="icon_heart">icon heart</string>
+    <string name="icon_heart">Back icon</string>
     <string name="img_product">img_product</string>
     <string name="comprar">Comprar</string>
-    <string name="volver">Volver</string>
-    <string name="comentario">Comentarios</string>
+    <string name="volver">return</string>
+    <string name="comentario">Comments</string>
     <string name="_24_840">$ 24.840</string>
-    <string name="hay_un_problema">Hay un problema con la carga de imagenes</string>
-    <string name="oferta_del_d_a">Oferta del día</string>
-    <string name="colores">Colores</string>
-    <string name="producto">Producto</string>
-    <string name="similares">Similares</string>
+    <string name="hay_un_problema">There is a problem loading images</string>
+    <string name="oferta_del_d_a">Offer of the day</string>
+    <string name="colores">Colors</string>
+    <string name="producto">Product</string>
+    <string name="similares">Similar</string>
     <string name="$">$</string>
-    <string name="ver">ver</string>
+    <string name="ver">Look</string>
 </resources>
