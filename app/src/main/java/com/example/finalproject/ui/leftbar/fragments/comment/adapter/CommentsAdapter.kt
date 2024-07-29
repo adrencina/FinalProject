@@ -28,5 +28,4 @@ class CommentsAdapter(private val comments : List<Comment>) : RecyclerView.Adapt
             binding.tvComment.text = commentsModel.comment
         }
     }
-
 }
