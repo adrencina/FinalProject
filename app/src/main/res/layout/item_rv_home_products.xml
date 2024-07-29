@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="110dp"
+    android:layout_width="@dimen/_110dp"
     android:layout_height="@dimen/_150dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginEnd="@dimen/_10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_recycler_product"
-        android:layout_width="89dp"
-        android:layout_height="88dp"
+        android:layout_width="@dimen/_89dp"
+        android:layout_height="@dimen/_88dp"
         android:layout_marginTop="@dimen/_10dp"
         app:cardCornerRadius="@dimen/_20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/iv_recycler_product"
-            android:layout_width="65dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/_65dp"
+            android:layout_height="@dimen/_64dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_10dp"
             android:contentDescription="@string/imageview"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/name_recycler_product"
-        android:layout_width="80dp"
+        android:layout_width="@dimen/_80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20dp"
         android:layout_marginTop="@dimen/_5dp"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/tv_recycler_price"
-        android:layout_width="80dp"
+        android:layout_width="@dimen/_80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20dp"
         android:layout_marginTop="@dimen/_5dp"

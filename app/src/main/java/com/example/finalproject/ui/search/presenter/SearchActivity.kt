@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.SearchRepository
 import com.example.finalproject.databinding.ActivitySearchBinding
@@ -152,6 +153,9 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
 }
 

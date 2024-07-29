@@ -55,4 +55,7 @@
     <string name="ver">Look</string>
     <string name="soport">soporte</string>
     <string name="en_caso_de_problemas_comunicate_con">En caso de Problemas comunicate con</string>
+    <string name="e">E:</string>
+    <string name="coloress">Colores</string>
+    <string name="similaress">Similares</string>
 </resources>
