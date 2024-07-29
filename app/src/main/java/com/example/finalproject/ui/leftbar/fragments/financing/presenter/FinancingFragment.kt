@@ -49,10 +49,7 @@ class FinancingFragment : Fragment() {
 
 //        observeViewModelProducto()
 
-        sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
-            if (id != -1) {
-            }
-        }
+
 
 
 
@@ -81,7 +78,7 @@ class FinancingFragment : Fragment() {
 
     // Observamos el VM
     private fun observeViewModelFinancing() {
-        viewModel.paymentMethods.observe(viewLifecycleOwner,Observer { paymentMetho ->
+        viewModel.paymentMethods.observe(viewLifecycleOwner, { paymentMetho ->
             if (paymentMetho.isNotEmpty()) {
                 financingAdapter.updateData(paymentMetho)
                 Log.d("FragmentFinancing", "Productos mostrados"+paymentMetho.toString())
@@ -108,9 +105,6 @@ class FinancingFragment : Fragment() {
 //        }
 //    }
 
-    private fun showDescription(product: Product) {
-        binding.tvPriceProduct.text = product.price.toString()
 
-    }
 
 }

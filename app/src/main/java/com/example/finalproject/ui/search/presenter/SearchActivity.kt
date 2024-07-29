@@ -117,7 +117,7 @@ class SearchActivity : AppCompatActivity() {
     // Observamos el VM
     private fun observeViewModel() {
 
-        searchViewModel.products.observe(this, Observer { products ->
+        searchViewModel.products.observe(this, { products ->
             if (products.isNotEmpty()) {
                 Log.i("DATA-Product",products.size.toString())
                 if(query) query=false
@@ -143,7 +143,7 @@ class SearchActivity : AppCompatActivity() {
 //            }
 //        })
 
-        searchViewModel.error.observe(this, Observer { errorMessage ->
+        searchViewModel.error.observe(this, { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("SearchActivity", "Error: $errorMessage")
         })
