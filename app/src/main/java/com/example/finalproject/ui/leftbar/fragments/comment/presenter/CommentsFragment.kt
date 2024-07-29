@@ -71,9 +71,9 @@ class CommentsFragment : Fragment() {
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
             if (id != -1) {
                 viewModel.fetchCommentsByProductId(id)
-//                sharedViewModel.productPrice.observe(viewLifecycleOwner,{ price ->
-//                    binding.tvPrice.text = "$${price} en dolarucos"
-//                })
+                sharedViewModel.productPrice.observe(viewLifecycleOwner,{ price ->
+                    binding.tvPrice.text = "$${price}"
+                })
 
             }
         }
