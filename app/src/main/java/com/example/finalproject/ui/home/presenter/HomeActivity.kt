@@ -17,6 +17,7 @@ import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
+import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -200,6 +201,11 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("productName",product.name)
         startActivity(intent)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        TokenManager.clearData(this)
+        }
 
     // Navega a LeftBarActivity
 //    private fun navigateToLeftBarActivity(idProduct: Int, productPrice: Double) {
