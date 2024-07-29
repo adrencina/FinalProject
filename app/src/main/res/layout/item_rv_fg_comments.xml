@@ -9,45 +9,45 @@
         android:id="@+id/cv_Comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10dp"
         android:background="@color/white"
         app:cardElevation="10dp"
-        android:layout_marginHorizontal="@dimen/_10dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="E:"
-            android:textSize="@dimen/_16sp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            tools:text="E:" />
+
         <ImageView
             android:id="@+id/iv_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
             android:background="@color/_7353ba"
             android:contentDescription="@string/imageview"
-            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_comment"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/robotobold"
-            android:layout_marginHorizontal="20dp"
-            android:textSize="@dimen/_15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="n"/>
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/robotobold"
+            android:textSize="@dimen/_15sp"
+            tools:text="n" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

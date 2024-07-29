@@ -247,7 +247,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="Colores"
+            android:text="@string/colores"
             android:textSize="12sp">
 
         </TextView>
@@ -285,7 +285,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="Producto"
+            android:text="@string/producto"
             android:textSize="12sp">
 
         </TextView>
@@ -322,7 +322,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="Similares"
+            android:text="@string/similares"
             android:textSize="12sp">
 
         </TextView>
@@ -335,7 +335,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="@dimen/_62dp"
-        android:text="$"
+        android:text="@string/$"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_colors">
@@ -374,7 +374,7 @@
             android:layout_marginTop="@dimen/_6dp"
             android:layout_marginBottom="@dimen/_5dp"
             android:fontFamily="@font/robotoregular"
-            android:text="Comprar"
+            android:text="@string/comprar"
             android:textColor="@color/white"
             android:textSize="12sp">
 
