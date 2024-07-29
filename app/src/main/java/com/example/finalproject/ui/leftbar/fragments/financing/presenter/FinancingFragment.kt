@@ -9,25 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
-import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.data.repository.PaymentRepository
-import com.example.finalproject.data.service.CommentsRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.FragmentFinancingBinding
-import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
-import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
 import com.example.finalproject.ui.leftbar.fragments.financing.adacter.FinancingAdapter
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModel
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModelFactory
-import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
-import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
-import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
-import com.example.finalproject.ui.leftbar.fragments.financing.state.financingState
+import com.example.finalproject.ui.leftbar.fragments.financing.state.FinancingState
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class FinancingFragment : Fragment() {
@@ -61,7 +52,6 @@ class FinancingFragment : Fragment() {
 
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
             if (id != -1) {
-
             }
         }
 
@@ -106,16 +96,14 @@ class FinancingFragment : Fragment() {
     private fun observeViewModelProducto() {
         viewModel.financingState.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is financingState.Success -> {
-                    showDescription(product = state.data)
+                is FinancingState.Success -> {
+                    showDescription(state.data)
                 }
 
-                is financingState.Error -> {
-                    // Manejar el estado de error aquí
+                is FinancingState.Error -> {
                 }
 
-                is financingState.Loading -> {
-                    // Manejar el estado de carga aquí
+                is FinancingState.Loading -> {
                 }
             }
         }

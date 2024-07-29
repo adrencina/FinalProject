@@ -9,16 +9,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
+
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val productTypesAdapter = ProductTypesAdapter(emptyList(), onClickListener = {productType -> onItemSelected(productType)  })
-    private val productsAdapter = ProductsAdapter(emptyList())
+    private val productsAdapter = ProductsAdapter(emptyList(), onClickListener = {product -> onSelectedItem(product)  })
     private lateinit var homeViewModel: HomeViewModel
 
     private var id = 0
@@ -183,7 +183,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun onItemSelected(productType: ProductType){
-        ID_PRODUCT = productType.idProductType
+
         if (productType.idProductType.toString().isNotEmpty()) {
             homeViewModel.products.observe(this, { products ->
                 if (products.isNotEmpty()) {
@@ -196,6 +196,10 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
+
+    private fun onSelectedItem(product: Product){
+        recyclerNavigateToFragment(product)
+    }
     private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
             Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
@@ -204,6 +208,12 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("productPrice",productPrice)
             startActivity(intent)
         }
+    }
+    private fun recyclerNavigateToFragment(product: Product){
+        val intent = Intent(this,LeftBarActivity::class.java)
+        intent.putExtra("idProduct",product.idProduct)
+        intent.putExtra("productPrice",product.price?.toInt())
+        startActivity(intent)
     }
 
 

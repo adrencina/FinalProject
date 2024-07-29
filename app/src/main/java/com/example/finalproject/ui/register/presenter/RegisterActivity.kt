@@ -19,6 +19,7 @@ import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
+import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.login.presenter.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.cvInitRegister.enable(false)
         binding.cvErrorRegister.enable(true)
         binding.tvBoldRegister.setOnClickListener {
-            navigateToLogin()
+
         }
         binding.cbShowPassword.setOnClickListener {
             togglePasswordVisibility(binding.cbShowPassword.isChecked, binding.etPassword)
@@ -88,8 +89,8 @@ class RegisterActivity : AppCompatActivity() {
         binding.cvErrorRegister.visible(!allValid)
     }
 
-    private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
+    private fun navigateToHome() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -126,7 +127,7 @@ class RegisterActivity : AppCompatActivity() {
                 is RegisterState.Success -> {
                     binding.containerRegister.visible(false)
                     state.accessToken?.let { TokenManager.saveAuthToken(this, it) }
-                    navigateToLogin()
+                    navigateToHome()
                 }
 
                 is RegisterState.Error -> {
