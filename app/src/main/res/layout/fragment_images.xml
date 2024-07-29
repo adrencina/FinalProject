@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!-- Cuerpo del fragment -->
+       <!-- Cuerpo del fragment -->
 
 
 
@@ -218,7 +218,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/colores"
+            android:text="Colores"
             android:textSize="12sp">
 
         </TextView>
@@ -257,7 +257,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/producto"
+            android:text="Producto"
             android:textSize="12sp">
 
         </TextView>
@@ -296,7 +296,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/similares"
+            android:text="Similares"
             android:textSize="12sp">
 
         </TextView>
