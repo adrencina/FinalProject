@@ -67,6 +67,7 @@ class SearchActivity : AppCompatActivity() {
         intent.putExtra("idProduct",product.idProduct)
         intent.putExtra("productPrice",product.price?.toInt())
         intent.putExtra("productName",product.name)
+        intent.putExtra("productCurrency",product.currency)
         startActivity(intent)
     }
 
