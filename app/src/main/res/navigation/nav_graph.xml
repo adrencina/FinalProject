@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_imagesFragment_to_financingFragment"
             app:destination="@id/financingFragment" />
+        <action
+            android:id="@+id/action_imagesFragment_to_similarFragment"
+            app:destination="@id/similarFragment" />
     </fragment>
     <fragment
         android:id="@+id/financingFragment"
@@ -69,5 +72,14 @@
         <action
             android:id="@+id/action_financingFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/similarFragment"
+        android:name="com.example.finalproject.ui.leftbar.fragments.similares.presenter.SimilarFragment"
+        android:label="fragment_similar"
+        tools:layout="@layout/fragment_similar" >
+        <action
+            android:id="@+id/action_similarFragment_to_imagesFragment"
+            app:destination="@id/imagesFragment" />
     </fragment>
 </navigation>

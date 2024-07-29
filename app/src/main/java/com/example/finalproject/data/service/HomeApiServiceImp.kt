@@ -34,6 +34,8 @@ class HomeApiServiceImpl(context: Context) : HomeApiService {
     override suspend fun getProductTypes() = api.getProductTypes()
 
     override suspend fun getLastUserProduct() = api.getLastUserProduct()
+
+    override suspend fun getSimilarProducts(idProduct: Int) = api.getSimilarProducts(idProduct)
 }
 
     //  todo esto va con el pronto consumo al endpoint de favorite
