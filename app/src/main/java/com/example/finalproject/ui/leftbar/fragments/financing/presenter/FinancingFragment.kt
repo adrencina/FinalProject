@@ -72,14 +72,14 @@ class FinancingFragment : Fragment() {
 
     // Observamos el VM
     private fun observeViewModelFinancing() {
-        viewModel.paymentMethods.observe(viewLifecycleOwner, { paymentMetho ->
+        viewModel.paymentMethods.observe(viewLifecycleOwner) { paymentMetho ->
             if (paymentMetho.isNotEmpty()) {
                 financingAdapter.updateData(paymentMetho)
-                Log.d("FragmentFinancing", "Productos mostrados"+paymentMetho.toString())
+                Log.d("FragmentFinancing", "Productos mostrados$paymentMetho")
             } else {
                 Log.d("FragmentFinancing", "No se encontraron productos")
             }
-        })
+        }
 
     }
 
