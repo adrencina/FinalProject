@@ -57,7 +57,7 @@ class ProductsAdapter(
             binding.nameRecyclerProduct.text = product.name ?: "No Data"
             binding.tvRecyclerPrice.text = product.price?.toString() ?: "No Data"
 
-            val imageUrl = product.image ?: ""
+            val imageUrl = product.images?.firstOrNull()?.link ?: ""
             if (imageUrl.isNotEmpty()) {
                 Log.d("ProductsAdapter", "Cargando imagen desde URL: $imageUrl")
 

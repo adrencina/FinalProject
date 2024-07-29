@@ -27,10 +27,11 @@ import com.squareup.picasso.Picasso
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val productTypesAdapter = ProductTypesAdapter(emptyList(), onClickListener = {productType -> onItemSelected(productType)  })
+    private val productTypesAdapter = ProductTypesAdapter(
+        emptyList(),
+        onClickListener = { productType -> onItemSelected(productType) })
     private val productsAdapter = ProductsAdapter(emptyList())
     private lateinit var homeViewModel: HomeViewModel
-
     private var id = 0
     private var productPrice = 0
 
@@ -60,7 +61,6 @@ class HomeActivity : AppCompatActivity() {
         if (lastVisitedProductId != 0) {
             homeViewModel.fetchLastVisitedProduct(lastVisitedProductId)
         }
-
     }
 
     // Config RV
@@ -70,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
                 LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
         }
-        // Config RV para los productos
         binding.rvHomeProducts.apply {
             layoutManager =
                 LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
@@ -87,7 +86,6 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.products.observe(this, { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
-                Log.d("HomeActivity", "Productos mostrados: ${products.size}")
             } else {
                 Log.d("HomeActivity", "No se encontraron productos")
             }
@@ -177,7 +175,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-    private fun onItemSelected(productType: ProductType){
+    private fun onItemSelected(productType: ProductType) {
         ID_PRODUCT = productType.idProductType
         if (productType.idProductType.toString().isNotEmpty()) {
             homeViewModel.products.observe(this, { products ->
@@ -191,18 +189,21 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
+
     private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
             Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
             intent.putExtra("idProduct", id)
+            intent.putExtra("idProduct", id)
             intent.putExtra("productPrice",productPrice)
             startActivity(intent)
         }
     }
-
-
 }
+
+
+//            ID_PRODUCT = id
 
 
 // Éste codigo de abajo es para el SearchView que se trabajará en proximos días...

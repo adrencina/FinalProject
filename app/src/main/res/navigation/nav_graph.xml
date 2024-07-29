@@ -9,7 +9,6 @@
     <fragment
         android:id="@+id/commentsFragment"
         android:name="com.example.finalproject.ui.leftbar.fragments.comment.presenter.CommentsFragment"
-        android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
         <action

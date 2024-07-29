@@ -88,7 +88,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
                         productResponse.products.forEach { product ->
                             Log.d(
                                 "HomeViewModel",
-                                "Producto: ${product.name}, Imagen URL: ${product.image}"
+                                "Producto: ${product.name}, Imagen URL: ${product.images?.firstOrNull()?.link}"
                             )
                         }
                     } else {

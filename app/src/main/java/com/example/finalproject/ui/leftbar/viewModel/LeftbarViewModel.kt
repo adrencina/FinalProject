@@ -7,8 +7,11 @@ import com.example.finalproject.data.dto.response.CommentsResponse
 import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
+import com.example.finalproject.ui.leftbar.fragments.comments.state.CommentsState
 
-class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() {
+class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel()  {
+
+
     // LiveData para el producto
     private val _product = MutableLiveData<Product>()
     val product: LiveData<Product> get() = _product
@@ -21,6 +24,10 @@ class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() 
     private val _paymentMethods = MutableLiveData<PaymentMethodsResponse>()
     val paymentMethods: LiveData<PaymentMethodsResponse> get() = _paymentMethods
 
+    // LiveData para el estado
+    private val _state = MutableLiveData<CommentsState>()
+    val state: LiveData<CommentsState> get() = _state
+
 
 
     // Función para obtener todos los productos
@@ -31,13 +38,6 @@ class LeftbarViewModel(private val repository: LeftbarRepository) : ViewModel() 
         }
     }
 
-    // Función para obtener comentarios por id de producto
-    fun fetchComments(idProduct: Int) {
-        viewModelScope.launch {
-            val result = repository.getComments(idProduct)
-            _comments.postValue(result)
-        }
-    }
 
     // Función para obtener métodos de pago
     fun fetchPaymentMethods() {
