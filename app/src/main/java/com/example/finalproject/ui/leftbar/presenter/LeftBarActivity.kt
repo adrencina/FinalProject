@@ -19,6 +19,7 @@ class LeftBarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLeftBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val receivedProductPrice = intent.getIntExtra("productPrice", -1)
         sharedViewModel.productPricevalue(receivedProductPrice.toString())
 

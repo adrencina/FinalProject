@@ -47,6 +47,8 @@ class HomeRepository(private val context: Context) {
         }
     }
 
+    suspend fun getSimilarProducts(idProduct: Int) = apiService.getSimilarProducts(idProduct)
+
 //  todo esto va con el pronto consumo al endpoint de favorite
 
 //    suspend fun addFavoritesProduct(id:Int):Response<FavoritesResponse>{

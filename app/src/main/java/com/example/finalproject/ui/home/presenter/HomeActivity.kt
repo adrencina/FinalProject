@@ -17,6 +17,7 @@ import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
+import com.example.finalproject.data.repository.ProductInfo.P
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -110,7 +111,16 @@ class HomeActivity : AppCompatActivity() {
 
     // Actualiza el producto destacado
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
-
+        P = Product(
+            idProduct= product.idProduct,
+            name= product.name,
+             productType= product.productType,
+             currency= product.currency,
+             price= product.price,
+             images= product.images,
+             description= product.description,
+             isFavorite= product.isFavorite
+        )
         val price = product.price
         val currency = product.currency
         val prodPrice = "${currency+price} "
@@ -198,6 +208,7 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("idProduct",product.idProduct)
         intent.putExtra("productPrice",product.price?.toInt())
         intent.putExtra("productName",product.name)
+        P = product
         startActivity(intent)
     }
 

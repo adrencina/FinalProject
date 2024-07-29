@@ -64,4 +64,8 @@ interface HomeApiService {
 //    @PUT("/api/v1/products/{idProduct}/favorite")
 //    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<Unit>
 //
+
+   // Agrega un producto a la lista de favoritos
+    @GET("/api/v1/products/{idProduct}/similar")
+    suspend fun getSimilarProducts(@Path("idProduct") idProduct: Int): Response<ProductResponse>
 }

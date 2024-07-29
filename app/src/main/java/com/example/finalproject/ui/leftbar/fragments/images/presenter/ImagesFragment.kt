@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.leftbar.fragments.images.presenter
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,12 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
+import com.example.finalproject.data.repository.ProductInfo.P
+import com.example.finalproject.databinding.ActivitySimilarBinding
 import com.example.finalproject.databinding.FragmentImagesBinding
+import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModelFactory
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
+import com.example.finalproject.ui.similar.presenter.SimilarActivity
 
 class ImagesFragment : Fragment() {
 
@@ -48,6 +53,14 @@ class ImagesFragment : Fragment() {
                 Log.i("dd",id.toString())
             }
             Log.i("dd",id.toString())
+        }
+
+        binding.btnSilimlst.setOnClickListener {
+            val intent = Intent( activity, SimilarActivity::class.java)
+            intent.putExtra("idProduct", P?.idProduct ?: 1)
+            intent.putExtra("productPrice", P?.price?.toInt() ?: 0)
+            intent.putExtra("productName", P?.name ?:"")
+            startActivity(intent)
         }
 
         sharedViewModel.productName.observe(viewLifecycleOwner,{
