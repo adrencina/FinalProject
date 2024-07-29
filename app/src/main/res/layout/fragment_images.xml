@@ -335,7 +335,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="@dimen/_62dp"
-        android:text="@string/$"
+        android:text="@string/AAA"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_colors">
