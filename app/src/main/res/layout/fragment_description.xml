@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.leftbar.fragments.description.presenter.DescriptionFragment">
 
     <LinearLayout
@@ -71,8 +72,6 @@
             android:text="@string/comentarios"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
-
     </LinearLayout>
 
     <View
@@ -85,128 +84,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/Btn_Back"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="@dimen/_20dp"
-        android:layout_marginEnd="40dp"
-        android:contentDescription="@string/imageview"
-        android:src="@drawable/ic_back_arrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/v_line_fragment"
-        android:layout_width="280dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="112dp"
-        android:background="@color/line_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_title_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginBottom="@dimen/_10dp"
-        android:fontFamily="@font/robotobold"
-        tools:text="Buzo rusty"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintBottom_toTopOf="@+id/v_line_fragment"
-        app:layout_constraintStart_toEndOf="@+id/ll_left_bar" />
-
     <ScrollView
         android:id="@+id/scroll_description"
         android:layout_width="280dp"
         android:layout_height="450dp"
-        app:layout_constraintBottom_toTopOf="@+id/v_line_fragment_button"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ll_left_bar"
-        app:layout_constraintTop_toBottomOf="@+id/v_line_fragment">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ll_left_bar">
 
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            tools:text="dddddddddd
-            dddddddddddddddddddddd
-            dddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddd
-ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddd
-ddddddddddddddddddddd
-ddddddddddddddddd
-dddddddddddddddddddd
-dddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-ddddddddddddddddddddd
-ddddddddddddddddd
-dddddddddddddddddddd
-dddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddd
-dddddddddddddddddddddddddddddddddddddddddddddddddddd" />
+            android:layout_marginTop="10dp"
+            tools:text="hola" />
     </ScrollView>
-
-    <View
-        android:id="@+id/v_line_fragment_button"
-        android:layout_width="280dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/_10dp"
-        android:background="@color/line_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_description" />
-
-    <TextView
-        android:id="@+id/tv_price_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/robotobold"
-        tools:text="$ 24.840"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/ll_left_bar"
-        app:layout_constraintTop_toBottomOf="@+id/v_line_fragment_button" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_btn_buy"
-        android:layout_width="85dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/btn_pre_login"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price_product">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/comprar"
-            android:textSize="@dimen/_12sp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"/>
-
-    </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

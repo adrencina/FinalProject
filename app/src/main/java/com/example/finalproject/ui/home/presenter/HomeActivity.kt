@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
 import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.dto.response.DailyOfferResponse
+import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.databinding.ActivityHomeBinding
@@ -30,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
     private val productTypesAdapter = ProductTypesAdapter(
         emptyList(),
         onClickListener = { productType -> onItemSelected(productType) })
-    private lateinit var productsAdapter: ProductsAdapter
+    private val productsAdapter = ProductsAdapter(emptyList(), onProductClick = {product -> onSelectedItem(product)  })
     private lateinit var homeViewModel: HomeViewModel
     private var id = 0
     private var productPrice = 0
@@ -70,9 +71,7 @@ class HomeActivity : AppCompatActivity() {
                 LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = productTypesAdapter
         }
-        productsAdapter = ProductsAdapter(emptyList()) { idProduct, productPrice ->
-            navigateToLeftBarActivity(idProduct, productPrice)
-        }
+
         binding.rvHomeProducts.apply {
             layoutManager =
                 LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
@@ -110,9 +109,13 @@ class HomeActivity : AppCompatActivity() {
     // Actualiza el producto destacado
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
 
+        val price = product.price
+        val currency = product.currency
+        val prodPrice = "${currency+price} "
+
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
-        binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
+        binding.tvHomePriceProduct.text = prodPrice
 
         binding.titleDailyOffer.visible(true)
 
@@ -159,23 +162,48 @@ class HomeActivity : AppCompatActivity() {
     }
 
     // Maneja la selección de un tipo de producto
-    private fun onItemSelected(productType: ProductType) {
-        homeViewModel.products.observe(this) { products ->
-            val filteredProducts = products.filter { product ->
-                product.productType?.idProductType == productType.idProductType
+//    private fun onItemSelected(productType: ProductType) {
+//        homeViewModel.products.observe(this) { products ->
+//            val filteredProducts = products.filter { product ->
+//                product.productType?.idProductType == productType.idProductType
+//            }
+//            productsAdapter.updateData(filteredProducts)
+//        }
+//    }
+
+    private fun onItemSelected(productType: ProductType){
+
+        if (productType.idProductType.toString().isNotEmpty()) {
+            homeViewModel.products.observe(this) { products ->
+                if (products.isNotEmpty()) {
+                    productsAdapter.updateData(products)
+                    productsAdapter.filtered(productType)
+                    Log.d("HomeActivity", "Productos mostrados: ${products.size}")
+                } else {
+                    Log.d("HomeActivity", "No se encontraron productos")
+                }
             }
-            productsAdapter.updateData(filteredProducts)
         }
     }
 
-    // Navega a LeftBarActivity
-    private fun navigateToLeftBarActivity(idProduct: Int, productPrice: Double) {
-        val intent = Intent(this, LeftBarActivity::class.java).apply {
-            putExtra("idProduct", idProduct)
-            putExtra("productPrice", productPrice)
-        }
+    private fun onSelectedItem(product: Product){
+        recyclerNavigateToFragment(product)
+    }
+    private fun recyclerNavigateToFragment(product: Product){
+        val intent = Intent(this,LeftBarActivity::class.java)
+        intent.putExtra("idProduct",product.idProduct)
+        intent.putExtra("productPrice",product.price?.toInt())
         startActivity(intent)
     }
+
+    // Navega a LeftBarActivity
+//    private fun navigateToLeftBarActivity(idProduct: Int, productPrice: Double) {
+//        val intent = Intent(this, LeftBarActivity::class.java).apply {
+//            putExtra("idProduct", idProduct)
+//            putExtra("productPrice", productPrice)
+//        }
+//        startActivity(intent)
+//    }
 
     // Navega a LeftBarActivity
     private fun navigateToFragment() {

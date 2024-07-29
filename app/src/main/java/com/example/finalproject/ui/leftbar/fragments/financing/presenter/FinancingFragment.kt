@@ -19,17 +19,16 @@ import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.fragments.financing.adacter.FinancingAdapter
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModel
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModelFactory
-import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class FinancingFragment : Fragment() {
     private lateinit var binding: FragmentFinancingBinding
     private val financingAdapter = FinancingAdapter(emptyList())
-
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
+    private val sharedViewModel: sharedViewModel by activityViewModels()
     private val viewModel: FinancingViewModel by viewModels {
         FinancingViewModelFactory(PaymentRepository(requireContext()))
     }
+    private val fragTittle = "Financiacion"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,16 +50,14 @@ class FinancingFragment : Fragment() {
                 viewModel.fetchPaymentMethods()
             }
         }
+        sharedViewModel.fragmentTittle.observe(viewLifecycleOwner,{
+
+        })
+
+        sharedViewModel.fragmentTittle(fragTittle)
 
 
-        binding.BtnBack.setOnClickListener {
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
-        }
 
-        sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
-            binding.tvPriceProduct.text = "$${price}"
-        }
 
     }
 
@@ -69,12 +66,16 @@ class FinancingFragment : Fragment() {
             findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {
+
             findNavController().navigate(R.id.action_financingFragment_to_commentsFragment)
         }
         binding.tvDescriptionFragment.setOnClickListener {
+
             findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
         }
     }
+
+
 
     private fun setupRecyclerViews() {
         binding.rvFinancingItems.apply {
@@ -92,5 +93,9 @@ class FinancingFragment : Fragment() {
                 Log.d("FragmentFinancing", "No se encontraron métodos de pago")
             }
         })
+    }
+
+    private fun setTitle(){
+
     }
 }
