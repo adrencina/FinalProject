@@ -5,11 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,14 +46,12 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel =
             ViewModelProvider(this, HomeViewModelFactory(repository))[HomeViewModel::class.java]
 
-        navigateToEmailSupport()
         setupRecyclerViews()
         observeViewModel()
         navigateToEmailSupport()
         setIconFavorite()
         navigateToFragment()
         initSearchView()
-//        initSearchViewIntent()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -84,11 +80,11 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el VM
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this,  { productTypes ->
+        homeViewModel.productTypes.observe(this, Observer { productTypes ->
             productTypesAdapter.updateData(productTypes)
         })
 
-        homeViewModel.products.observe(this, { products ->
+        homeViewModel.products.observe(this, Observer { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
             } else {
@@ -96,36 +92,17 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        homeViewModel.dailyOffer.observe(this, { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
         })
 
-//        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
-//            lastVisitedProduct?.let { product ->
-//                updateFeaturedProduct(product)
-//            }
-//        })
-
-        homeViewModel.error.observe(this, { errorMessage ->
+        homeViewModel.error.observe(this, Observer { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
         })
-
-        //todo observador de consumo a favorite terminar cuando consumo este ok
-//        homeViewModel.homeState.observe(this) { favorite ->
-//            when (favorite) {
-//                is HomeState.Success -> {
-//                    binding.iconHeart1.isEnabled = true
-//                }
-//                is HomeState.Error -> {
-//                    binding.iconHeart1.isEnabled = true
-//                }
-//                is HomeState.Loading -> {}
-//            }
-//        }
     }
 
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
@@ -135,7 +112,6 @@ class HomeActivity : AppCompatActivity() {
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
         binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
 
-        Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
         binding.titleDailyOffer.visible(true)
 
         id = product.idProduct ?: 0
@@ -179,7 +155,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-
     private fun onItemSelected(productType: ProductType) {
         ID_PRODUCT = productType.idProductType
         if (productType.idProductType.toString().isNotEmpty()) {
@@ -200,20 +175,10 @@ class HomeActivity : AppCompatActivity() {
             Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
             intent.putExtra("idProduct", id)
-            intent.putExtra("productPrice",productPrice)
+            intent.putExtra("productPrice", productPrice)
             startActivity(intent)
         }
     }
-}
-
-
-//            ID_PRODUCT = id
-//    private fun initSearchViewIntent() {
-//        binding.svHome.setOnClickListener {
-//            goToSearch()
-//        }
-//    }
-
 
     private fun initSearchView() {
         binding.svHome.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,
@@ -221,7 +186,6 @@ class HomeActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     goToSearch(query)
-
                 }
                 return true
             }
@@ -235,12 +199,14 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    fun goToSearch(new:String){
+    private fun goToSearch(query: String) {
         val intent = Intent(this, SearchActivity::class.java)
-        intent.putExtra("search",new)
+        intent.putExtra("search", query)
         startActivity(intent)
     }
 }
+
+
 
 
 // Éste codigo de abajo es para el SearchView que se trabajará en proximos días...

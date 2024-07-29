@@ -8,18 +8,16 @@ import androidx.lifecycle.ViewModel
 class SharedViewModel : ViewModel() {
 
     private val _productPrice = MutableLiveData<String>()
-    val productPrice: LiveData<String> get()=_productPrice
+    val productPrice: LiveData<String> get() = _productPrice
 
     private val _productId = MutableLiveData<Int>()
-    val productId: LiveData<Int> get()=_productId
+    val productId: LiveData<Int> get() = _productId
 
-    fun productIdvalue (new:Int){
-
+    fun productIdvalue(new: Int) {
         _productId.value = new
     }
 
-    fun productPricevalue (new:String){
-
+    fun productPricevalue(new: String) {
         _productPrice.value = new
     }
 }

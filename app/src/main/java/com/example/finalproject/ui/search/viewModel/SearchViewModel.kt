@@ -59,7 +59,7 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
                         productResponse.products.forEach { product ->
                             Log.d(
                                 "HomeViewModel",
-                                "Producto: ${product.name}, Imagen URL: ${product.image}"
+                                "Producto: ${product.name}, Imagen URL: ${product.images}"
                             )
                         }
                     } else {

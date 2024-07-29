@@ -23,8 +23,8 @@ class LeftbarApiServiceImp(context: Context): LeftbarApiService {
         return api.getPaymentMethods()
     }
 
-    private val apiComments = RetrofitInstance.getCommentsRetrofit(context).create(LeftbarApiService::class.java)
-    override suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
+    private val apiComments = RetrofitInstance.getCommentsRetrofit(context).create(CommentsApiService::class.java)
+    suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
         return apiComments.getCommentsByProductId(idProduct)
     }
 

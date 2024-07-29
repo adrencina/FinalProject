@@ -1,7 +1,5 @@
 package com.example.finalproject.ui.search.presenter
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,25 +10,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.Visibility
-import com.example.finalproject.R
-import com.example.finalproject.data.service.dto.Utils.visible
-import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
-import com.example.finalproject.data.dto.response.ProductType
-import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.repository.SearchRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
-import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.databinding.ActivitySearchBinding
-import com.example.finalproject.ui.home.viewModel.HomeViewModel
-import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
-import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
-import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.example.finalproject.ui.search.adapter.SearchAdapter
 import com.example.finalproject.ui.search.viewModel.SearchViewModel
 import com.example.finalproject.ui.search.viewModel.SearchViewModelFactory
-import com.squareup.picasso.Picasso
 
 class SearchActivity : AppCompatActivity() {
 
