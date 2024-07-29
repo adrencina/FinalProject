@@ -28,7 +28,7 @@ class FinancingFragment : Fragment() {
     private val viewModel: FinancingViewModel by viewModels {
         FinancingViewModelFactory(PaymentRepository(requireContext()))
     }
-    private val fragTittle = "Financiacion"
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,7 @@ class FinancingFragment : Fragment() {
 
         })
 
-        sharedViewModel.fragmentTittle(fragTittle)
+        sharedViewModel.fragmentTittle("Financiancion")
 
 
 
@@ -63,6 +63,7 @@ class FinancingFragment : Fragment() {
 
     private fun setupNavigation() {
         binding.tvImagesFragment.setOnClickListener {
+
             findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {

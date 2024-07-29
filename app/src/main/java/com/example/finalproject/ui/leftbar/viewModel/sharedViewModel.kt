@@ -26,6 +26,6 @@ class sharedViewModel : ViewModel() {
     }
 
     fun fragmentTittle(new: String) {
-        _productPrice.value = new
+        _fragmentTittle.value = new
     }
 }
