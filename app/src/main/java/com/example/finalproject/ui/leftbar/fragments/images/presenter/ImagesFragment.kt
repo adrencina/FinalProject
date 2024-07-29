@@ -49,7 +49,7 @@ class ImagesFragment : Fragment() {
         }
 
         sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
-            binding.tvPriceProduct.text = "$${price}"
+            binding.tvPriceProduct.text = "${price}"
         }
 
         navigateToFragment()

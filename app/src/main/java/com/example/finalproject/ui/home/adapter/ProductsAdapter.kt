@@ -28,7 +28,7 @@ class ProductsAdapter(
 
     override fun getItemCount(): Int = products.size
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun updateData(newProductList: List<Product>) {
         products = newProductList
         notifyDataSetChanged()
@@ -36,10 +36,9 @@ class ProductsAdapter(
 
     inner class ProductViewHolder(private val binding: ItemRvHomeProductsBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
-        fun bind(product: Product, onClickListener: (Product) -> Unit) {
+        fun bind(product: Product) {
             binding.nameRecyclerProduct.text = product.name ?: "No Data"
-            binding.tvRecyclerPrice.text = "${product.currency}${product.price}"
+            binding.tvRecyclerPrice.text = product.price?.toString() ?: "No Data"
 
             val imageUrl = product.images?.firstOrNull()?.link ?: ""
             if (imageUrl.isNotEmpty()) {

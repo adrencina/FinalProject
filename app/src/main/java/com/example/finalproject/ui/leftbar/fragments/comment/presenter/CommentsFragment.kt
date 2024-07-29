@@ -89,7 +89,7 @@ class CommentsFragment : Fragment() {
         binding.rvComments.visibility = View.VISIBLE
         val adapter = CommentsAdapter(comments)
         binding.rvComments.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvComments.adapter = adapter
     }
 
