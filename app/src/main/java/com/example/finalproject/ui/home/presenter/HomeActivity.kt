@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var homeViewModel: HomeViewModel
 
     private var id = 0
+    private var productPrice = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,11 +85,11 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el VM
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this, Observer { productTypes ->
+        homeViewModel.productTypes.observe(this,  { productTypes ->
             productTypesAdapter.updateData(productTypes)
         })
 
-        homeViewModel.products.observe(this, Observer { products ->
+        homeViewModel.products.observe(this, { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
                 Log.d("HomeActivity", "Productos mostrados: ${products.size}")
@@ -97,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this, { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
@@ -110,7 +111,7 @@ class HomeActivity : AppCompatActivity() {
 //            }
 //        })
 
-        homeViewModel.error.observe(this, Observer { errorMessage ->
+        homeViewModel.error.observe(this, { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
         })
@@ -140,6 +141,7 @@ class HomeActivity : AppCompatActivity() {
         binding.titleDailyOffer.visible(true)
 
         id = product.idProduct ?: 0
+        productPrice = product.price?.toInt() ?: 0
 
         val imageUrl = product.images?.firstOrNull()?.link ?: ""
         if (imageUrl.isNotEmpty()) {
@@ -183,7 +185,7 @@ class HomeActivity : AppCompatActivity() {
     private fun onItemSelected(productType: ProductType){
         ID_PRODUCT = productType.idProductType
         if (productType.idProductType.toString().isNotEmpty()) {
-            homeViewModel.products.observe(this, Observer { products ->
+            homeViewModel.products.observe(this, { products ->
                 if (products.isNotEmpty()) {
                     productsAdapter.updateData(products)
                     productsAdapter.filtered(productType)
@@ -194,10 +196,12 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
-    fun navigateToFragment(){
+    private fun navigateToFragment() {
         binding.cvImageProduct.setOnClickListener {
-            ID_PRODUCT = id
+            Log.d("HomeActivity", "Navegando a LeftBarActivity con idProduct: $id")
             val intent = Intent(this, LeftBarActivity::class.java)
+            intent.putExtra("idProduct", id)
+            intent.putExtra("productPrice",productPrice)
             startActivity(intent)
         }
     }

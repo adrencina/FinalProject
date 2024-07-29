@@ -19,6 +19,7 @@ import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
+import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 
 class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding

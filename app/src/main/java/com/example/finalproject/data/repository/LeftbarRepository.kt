@@ -6,6 +6,7 @@ import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.service.HomeApiServiceImpl
 import com.example.finalproject.data.service.LeftbarApiServiceImp
+import retrofit2.Response
 
 class LeftbarRepository(private val context: Context)
 {
@@ -31,6 +32,10 @@ class LeftbarRepository(private val context: Context)
         return apiServiceImp.getPaymentMethods()
     }
 
+//    // Comentarios por id de producto
+//    suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
+//        return apiServiceImp.getCommentsByProductId(idProduct)
+//    }
 
 
 }
