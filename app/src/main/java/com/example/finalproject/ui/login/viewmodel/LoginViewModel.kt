@@ -1,7 +1,6 @@
 package com.example.finalproject.ui.login.viewmodel
 
 import android.app.Application
-import android.content.Context
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.CheckBox
@@ -45,14 +44,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     email = email
                 )
                 val response = userRepo.loginUser(loginRequest = loginRequest)
-                if (response?.isSuccessful == true) {
+                if (response.isSuccessful) {
                     // Guarda el token de acceso
                     response.body()?.accessToken?.let {
                         TokenManager.saveAuthToken(getApplication(), it)
                     }
                     loginResult.value = LoginState.Success(response.body())
                 } else {
-                    loginResult.value = LoginState.Error(response?.message())
+                    loginResult.value = LoginState.Error(response.message())
                 }
             } catch (ex: Exception) {
                 loginResult.value = LoginState.Error(ex.message)

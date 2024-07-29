@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
+
 
 class DescriptionViewModel(private val repository: LeftbarRepository ) : ViewModel() {
 

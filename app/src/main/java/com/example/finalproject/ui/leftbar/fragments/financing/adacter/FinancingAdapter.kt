@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.leftbar.fragments.financing.adacter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class FinancingAdapter(
 
     override fun getItemCount(): Int = paymentMethods.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newProductList: List<PaymentMethod>) {
         Log.i("DATA update",newProductList.toString())
         paymentMethods = newProductList
@@ -43,6 +45,7 @@ class FinancingAdapter(
     }
 
     inner class FinancingViewHolder(private val binding: ItemRvFgFinancingItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(paymentMethod: PaymentMethod) {
             Log.i("DATA", paymentMethod.toString())
 

@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.dto.response.Product
-import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.repository.SearchRepository
 import kotlinx.coroutines.launch
 

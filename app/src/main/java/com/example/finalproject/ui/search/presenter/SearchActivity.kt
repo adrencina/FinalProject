@@ -8,10 +8,8 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.SearchRepository
 import com.example.finalproject.databinding.ActivitySearchBinding
@@ -28,7 +26,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchAdapter: SearchAdapter
     private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     private var query = false
-    private var id = 0
+//    private var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,10 +118,10 @@ class SearchActivity : AppCompatActivity() {
     // Observamos el VM
     private fun observeViewModel() {
 
-        searchViewModel.products.observe(this, Observer { products ->
+        searchViewModel.products.observe(this) { products ->
             if (products.isNotEmpty()) {
-                Log.i("DATA-Product",products.size.toString())
-                if(query) query=false
+                Log.i("DATA-Product", products.size.toString())
+                if (query) query = false
                 binding.srReacyclerView.visibility = View.VISIBLE
                 binding.notSearchIcon.visibility = View.GONE
                 binding.notSearchText.visibility = View.GONE
@@ -137,7 +135,7 @@ class SearchActivity : AppCompatActivity() {
                 binding.notSearchText.visibility = View.VISIBLE
             }
 
-        })
+        }
 
 
 //        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
@@ -146,10 +144,10 @@ class SearchActivity : AppCompatActivity() {
 //            }
 //        })
 
-        searchViewModel.error.observe(this, Observer { errorMessage ->
+        searchViewModel.error.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("SearchActivity", "Error: $errorMessage")
-        })
+        }
 
 
     }

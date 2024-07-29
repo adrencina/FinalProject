@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 //         Verifica si ya hay un token almacenado
         val token = TokenManager.getToken(this)
         Log.i("DATA-Login",token)
-        if (!token.isNullOrBlank()) {
+        if (token.isNotBlank()) {
             navigateToHome()
         }
         // Observa los resultados del login

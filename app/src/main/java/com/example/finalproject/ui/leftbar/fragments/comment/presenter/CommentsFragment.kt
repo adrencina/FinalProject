@@ -19,12 +19,12 @@ import com.example.finalproject.ui.leftbar.fragments.comment.adapter.CommentsAda
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.SharedFragViewModel
 
 class CommentsFragment : Fragment() {
 
     private lateinit var binding: FragmentCommentsBinding
-    private val sharedViewModel: sharedViewModel by activityViewModels()
+    private val sharedViewModel: SharedFragViewModel by activityViewModels()
     private val viewModel: CommentsViewModel by viewModels {
         CommentsViewModelFactory(CommentsRepository(requireContext()))
     }

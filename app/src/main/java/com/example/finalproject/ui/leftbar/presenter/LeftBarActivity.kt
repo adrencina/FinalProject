@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityLeftBarBinding
 import com.example.finalproject.ui.buy.BuyActivity
 import com.example.finalproject.ui.home.presenter.HomeActivity
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.SharedFragViewModel
 
 class LeftBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLeftBarBinding
-    private val sharedViewModel: sharedViewModel by viewModels()
+    private val sharedViewModel: SharedFragViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +31,13 @@ class LeftBarActivity : AppCompatActivity() {
         Log.i("asd",receivedProductName.toString())
         sharedViewModel.productName(receivedProductName.toString())
 
-        sharedViewModel.productPrice.observe(this,{
+        sharedViewModel.productPrice.observe(this) {
             binding.tvPrice.text = it.toString()
-        })
+        }
 
-        sharedViewModel.fragmentTittle.observe(this,{
+        sharedViewModel.fragmentTittle.observe(this) {
             binding.fragmentTittle.text = it
-        })
+        }
 
         binding.BtnBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

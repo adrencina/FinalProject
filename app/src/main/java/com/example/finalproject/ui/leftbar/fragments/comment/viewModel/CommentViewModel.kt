@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.data.dto.response.Product
+
 import com.example.finalproject.data.service.CommentsRepository
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentProductState
