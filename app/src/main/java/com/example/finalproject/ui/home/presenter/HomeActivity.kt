@@ -122,6 +122,7 @@ class HomeActivity : AppCompatActivity() {
 
         id = product.idProduct ?: 0
         productPrice = product.price?.toInt() ?: 0
+        name = product.name.toString()
 
         val imageUrl = product.images?.firstOrNull()?.link ?: ""
         if (imageUrl.isNotEmpty()) {
