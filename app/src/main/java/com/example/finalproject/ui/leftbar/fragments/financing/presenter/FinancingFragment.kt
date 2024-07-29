@@ -25,10 +25,10 @@ class FinancingFragment : Fragment() {
     private lateinit var binding: FragmentFinancingBinding
     private val financingAdapter = FinancingAdapter(emptyList())
     private val sharedViewModel: sharedViewModel by activityViewModels()
-
     private val viewModel: FinancingViewModel by viewModels {
         FinancingViewModelFactory(PaymentRepository(requireContext()))
     }
+    private val fragTittle = "Financiacion"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,26 +54,29 @@ class FinancingFragment : Fragment() {
 
         })
 
+        sharedViewModel.fragmentTittle(fragTittle)
 
 
 
 
     }
 
-    private fun setupNavigation(tittle:String) {
+    private fun setupNavigation() {
         binding.tvImagesFragment.setOnClickListener {
 
             findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {
-            sharedViewModel.fragmentTittle(tittle)
+
             findNavController().navigate(R.id.action_financingFragment_to_commentsFragment)
         }
         binding.tvDescriptionFragment.setOnClickListener {
-            sharedViewModel.fragmentTittle(tittle)
+
             findNavController().navigate(R.id.action_financingFragment_to_descriptionFragment)
         }
     }
+
+
 
     private fun setupRecyclerViews() {
         binding.rvFinancingItems.apply {
