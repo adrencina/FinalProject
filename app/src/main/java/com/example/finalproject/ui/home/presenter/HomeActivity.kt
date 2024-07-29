@@ -5,9 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,7 @@ import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
 import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
 import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
+import com.example.finalproject.ui.search.presenter.SearchActivity
 import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
@@ -51,6 +54,8 @@ class HomeActivity : AppCompatActivity() {
         navigateToEmailSupport()
         setIconFavorite()
         navigateToFragment()
+        initSearchView()
+//        initSearchViewIntent()
 
         homeViewModel.fetchCategories()
         homeViewModel.fetchProducts()
@@ -203,6 +208,39 @@ class HomeActivity : AppCompatActivity() {
 
 
 //            ID_PRODUCT = id
+//    private fun initSearchViewIntent() {
+//        binding.svHome.setOnClickListener {
+//            goToSearch()
+//        }
+//    }
+
+
+    private fun initSearchView() {
+        binding.svHome.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    goToSearch(query)
+
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrEmpty()) {
+                    goToSearch(newText)
+                }
+                return true
+            }
+        })
+    }
+
+    fun goToSearch(new:String){
+        val intent = Intent(this, SearchActivity::class.java)
+        intent.putExtra("search",new)
+        startActivity(intent)
+    }
+}
 
 
 // Éste codigo de abajo es para el SearchView que se trabajará en proximos días...
@@ -231,37 +269,8 @@ class HomeActivity : AppCompatActivity() {
 //        Toast.makeText(this, "Seleccionado: ${product.name}", Toast.LENGTH_SHORT).show()
 //    }
 //
-//    // Inicializar SearchView
-//    private fun initSearchView() {
-//        binding.svHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                if (!query.isNullOrEmpty()) {
-//                    homeViewModel.searchViewController(true)
-//                    val filtered = searchList.filter { product ->
-//                        product.name?.contains(query, ignoreCase = true) ?: false
-//                    }
-//                    searchAdapter.update(filtered)
-//                } else {
-//                    homeViewModel.searchViewController(false)
-//                }
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                if (!newText.isNullOrEmpty()) {
-//                    homeViewModel.searchViewController(true)
-//                    val filtered = searchList.filter { product ->
-//                        product.name?.contains(newText, ignoreCase = true) ?: false
-//                    }
-//                    searchAdapter.update(filtered)
-//                } else {
-//                    homeViewModel.searchViewController(false)
-//                }
-//                return true
-//            }
-//        })
-//    }
+    // Inicializar SearchView
+
 //
 //    // Observar cambios en el resultado de búsqueda
 //    private fun searchViewObserver() {

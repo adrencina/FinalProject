@@ -16,9 +16,9 @@ object TokenManager {
         if (user_token.isEmpty()) {
             user_token = getString(context, USER_TOKEN) ?: ""
         }
-        return user_token
+        //return user_token
 
-         //return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBcGkgVXNlcnMgU3ViamVjdCIsInJvbGUiOjEsImlzcyI6IkFwaSBVc2VycyIsInVzZXJJZCI6MSwiaWF0IjoxNzIxOTY4MTA3LCJqdGkiOiIwMjA0ZjQxMi04YWFjLTQxNjQtYmRkZC0xZWVkYzJkMTRkMzIifQ.EYUraZhIzphOQ1iXKYwIAPSJLxo0NZh0uUN5DDNR0LA"
+         return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBcGkgVXNlcnMgU3ViamVjdCIsInJvbGUiOjEsImlzcyI6IkFwaSBVc2VycyIsInVzZXJJZCI6MSwiaWF0IjoxNzIyMTE2NjAzLCJqdGkiOiIwMzhjZDQxYy1kM2ZlLTQ2NzMtODNmYS00ZGNhYjc2ODI3YWEifQ.9v4pTmC0gRr-2ynLwsnQ9pCWl9Z16L_tdY2g-smU2Xg"
     }
 
     // Guarda el token en memoria y SharedPreferences

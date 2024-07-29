@@ -17,6 +17,14 @@ class HomeApiServiceImpl(context: Context) : HomeApiService {
         size: Int
     ) = api.getProducts(idProductType, productName, onlyFavorite, page, size)
 
+    override suspend fun getProductsSearch(
+        idProductType: Int?,
+        productName: String?,
+        onlyFavorite: Boolean?,
+        page: Int?,
+        size: Int?
+    ) = api.getProductsSearch(idProductType, productName, onlyFavorite, page, size)
+
     override suspend fun createProduct(request: NewProductRequest) = api.createProduct(request)
 
     override suspend fun markAsFavorite(idProduct: Int) = api.markAsFavorite(idProduct)
