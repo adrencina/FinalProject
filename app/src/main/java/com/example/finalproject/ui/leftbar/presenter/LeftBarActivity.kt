@@ -9,7 +9,7 @@ import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
 class LeftBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLeftBarBinding
-    private val sharedViewModel : SharedViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,5 +22,5 @@ class LeftBarActivity : AppCompatActivity() {
 
         val receivedProductId = intent.getIntExtra("idProduct", -1)
         sharedViewModel.productIdvalue(receivedProductId)
-        }
     }
+}

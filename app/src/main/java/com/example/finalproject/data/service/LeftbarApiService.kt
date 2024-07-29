@@ -2,13 +2,14 @@ package com.example.finalproject.data.service
 
 import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface LeftbarApiService {
 
     @GET("api/v1/products/{idProduct}")
-    suspend fun getProductById(@Path("idProduct") idProduct: Int): Product
+    suspend fun getProductById(@Path("idProduct") idProduct: Int): Response<Product>
 
     @GET("api/v1/products")
     suspend fun getAllProducts(): List<Product>

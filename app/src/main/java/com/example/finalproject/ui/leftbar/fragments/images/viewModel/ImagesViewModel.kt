@@ -17,8 +17,17 @@ class ImagesViewModel(private val repository: LeftbarRepository) : ViewModel() {
         viewModelScope.launch {
             _state.value = ImagesState.Loading
             try {
-                val product = repository.getProductById(productId)
-                _state.value = ImagesState.Success(product)
+                val response = repository.getProductById(productId)
+
+                if (response.isSuccessful) {
+                    response.body()?.let { product ->
+                        _state.value = ImagesState.Success(product)
+                    } ?: run {
+                        _state.value = ImagesState.Error("No se encontraron datos")
+                    }
+                } else {
+                    _state.value = ImagesState.Error("Error del servidor: ${response.message()}")
+                }
             } catch (e: Exception) {
                 _state.value = ImagesState.Error("Error al cargar el producto: ${e.message}")
             }

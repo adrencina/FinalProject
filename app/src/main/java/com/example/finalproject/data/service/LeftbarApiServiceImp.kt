@@ -11,7 +11,7 @@ import retrofit2.Response
 class LeftbarApiServiceImp(context: Context): LeftbarApiService {
 
     private val api = RetrofitInstance.getGeneralRetrofit(context).create(LeftbarApiService::class.java)
-    override suspend fun getProductById(idProduct: Int): Product {
+    override suspend fun getProductById(idProduct: Int): Response<Product> {
         return api.getProductById(idProduct)
     }
 

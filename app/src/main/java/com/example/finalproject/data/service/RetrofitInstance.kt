@@ -22,7 +22,7 @@ object RetrofitInstance {
     // URL base para los endpoints de payment
     private const val BASE_URL_PAYMENT = "https://api-payments-1ztc.onrender.com/"
 
-
+    // URL base para los endpoints de comments
     private const val BASE_URL_COMMENTS = "https://api-comments-3yzc.onrender.com/"
 
 

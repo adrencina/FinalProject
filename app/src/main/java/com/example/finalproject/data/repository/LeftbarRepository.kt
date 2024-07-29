@@ -7,12 +7,11 @@ import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.service.LeftbarApiServiceImp
 import retrofit2.Response
 
-class LeftbarRepository(private val context: Context)
-{
+class LeftbarRepository(private val context: Context) {
     private val apiServiceImp = LeftbarApiServiceImp(context)
 
     // Producto por su id
-    suspend fun getProductById(idProduct: Int): Product {
+    suspend fun getProductById(idProduct: Int): Response<Product> {
         return apiServiceImp.getProductById(idProduct)
     }
 

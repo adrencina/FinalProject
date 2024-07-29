@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -76,13 +77,15 @@ class ImagesFragment : Fragment() {
             when (state) {
                 is ImagesState.Loading -> showLoading()
                 is ImagesState.Success -> showProductDetails(state.product)
-                is ImagesState.Error -> showError()
+                is ImagesState.Error -> showError(state.message)
             }
         }
     }
 
     private fun showLoading() {
         binding.ivImgError.visibility = View.GONE
+        binding.fragProgressbar.visibility = View.VISIBLE
+
     }
 
     private fun showProductDetails(product: Product) {
@@ -95,9 +98,10 @@ class ImagesFragment : Fragment() {
         binding.rvImgfragment.adapter = adapter
     }
 
-    private fun showError() {
+    private fun showError(message: String) {
         binding.ivImgError.visibility = View.VISIBLE
         binding.ivIcError.visibility = View.VISIBLE
-//        binding.tvErrorMessage.text = getString(R.string.error_message)
+        binding.tvErrorMessage.text = getString(R.string.hay_un_problema)
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 }

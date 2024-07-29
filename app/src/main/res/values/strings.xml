@@ -50,4 +50,5 @@
     <string name="volver">Volver</string>
     <string name="comentario">Comentarios</string>
     <string name="_24_840">$ 24.840</string>
+    <string name="hay_un_problema">Hay un problema con la carga de imagenes</string>
 </resources>

@@ -6,28 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
-import com.example.finalproject.data.service.CommentsRepository
-import com.example.finalproject.data.service.dto.Utils.ID_PRODUCT
 import com.example.finalproject.databinding.FragmentDescriptionBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
-import com.example.finalproject.ui.home.viewModel.HomeViewModel
-import com.example.finalproject.ui.home.viewModel.HomeViewModelFactory
-import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
-import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModel
 import com.example.finalproject.ui.leftbar.fragments.description.viewModel.DescriptionViewModelFactory
 import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
-import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class DescriptionFragment : Fragment() {
 
@@ -41,6 +34,7 @@ class DescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflar el layout para este fragmento
         binding = FragmentDescriptionBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,26 +42,32 @@ class DescriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Observar cambios en el ID del producto en el ViewModel compartido
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
+            Log.d("DescriptionFragment", "productId observado: $id")
             if (id != -1) {
                 viewModel.fetchProductById(id)
                 observeViewModel()
             }
         }
 
+        // Observar cambios en el precio del producto en el ViewModel compartido
         sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
+            Log.d("DescriptionFragment", "productPrice observado: $price")
             binding.tvPriceProduct.text = "$${price}"
         }
 
-        navigateToFragment()
+        // Configurar la navegación entre fragmentos
+        setupNavigation()
 
+        // Configurar el botón de regreso a HomeActivity
         binding.BtnBack.setOnClickListener {
             val intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun navigateToFragment() {
+    private fun setupNavigation() {
         binding.tvImagesFragment.setOnClickListener {
             findNavController().navigate(R.id.action_descriptionFragment_to_imagesFragment)
         }
@@ -80,26 +80,28 @@ class DescriptionFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.descriptionState.observe(viewLifecycleOwner) { state ->
+        viewModel.descriptionState.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is DescriptionState.Loading -> showLoading()
                 is DescriptionState.Success -> showDescription(state.data)
-                is DescriptionState.Error -> showError()
+                is DescriptionState.Error -> showError(state.message)
             }
-        }
+        })
     }
 
     private fun showLoading() {
-        // estado de carga
+        Log.d("DescriptionFragment", "Cargando...")
+        // Manejar el estado de carga aquí
     }
 
     private fun showDescription(product: Product) {
+        Log.d("DescriptionFragment", "Descripción mostrada: $product")
         binding.tvTitleProduct.text = product.name
         binding.tvDescription.text = product.description
-        binding.tvPriceProduct.text = product.price.toString()
     }
 
-    private fun showError() {
-        // estado de error
+    private fun showError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        Log.e("DescriptionFragment", message)
     }
 }

@@ -62,8 +62,6 @@ class CommentsFragment : Fragment() {
     private fun setupNavigation() {
         binding.tvDescriptionFragment.setOnClickListener {
             findNavController().navigate(R.id.action_commentsFragment_to_descriptionFragment)
-//            fragmentManager?.beginTransaction()?.replace(R.id.nav_graph_fragment, ImagesFragment())?.commit()
-            findNavController().navigate(R.id.action_commentsFragment_to_descriptionFragment)
         }
         binding.tvFinancingFragment.setOnClickListener {
             findNavController().navigate(R.id.action_commentsFragment_to_financingFragment)
