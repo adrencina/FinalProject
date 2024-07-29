@@ -29,16 +29,6 @@ interface HomeApiService {
         @Query("size") size: Int
     ): Response<ProductResponse>
 
-    // Obtiene una lista de productos
-    @GET("/api/v1/products")
-    suspend fun getProductsSearch(
-        @Query("idProductType") idProductType: Int?,
-        @Query("productName") productName: String?,
-        @Query("onlyFavorite") onlyFavorite: Boolean?,
-        @Query("page") page: Int?,
-        @Query("size") size: Int?
-    ): Response<ProductResponse>
-
     // Crea un producto
     @POST("/api/v1/products")
     suspend fun createProduct(@Body request: NewProductRequest): Response<Product>
