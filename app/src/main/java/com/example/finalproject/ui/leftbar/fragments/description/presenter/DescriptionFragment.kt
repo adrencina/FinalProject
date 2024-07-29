@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentDescriptionBinding
 import com.example.finalproject.ui.leftbar.fragments.description.state.DescriptionState

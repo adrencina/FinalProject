@@ -18,7 +18,7 @@ import com.example.finalproject.databinding.FragmentFinancingBinding
 import com.example.finalproject.ui.leftbar.fragments.financing.adacter.FinancingAdapter
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModel
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModelFactory
-import com.example.finalproject.ui.leftbar.fragments.financing.state.FinancingState
+
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class FinancingFragment : Fragment() {
@@ -47,8 +47,7 @@ class FinancingFragment : Fragment() {
 
         navigateToFragment()
 
-        observeViewModelProducto()
-//        descriptionViewModel.fetchProductById(ID_PRODUCT ?: 0)
+//        observeViewModelProducto()
 
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
             if (id != -1) {
@@ -93,21 +92,21 @@ class FinancingFragment : Fragment() {
 
     }
 
-    private fun observeViewModelProducto() {
-        viewModel.financingState.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is FinancingState.Success -> {
-                    showDescription(state.data)
-                }
-
-                is FinancingState.Error -> {
-                }
-
-                is FinancingState.Loading -> {
-                }
-            }
-        }
-    }
+//    private fun observeViewModelProducto() {
+//        viewModel.financingState.observe(viewLifecycleOwner) { state ->
+//            when (state) {
+//                is FinancingState.Success -> {
+//                    showDescription(state.data)
+//                }
+//
+//                is FinancingState.Error -> {
+//                }
+//
+//                is FinancingState.Loading -> {
+//                }
+//            }
+//        }
+//    }
 
     private fun showDescription(product: Product) {
         binding.tvPriceProduct.text = product.price.toString()

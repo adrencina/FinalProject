@@ -23,7 +23,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
-        holder.bind(product)
+        holder.bind(product,onClickListener)
     }
 
     override fun getItemCount(): Int = products.size
@@ -44,7 +44,7 @@ class SearchAdapter(
     inner class ProductViewHolder(private val binding: ItemRvHomeSearchListBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bind(product: Product) {
+        fun bind(product: Product,onClickListener: (Product) -> Unit) {
             val price = product.price
             val currency = product.currency
             val productPrice = "${currency+price} "
@@ -70,6 +70,9 @@ class SearchAdapter(
             if(product.isFavorite==true){
                 binding.ivSearchFullHeart.visibility = View.VISIBLE
                 binding.ivSearchEmptyHeart.visibility = View.GONE
+            }
+            binding.searchButton.setOnClickListener {
+                onClickListener(product)
             }
 
 

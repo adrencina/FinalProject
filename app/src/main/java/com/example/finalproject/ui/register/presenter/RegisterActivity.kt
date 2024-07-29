@@ -20,7 +20,6 @@ import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
-import com.example.finalproject.ui.login.presenter.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

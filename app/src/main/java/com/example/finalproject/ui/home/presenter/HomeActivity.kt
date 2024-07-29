@@ -1,6 +1,5 @@
 package com.example.finalproject.ui.home.presenter
 
-import android.annotation.SuppressLint
 import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import android.content.Intent
 import android.net.Uri

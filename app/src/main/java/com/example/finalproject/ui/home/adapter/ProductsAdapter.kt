@@ -28,6 +28,7 @@ class ProductsAdapter(
 
     override fun getItemCount(): Int = products.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newProductList: List<Product>) {
         products = newProductList
         notifyDataSetChanged()
