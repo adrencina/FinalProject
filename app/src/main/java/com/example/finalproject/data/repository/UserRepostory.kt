@@ -13,7 +13,7 @@ class UserRepository(private val context: Context) {
     }
 
     // Llama a la API para el login de usuario
-    suspend fun loginUser(loginRequest: LoginRequest): Response<LoginResponse>? {
+    suspend fun loginUser(loginRequest: LoginRequest): Response<LoginResponse> {
         return authApi.loginUser(loginRequest)
     }
 }

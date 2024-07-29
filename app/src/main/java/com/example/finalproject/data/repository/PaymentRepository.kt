@@ -5,7 +5,7 @@ import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.service.PaymentApiServiceImp
 import retrofit2.Response
 
-class PaymentRepository(private val context: Context) {
+class PaymentRepository(context: Context) {
 
     private val apiService = PaymentApiServiceImp(context)
 

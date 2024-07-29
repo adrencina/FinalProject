@@ -7,7 +7,7 @@ import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.service.LeftbarApiServiceImp
 import retrofit2.Response
 
-class LeftbarRepository(private val context: Context) {
+class LeftbarRepository(context: Context) {
     private val apiServiceImp = LeftbarApiServiceImp(context)
 
     // Producto por su id
@@ -20,10 +20,6 @@ class LeftbarRepository(private val context: Context) {
         return apiServiceImp.getAllProducts()
     }
 
-    // Comentarios por id de producto
-    suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
-        return apiServiceImp.getCommentsByProductId(idProduct)
-    }
 
     // Métodos de pago
     suspend fun getPaymentMethods(): PaymentMethodsResponse {

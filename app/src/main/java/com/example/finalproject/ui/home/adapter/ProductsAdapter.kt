@@ -45,6 +45,7 @@ class ProductsAdapter(
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newProductList: List<Product>) {
         products = newProductList
         notifyDataSetChanged()

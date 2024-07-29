@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.search.presenter
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,9 +11,11 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.SearchRepository
 import com.example.finalproject.databinding.ActivitySearchBinding
+import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.example.finalproject.ui.search.adapter.SearchAdapter
 import com.example.finalproject.ui.search.viewModel.SearchViewModel
 import com.example.finalproject.ui.search.viewModel.SearchViewModelFactory
@@ -58,7 +61,15 @@ class SearchActivity : AppCompatActivity() {
 
 // Acción cuando se selecciona un ítem en la búsqueda
     private fun onItemSelected(product: Product) {
-        Toast.makeText(this, "Seleccionado: ${product.name}", Toast.LENGTH_SHORT).show()
+        recyclerNavigateToFragment(product)
+    }
+
+    private fun recyclerNavigateToFragment(product: Product){
+        val intent = Intent(this, LeftBarActivity::class.java)
+        intent.putExtra("idProduct",product.idProduct)
+        intent.putExtra("productPrice",product.price?.toInt())
+        intent.putExtra("productName",product.name)
+        startActivity(intent)
     }
 
     // Inicializar SearchView
@@ -142,6 +153,9 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
 }
 

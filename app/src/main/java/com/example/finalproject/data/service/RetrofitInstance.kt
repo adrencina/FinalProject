@@ -82,7 +82,7 @@ object RetrofitInstance {
 // Interceptor para agregar el token de autorización a las solicitudes
 class AuthInterceptor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = TokenManager.getToken(context) ?: ""
+        val token = TokenManager.getToken(context)
         val originalRequest: Request = chain.request()
         val requestWithToken: Request = originalRequest.newBuilder()
             .addHeader("Authorization", "Bearer $token")

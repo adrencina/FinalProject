@@ -8,7 +8,7 @@ import com.example.finalproject.data.dto.response.ProductTypeResponse
 import retrofit2.Response
 import com.example.finalproject.data.service.HomeApiServiceImpl
 
-class HomeRepository(private val context: Context) {
+class HomeRepository(context: Context) {
 
     private val apiService = HomeApiServiceImpl(context)
 

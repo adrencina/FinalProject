@@ -18,6 +18,7 @@ import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
 import com.example.finalproject.data.repository.ProductInfo.P
+import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -84,29 +85,29 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el ViewModel
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this, Observer { productTypes ->
+        homeViewModel.productTypes.observe(this) { productTypes ->
             productTypesAdapter.updateData(productTypes)
-        })
+        }
 
-        homeViewModel.products.observe(this, Observer { products ->
+        homeViewModel.products.observe(this) { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
             } else {
                 Log.d("HomeActivity", "No se encontraron productos")
             }
-        })
+        }
 
-        homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this) { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
-        })
+        }
 
-        homeViewModel.error.observe(this, Observer { errorMessage ->
+        homeViewModel.error.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
-        })
+        }
     }
 
     // Actualiza el producto destacado
@@ -211,6 +212,11 @@ class HomeActivity : AppCompatActivity() {
         P = product
         startActivity(intent)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        TokenManager.clearData(this)
+        }
 
     // Navega a LeftBarActivity
 //    private fun navigateToLeftBarActivity(idProduct: Int, productPrice: Double) {

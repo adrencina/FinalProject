@@ -20,6 +20,7 @@ import com.example.finalproject.data.repository.ProductInfo.P
 import com.example.finalproject.databinding.ActivitySimilarBinding
 import com.example.finalproject.databinding.FragmentImagesBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
+import com.example.finalproject.ui.buy.BuyActivity
 import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
@@ -68,6 +69,7 @@ class ImagesFragment : Fragment() {
         })
         observeViewModel()
         navigateToFragment()
+
 
 
     }

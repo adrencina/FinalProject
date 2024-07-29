@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.register.presenter
 
+import RegisterViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
@@ -13,17 +14,21 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.finalproject.R
-import com.example.finalproject.ui.register.viewmodel.RegisterViewModel
+import com.example.finalproject.ui.register.viewmodel.RegisterViewModelFactory
 import com.example.finalproject.data.service.dto.Utils.enable
 import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.data.repository.TokenManager
 import com.example.finalproject.data.service.dto.RegisterState
 import com.example.finalproject.databinding.ActivityRegisterBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
+import com.example.finalproject.data.service.RegisterApiServisImp
+import com.example.finalproject.data.repository.RegisterRepository
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val registerViewModel by viewModels<RegisterViewModel>()
+    private val registerViewModel: RegisterViewModel by viewModels {
+        RegisterViewModelFactory(RegisterRepository(RegisterApiServisImp(applicationContext)))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,6 @@ class RegisterActivity : AppCompatActivity() {
 
         setupListeners()
         observeViewModel()
-
     }
 
     private fun setupListeners() {
@@ -145,31 +149,10 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 is RegisterState.Validation -> {
-                    handleValidationState(state)
+                    binding.etEmail.error = state.emailError
+                    binding.etPassword.error = state.passwordError
+                    binding.etConfirmPassword.error = state.confirmPasswordError
                 }
-            }
-        }
-    }
-
-    private fun handleValidationState(validation: RegisterState.Validation) {
-        when {
-            validation.emailError != null -> {
-                binding.tvErrorRegister.text = validation.emailError
-                binding.tvErrorRegister.visible(true)
-            }
-
-            validation.passwordError != null -> {
-                binding.tvErrorRegister.text = validation.passwordError
-                binding.tvErrorRegister.visible(true)
-            }
-
-            validation.confirmPasswordError != null -> {
-                binding.tvErrorRegister.text = validation.confirmPasswordError
-                binding.tvErrorRegister.visible(true)
-            }
-
-            else -> {
-                binding.tvErrorRegister.visible(false)
             }
         }
     }

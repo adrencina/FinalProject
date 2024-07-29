@@ -2,8 +2,6 @@ package com.example.finalproject.ui.leftbar.fragments.description.state
 
 
 import com.example.finalproject.data.dto.response.Product
-import com.example.finalproject.data.dto.response.ProductResponse
-import com.example.finalproject.ui.leftbar.fragments.comment.state.commProductState
 
 
 sealed class DescriptionState {

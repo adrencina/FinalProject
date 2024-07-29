@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.service.CommentsRepository
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
-import com.example.finalproject.ui.leftbar.fragments.comment.state.commProductState
+import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentProductState
 
 import kotlinx.coroutines.launch
 
@@ -16,8 +16,8 @@ class CommentsViewModel(private val repository: CommentsRepository) : ViewModel(
     private val _state = MutableLiveData<CommentsState>()
     val state: LiveData<CommentsState> get() = _state
 
-    private val _product = MutableLiveData<commProductState>()
-    val product: LiveData<commProductState> get()=_product
+    private val _product = MutableLiveData<CommentProductState>()
+    val product: LiveData<CommentProductState> get()=_product
 
 
     fun fetchCommentsByProductId(idProduct: Int) {

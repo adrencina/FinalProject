@@ -13,9 +13,9 @@ import com.example.finalproject.data.service.dto.LoginState
 import com.example.finalproject.data.service.dto.Utils.visible
 import com.example.finalproject.databinding.ActivityLoginBinding
 import com.example.finalproject.ui.home.presenter.HomeActivity
-import com.example.finalproject.ui.register.presenter.RegisterActivity
 import com.example.finalproject.ui.login.viewmodel.LoginViewModel
 import com.example.finalproject.ui.login.viewmodel.LoginViewModelFactory
+import com.example.finalproject.ui.register.presenter.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 

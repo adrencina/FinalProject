@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.buy.BuyActivity">
+
+
+    <LinearLayout
+        android:id="@+id/custom_color"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/custom_color"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="@dimen/_45dp"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:contentDescription="@string/imageview"
+        android:src="@drawable/img_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/robotolight"
+        android:text="@string/en_caso_de_problemas_comunicarse_con"
+        android:textSize="@dimen/_12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="90dp"
+        android:layout_height="@dimen/_30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="@dimen/_20dp"
+        android:layout_marginBottom="150dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/robotobold"
+        android:text="@string/comprar"
+        android:textSize="12sp"
+        android:background="@drawable/custom_rectangle_shape2"/>
+
+    <ImageView
+        android:contentDescription="@string/ok"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ok"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="162dp"/>
+
+    <TextView
+
+        android:layout_width="@dimen/_209dp"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:text="@string/el_vendedor_se_comunicara_con_vos_en_breve"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="350dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
