@@ -15,22 +15,22 @@ class DescriptionViewModel(private val repository: LeftbarRepository ) : ViewMod
     val descriptionState: LiveData<DescriptionState> = _descriptionState
 
     fun fetchProductById(productId: Int) {
+        _descriptionState.value = DescriptionState.Loading
+
         viewModelScope.launch {
             try {
                 val response = repository.getProductById(productId)
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        _descriptionState.value = DescriptionState.Success(it)
+                    response.body()?.let { product ->
+                        _descriptionState.value = DescriptionState.Success(product)
                     } ?: run {
-                        _descriptionState.value = DescriptionState.Error("No data found")
+                        _descriptionState.value = DescriptionState.Error("No product found")
                     }
                 } else {
-                    _descriptionState.value = DescriptionState.Error("Server error: ${response.message()}")
+                    _descriptionState.value = DescriptionState.Error("Error fetching products")
                 }
-            } catch (e: HttpException) {
-                _descriptionState.value = DescriptionState.Error("HTTP error: ${e.message()}")
             } catch (e: Exception) {
-                _descriptionState.value = DescriptionState.Error("Unexpected error: ${e.message}")
+                _descriptionState.value = DescriptionState.Error(e.message ?: "An unknown error occurred")
             }
         }
     }

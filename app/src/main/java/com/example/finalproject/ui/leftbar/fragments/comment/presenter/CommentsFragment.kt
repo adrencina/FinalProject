@@ -19,12 +19,12 @@ import com.example.finalproject.ui.leftbar.fragments.comment.adapter.CommentsAda
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModelFactory
-import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
+import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class CommentsFragment : Fragment() {
 
     private lateinit var binding: FragmentCommentsBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedViewModel: sharedViewModel by activityViewModels()
     private val viewModel: CommentsViewModel by viewModels {
         CommentsViewModelFactory(CommentsRepository(requireContext()))
     }
@@ -46,17 +46,12 @@ class CommentsFragment : Fragment() {
             }
         }
 
-        sharedViewModel.productPrice.observe(viewLifecycleOwner) { price ->
-            binding.tvPrice.text = "$${price}"
-        }
+
 
         observeViewModel()
         setupNavigation()
 
-        binding.BtnBack.setOnClickListener {
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun setupNavigation() {
