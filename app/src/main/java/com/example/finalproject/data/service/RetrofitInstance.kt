@@ -22,14 +22,9 @@ object RetrofitInstance {
     // URL base para los endpoints de payment
     private const val BASE_URL_PAYMENT = "https://api-payments-1ztc.onrender.com/"
 
-
+    // URL base para los endpoints de comments
     private const val BASE_URL_COMMENTS = "https://api-comments-3yzc.onrender.com/"
 
-//    "https://bb2225a2-5de3-40c4-a5b4-2b31e18188a9.mock.pstmn.io"
-//    "https://api-products-fe4p.onrender.com"
-
-//    https://bb2225a2-5de3-40c4-a5b4-2b31e18188a9.mock.pstmn.io/
-//    "https://api-comments-3yzc.onrender.com/"
 
     // Cliente HTTP con interceptor para logs
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

@@ -51,7 +51,7 @@ class SearchAdapter(
             binding.tvSeachTitle.text = product.name ?: "No Data"
             binding.tvSearchSubtitle.text = product.description ?: "No description"
 
-            val imageUrl = product.image ?: ""
+            val imageUrl = product.images?.firstOrNull()?.link ?: ""
             if (imageUrl.isNotEmpty()) {
                 Log.d("ProductsAdapter", "Cargando imagen desde URL: $imageUrl")
 

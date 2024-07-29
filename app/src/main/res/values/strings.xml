@@ -44,9 +44,11 @@
     <string name="descripcion">Descripción</string>
     <string name="imagenes">Imágenes</string>
     <string name="back">Icono volver</string>
+    <string name="icon_heart">icon heart</string>
+    <string name="img_product">img_product</string>
     <string name="comprar">Comprar</string>
     <string name="volver">Volver</string>
     <string name="comentario">Comentarios</string>
     <string name="_24_840">$ 24.840</string>
-    <string name="ver">Ver</string>
+    <string name="hay_un_problema">Hay un problema con la carga de imagenes</string>
 </resources>

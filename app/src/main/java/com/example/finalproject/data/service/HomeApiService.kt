@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -55,12 +56,12 @@ interface HomeApiService {
     @GET("/api/v1/product-types")
     suspend fun getProductTypes(): Response<ProductTypeResponse>
 
+    // Obtiene el último producto visitado del usuario
     @GET("/api/v1/products/lasuserproduct")
     suspend fun getLastUserProduct(): Response<LastUserProductResponse>
-
-    //  todo esto va con el pronto consumo al endpoint de favorite
-//    @POST("/api/v1/products/{idProduct}/favorite")
-//    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<FavoritesResponse>
-
-
+//
+//    // Agrega un producto a la lista de favoritos
+//    @PUT("/api/v1/products/{idProduct}/favorite")
+//    suspend fun addFavoritesProduct(@Path("idProduct") idProduct: Int): Response<Unit>
+//
 }

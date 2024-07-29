@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityLeftBarBinding
-
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
-
+import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
 
 class LeftBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLeftBarBinding
-    private val sharedViewModel : sharedViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,31 +22,5 @@ class LeftBarActivity : AppCompatActivity() {
 
         val receivedProductId = intent.getIntExtra("idProduct", -1)
         sharedViewModel.productIdvalue(receivedProductId)
-
-
-
-
-
-//        if (savedInstanceState == null) {
-//
-//            // Instancias de los Fragments
-////            val instanceFragmentImg = ImagesFragment.newInstance(receivedProductId)
-//            val instanceFragmentComm = CommentsFragment.newInstance(receivedProductId)
-////            val instanceFragmentFin = FinancingFragment.newInstance(receivedProductId)
-////            val instanceFragmentDesc = DescriptionFragment.newInstance(receivedProductId)
-//
-//            // Esto añade los Instance Fragments al contenedor
-//            supportFragmentManager.beginTransaction()
-//                .add(R.id.nav_graph_fragment, instanceFragmentComm)
-//
-//
-//
-//                .commit()
-//        }
     }
 }
-
-
-//                    instanceFragmentFin,
-//                    instanceFragmentDesc,
-//                    instanceFragmentComm

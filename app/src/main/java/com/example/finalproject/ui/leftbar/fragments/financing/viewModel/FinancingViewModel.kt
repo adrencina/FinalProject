@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.dto.model.PaymentMethod
 import com.example.finalproject.data.repository.PaymentRepository
+import com.example.finalproject.ui.leftbar.fragments.financing.state.FinancingState
 import kotlinx.coroutines.launch
 
 class FinancingViewModel (private val repository: PaymentRepository) : ViewModel() {
@@ -19,8 +20,8 @@ class FinancingViewModel (private val repository: PaymentRepository) : ViewModel
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-//    private val _financingState = MutableLiveData<FinancingState>()
-//    val financingState: LiveData<FinancingState> = _financingState
+    private val _financingState = MutableLiveData<FinancingState>()
+    val financingState: LiveData<FinancingState> = _financingState
 
 
     fun fetchPaymentMethods() {
@@ -44,5 +45,8 @@ class FinancingViewModel (private val repository: PaymentRepository) : ViewModel
             }
         }
     }
+
+
+
 }
 

@@ -1,6 +1,5 @@
 package com.example.finalproject.ui.search.presenter
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,12 +7,12 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.SearchRepository
 import com.example.finalproject.databinding.ActivitySearchBinding
-import com.example.finalproject.ui.leftbar.presenter.LeftBarActivity
 import com.example.finalproject.ui.search.adapter.SearchAdapter
 import com.example.finalproject.ui.search.viewModel.SearchViewModel
 import com.example.finalproject.ui.search.viewModel.SearchViewModelFactory
@@ -26,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchAdapter: SearchAdapter
     private var searchLLmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     private var query = false
+    private var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,14 +58,7 @@ class SearchActivity : AppCompatActivity() {
 
 // Acción cuando se selecciona un ítem en la búsqueda
     private fun onItemSelected(product: Product) {
-        recyclerNavigateToFragment(product)
-    }
-
-    private fun recyclerNavigateToFragment(product: Product){
-        val intent = Intent(this, LeftBarActivity::class.java)
-        intent.putExtra("idProduct",product.idProduct)
-        intent.putExtra("productPrice",product.price?.toInt())
-        startActivity(intent)
+        Toast.makeText(this, "Seleccionado: ${product.name}", Toast.LENGTH_SHORT).show()
     }
 
     // Inicializar SearchView
@@ -116,7 +109,7 @@ class SearchActivity : AppCompatActivity() {
     // Observamos el VM
     private fun observeViewModel() {
 
-        searchViewModel.products.observe(this, { products ->
+        searchViewModel.products.observe(this, Observer { products ->
             if (products.isNotEmpty()) {
                 Log.i("DATA-Product",products.size.toString())
                 if(query) query=false
@@ -142,7 +135,7 @@ class SearchActivity : AppCompatActivity() {
 //            }
 //        })
 
-        searchViewModel.error.observe(this, { errorMessage ->
+        searchViewModel.error.observe(this, Observer { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("SearchActivity", "Error: $errorMessage")
         })

@@ -1,7 +1,9 @@
-package com.example.finalproject.data.service
+package com.example.finalproject.data.repository
 
 import android.content.Context
 import com.example.finalproject.data.dto.response.CommentsResponse
+import com.example.finalproject.data.service.CommentsApiService
+import com.example.finalproject.data.service.RetrofitInstance
 import retrofit2.Response
 
 class CommentsRepository(context: Context) {

@@ -11,7 +11,7 @@ import retrofit2.Response
 class LeftbarApiServiceImp(context: Context): LeftbarApiService {
 
     private val api = RetrofitInstance.getGeneralRetrofit(context).create(LeftbarApiService::class.java)
-    override suspend fun getProductById(idProduct: Int): Product {
+    override suspend fun getProductById(idProduct: Int): Response<Product> {
         return api.getProductById(idProduct)
     }
 
@@ -19,12 +19,13 @@ class LeftbarApiServiceImp(context: Context): LeftbarApiService {
         return api.getAllProducts()
     }
 
-    override suspend fun getComments(idProduct: Int): CommentsResponse {
-        return api.getComments(idProduct)
-    }
-
     override suspend fun getPaymentMethods(): PaymentMethodsResponse {
         return api.getPaymentMethods()
+    }
+
+    private val apiComments = RetrofitInstance.getCommentsRetrofit(context).create(CommentsApiService::class.java)
+    suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
+        return apiComments.getCommentsByProductId(idProduct)
     }
 
 

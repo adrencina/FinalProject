@@ -40,16 +40,4 @@ class CommentsViewModel(private val repository: CommentsRepository) : ViewModel(
             }
         }
     }
-
-    fun getProductById(idProduct: Int) {
-        viewModelScope.launch {
-            try {
-                val product = repository.getProductById(idProduct)
-                _product.value = commProductState.Success(product)
-            } catch (e: Exception) {
-                _product.value = commProductState.Error("Error al cargar el producto:${e.message}")
-            }
-            }
-
-        }
 }
