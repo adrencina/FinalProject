@@ -3,15 +3,13 @@ package com.example.finalproject.ui.leftbar.presenter
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.finalproject.R
 import com.example.finalproject.databinding.ActivityLeftBarBinding
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
-import com.example.finalproject.ui.leftbar.fragments.images.presenter.ImagesFragment
+import com.example.finalproject.ui.leftbar.viewModel.SharedViewModel
 
 class LeftBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLeftBarBinding
-    private val sharedViewModel : sharedViewModel by viewModels()
+    private val sharedViewModel : SharedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

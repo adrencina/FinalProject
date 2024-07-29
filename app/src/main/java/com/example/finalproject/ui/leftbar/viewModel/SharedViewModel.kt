@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class sharedViewModel : ViewModel() {
+class SharedViewModel : ViewModel() {
 
     private val _productPrice = MutableLiveData<String>()
     val productPrice: LiveData<String> get()=_productPrice
