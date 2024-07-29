@@ -16,6 +16,9 @@ class sharedViewModel : ViewModel() {
     private val _fragmentTittle = MutableLiveData<String>()
     val fragmentTittle: LiveData<String> get() = _fragmentTittle
 
+    private val _productName = MutableLiveData<String>()
+    val productName: LiveData<String> get() = _productName
+
 
     fun productIdvalue(new: Int) {
         _productId.value = new
@@ -26,6 +29,9 @@ class sharedViewModel : ViewModel() {
     }
 
     fun fragmentTittle(new: String) {
-        _productPrice.value = new
+        _fragmentTittle.value = new
+    }
+    fun productName(new: String) {
+        _productName.value = new
     }
 }

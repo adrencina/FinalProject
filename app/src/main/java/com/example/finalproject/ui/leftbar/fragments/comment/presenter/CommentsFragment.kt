@@ -45,7 +45,7 @@ class CommentsFragment : Fragment() {
                 viewModel.fetchCommentsByProductId(id)
             }
         }
-
+        sharedViewModel.fragmentTittle("Comentarios")
 
 
         observeViewModel()

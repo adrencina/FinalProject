@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var homeViewModel: HomeViewModel
     private var id = 0
     private var productPrice = 0
+    private var name = "name"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,6 +194,7 @@ class HomeActivity : AppCompatActivity() {
         val intent = Intent(this,LeftBarActivity::class.java)
         intent.putExtra("idProduct",product.idProduct)
         intent.putExtra("productPrice",product.price?.toInt())
+        intent.putExtra("productName",product.name)
         startActivity(intent)
     }
 
@@ -211,6 +213,7 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, LeftBarActivity::class.java)
             intent.putExtra("idProduct", id)
             intent.putExtra("productPrice", productPrice)
+            intent.putExtra("productName",name)
             startActivity(intent)
         }
     }
