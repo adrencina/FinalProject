@@ -205,11 +205,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-//    private fun initSearchViewIntent() {
-//        binding.svHome.setOnClickListener {
-//            goToSearch()
-//        }
-//    }
+
 
 
     private fun initSearchView() {
