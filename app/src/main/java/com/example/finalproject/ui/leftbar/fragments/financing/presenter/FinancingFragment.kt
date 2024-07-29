@@ -75,7 +75,7 @@ class FinancingFragment : Fragment() {
         viewModel.paymentMethods.observe(viewLifecycleOwner) { paymentMetho ->
             if (paymentMetho.isNotEmpty()) {
                 financingAdapter.updateData(paymentMetho)
-                Log.d("FragmentFinancing", "Productos mostrados$paymentMetho")
+                Log.d("FragmentFinancing", "Productos mostrados" + paymentMetho.toString())
             } else {
                 Log.d("FragmentFinancing", "No se encontraron productos")
             }
