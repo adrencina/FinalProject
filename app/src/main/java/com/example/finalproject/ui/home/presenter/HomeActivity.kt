@@ -198,6 +198,7 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("idProduct",product.idProduct)
         intent.putExtra("productPrice",product.price?.toInt())
         intent.putExtra("productName",product.name)
+
         startActivity(intent)
     }
 
