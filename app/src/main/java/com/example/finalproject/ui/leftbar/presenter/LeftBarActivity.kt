@@ -1,10 +1,12 @@
 package com.example.finalproject.ui.leftbar.presenter
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityLeftBarBinding
+import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
 class LeftBarActivity : AppCompatActivity() {
@@ -21,6 +23,7 @@ class LeftBarActivity : AppCompatActivity() {
         sharedViewModel.productPricevalue(receivedProductPrice.toString())
 
         val receivedProductId = intent.getIntExtra("idProduct", -1)
+        Log.i("asd", receivedProductId.toString())
         sharedViewModel.productIdvalue(receivedProductId)
 
         val receivedProductName = intent.getStringExtra("productName")
@@ -34,5 +37,10 @@ class LeftBarActivity : AppCompatActivity() {
         sharedViewModel.fragmentTittle.observe(this,{
             binding.fragmentTittle.text = it
         })
+
+        binding.BtnBack.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

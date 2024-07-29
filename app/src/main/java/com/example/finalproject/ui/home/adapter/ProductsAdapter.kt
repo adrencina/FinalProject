@@ -58,7 +58,6 @@ class ProductsAdapter(
             val prodPrice = "${currency+price} "
 
             binding.nameRecyclerProduct.text = product.name ?: "No Data"
-//            binding.tvRecyclerPrice.text = product.price?.toString() ?: "No Data"
             binding.tvRecyclerPrice.text = prodPrice
             val imageUrl = product.images?.firstOrNull()?.link ?: ""
             if (imageUrl.isNotEmpty()) {
@@ -70,16 +69,6 @@ class ProductsAdapter(
             } else {
                 binding.ivRecyclerProduct.setImageResource(R.drawable.imgerror) // Imagen Placeholder
             }
-
-//            binding.cvRecyclerProduct.setOnClickListener {
-//                product.idProduct?.let { id ->
-//                    product.price?.let { price ->
-//                        onProductClick(id, price)
-//                    }
-//                }
-//            }
-
-
             itemView.setOnClickListener { onProductClick(product) }
         }
     }

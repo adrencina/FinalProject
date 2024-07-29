@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.leftbar.fragments.description.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class DescriptionViewModel(private val repository: LeftbarRepository ) : ViewMod
         viewModelScope.launch {
             try {
                 val response = repository.getProductById(productId)
+                Log.i("ddd", response.body().toString())
                 if (response.isSuccessful) {
                     response.body()?.let { product ->
                         _descriptionState.value = DescriptionState.Success(product)

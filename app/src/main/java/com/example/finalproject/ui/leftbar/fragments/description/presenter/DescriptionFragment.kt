@@ -90,7 +90,6 @@ class DescriptionFragment : Fragment() {
 
     private fun showDescription(product: Product) {
         Log.d("DescriptionFragment", "Descripción mostrada: $product")
-
         binding.tvDescription.text = product.description
 
 

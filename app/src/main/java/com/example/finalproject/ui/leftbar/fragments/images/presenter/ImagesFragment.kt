@@ -2,6 +2,7 @@ package com.example.finalproject.ui.leftbar.fragments.images.presenter
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,15 +42,18 @@ class ImagesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
+            Log.i("dd",id.toString())
             if (id != -1) {
                 viewModel.fetchProductById(id)
-                observeViewModel()
+                Log.i("dd",id.toString())
             }
+            Log.i("dd",id.toString())
         }
 
         sharedViewModel.productName.observe(viewLifecycleOwner,{
             sharedViewModel.fragmentTittle(it)
         })
+        observeViewModel()
         navigateToFragment()
 
 
