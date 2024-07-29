@@ -19,9 +19,11 @@ class LeftBarActivity : AppCompatActivity() {
         val receivedProductPrice = intent.getIntExtra("productPrice", -1)
         sharedViewModel.productPricevalue(receivedProductPrice.toString())
 
-
         val receivedProductId = intent.getIntExtra("idProduct", -1)
         sharedViewModel.productIdvalue(receivedProductId)
+
+        val receivedProductName = intent.getStringExtra("productName")
+        sharedViewModel.productName(receivedProductName.toString())
 
         sharedViewModel.productPrice.observe(this,{
             binding.tvPrice.text = it.toString()

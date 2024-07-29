@@ -49,7 +49,6 @@ class ImagesFragment : Fragment() {
         }
 
 
-
         navigateToFragment()
 
 
