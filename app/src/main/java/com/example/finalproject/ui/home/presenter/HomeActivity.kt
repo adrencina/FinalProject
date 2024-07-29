@@ -84,29 +84,29 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el ViewModel
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this, Observer { productTypes ->
+        homeViewModel.productTypes.observe(this) { productTypes ->
             productTypesAdapter.updateData(productTypes)
-        })
+        }
 
-        homeViewModel.products.observe(this, Observer { products ->
+        homeViewModel.products.observe(this) { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
             } else {
                 Log.d("HomeActivity", "No se encontraron productos")
             }
-        })
+        }
 
-        homeViewModel.dailyOffer.observe(this, Observer { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this) { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
-        })
+        }
 
-        homeViewModel.error.observe(this, Observer { errorMessage ->
+        homeViewModel.error.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
-        })
+        }
     }
 
     // Actualiza el producto destacado

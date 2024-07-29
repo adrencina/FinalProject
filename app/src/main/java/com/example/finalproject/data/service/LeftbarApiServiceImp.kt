@@ -1,7 +1,6 @@
 package com.example.finalproject.data.service
 
 import android.content.Context
-import com.example.finalproject.data.dto.response.CommentsResponse
 import com.example.finalproject.data.dto.response.PaymentMethodsResponse
 import com.example.finalproject.data.dto.response.Product
 
@@ -23,10 +22,6 @@ class LeftbarApiServiceImp(context: Context): LeftbarApiService {
         return api.getPaymentMethods()
     }
 
-    private val apiComments = RetrofitInstance.getCommentsRetrofit(context).create(CommentsApiService::class.java)
-    suspend fun getCommentsByProductId(idProduct: Int): Response<CommentsResponse> {
-        return apiComments.getCommentsByProductId(idProduct)
-    }
 
 
 }

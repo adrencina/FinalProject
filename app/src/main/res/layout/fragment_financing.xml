@@ -10,9 +10,9 @@
 
     <LinearLayout
         android:id="@+id/ll_left_bar"
-        android:layout_width="53dp"
-        android:layout_height="0dp"
-        android:background="#7353BA"
+        android:layout_width="@dimen/_53dp"
+        android:layout_height="@dimen/_0dp"
+        android:background="@color/_7353ba"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,84 +20,83 @@
 
         <TextView
             android:id="@+id/tv_images_Fragment"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/_100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/_120dp"
+            android:layout_marginBottom="@dimen/_16dp"
             android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
+            android:padding="@dimen/_0dp"
             android:rotation="-90"
             android:text="@string/imagenes"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <TextView
             android:id="@+id/tv_description_Fragment"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/_100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/_120dp"
+            android:layout_marginBottom="@dimen/_16dp"
             android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
+            android:padding="@dimen/_0dp"
             android:rotation="-90"
             android:text="@string/descripcion"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <TextView
             android:id="@+id/tv_financing_Fragment"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/_100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="@dimen/_120dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
+            android:padding="@dimen/_0dp"
             android:rotation="-90"
             android:text="@string/financiacion"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <TextView
             android:id="@+id/tv_comments_Fragment"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/_100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="@dimen/_120dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/robotoregular"
-            android:padding="0dp"
+            android:padding="@dimen/_0dp"
             android:rotation="-90"
             android:text="@string/comentarios"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
     </LinearLayout>
 
     <View
         android:id="@+id/iv_circle_indicator"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="35sp"
-        android:layout_marginTop="440dp"
+        android:layout_width="@dimen/_25dp"
+        android:layout_height="@dimen/_25dp"
+        android:layout_marginStart="@dimen/_35dp"
+        android:layout_marginTop="@dimen/_440dp"
         android:background="@drawable/circle_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFinancingItems"
-            android:layout_width="307dp"
+            android:layout_width="@dimen/_307dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="150dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="@dimen/_120dp"
+            android:layout_marginBottom="@dimen/_150dp"
+            android:layout_marginStart="@dimen/_70dp"
+            android:layout_marginEnd="@dimen/_20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.109"
             tools:listitem="@layout/item_rv_fg_financing_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

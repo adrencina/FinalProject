@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="45dp"
-        android:layout_height="42dp"
+        android:layout_width="@dimen/_45dp"
+        android:layout_height="@dimen/_48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="@dimen/_10dp"
         android:contentDescription="@string/imageview"
@@ -55,6 +55,7 @@
         android:background="@drawable/custom_rectangle_shape2"/>
 
     <ImageView
+        android:contentDescription="@string/ok"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ok"
@@ -63,10 +64,13 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="162dp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <TextView
+
+        android:layout_width="@dimen/_209dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/buytext"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:text="@string/el_vendedor_se_comunicara_con_vos_en_breve"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

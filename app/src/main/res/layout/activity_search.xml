@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/custom_color"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/_250dp"
         android:background="@drawable/custom_color"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,9 +18,9 @@
         app:layout_constraintTop_toTopOf="parent" />
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="45dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="@dimen/_45dp"
+            android:layout_height="@dimen/_42dp"
+            android:layout_marginStart="@dimen/_20dp"
             android:layout_marginTop="@dimen/_10dp"
             android:contentDescription="@string/imageview"
             android:src="@drawable/img_icon"
@@ -29,11 +29,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_searchview"
-            android:layout_width="250dp"
-            android:layout_height="25dp"
+            android:layout_width="@dimen/_250dp"
+            android:layout_height="@dimen/_25dp"
             android:layout_marginStart="@dimen/_20dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp"
+            android:layout_marginTop="@dimen/_20dp"
+            app:cardCornerRadius="@dimen/_20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -47,35 +47,35 @@
 
         <ImageView
             android:id="@+id/icon_heart_4"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="@dimen/_20dp"
+            android:layout_height="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_20dp"
             android:contentDescription="@string/imageview"
             android:src="@drawable/ic_heart_4"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginTop="20dp" />
+            app:layout_goneMarginTop="@dimen/_20dp" />
 
         <ImageView
             android:id="@+id/icon_heart_3"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="@dimen/_20dp"
+            android:layout_height="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_20dp"
             android:contentDescription="@string/imageview"
             android:src="@drawable/ic_heart_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginTop="20dp" />
+            app:layout_goneMarginTop="@dimen/_20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sr_reacyclerView"
-        android:layout_width="380dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="120dp"
+        android:layout_width="@dimen/_380dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginTop="@dimen/_65dp"
+        android:layout_marginBottom="@dimen/_120dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,13 +84,12 @@
 
     <ImageView
         android:id="@+id/not_search_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_marginTop="@dimen/_216dp"
         android:src="@drawable/lupa_no_contenido"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars"
@@ -98,13 +97,12 @@
 
     <ImageView
         android:id="@+id/not_search_text"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/no_contenido"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/not_search_icon"
         tools:ignore="ContentDescription"
@@ -115,8 +113,8 @@
         android:id="@+id/comunication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="78dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/_78dp"
+        android:layout_marginBottom="@dimen/_20dp"
         android:fontFamily="@font/robotolight"
         android:text="@string/en_caso_de_problemas_comunicate_con"
         android:textSize="@dimen/_12sp"
@@ -126,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/_20dp"
         android:fontFamily="@font/robotolight"
         android:text="@string/soport"
         android:textSize="@dimen/_12sp"

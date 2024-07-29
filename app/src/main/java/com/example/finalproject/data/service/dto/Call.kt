@@ -7,11 +7,3 @@ data class LoginApiError(
     val message: String
 )
 
-data class LoginResponses(
-    @SerializedName("message")
-    val message: List<String>?,
-    @SerializedName("status")
-    val status: String,
-    @SerializedName("error")
-    val error: LoginApiError? = null
-)

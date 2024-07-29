@@ -1,6 +1,6 @@
 package com.example.finalproject.ui.leftbar.fragments.comment.presenter
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ import com.example.finalproject.R
 import com.example.finalproject.data.dto.model.Comment
 import com.example.finalproject.data.service.CommentsRepository
 import com.example.finalproject.databinding.FragmentCommentsBinding
-import com.example.finalproject.ui.home.presenter.HomeActivity
+
 import com.example.finalproject.ui.leftbar.fragments.comment.adapter.CommentsAdapter
 import com.example.finalproject.ui.leftbar.fragments.comment.state.CommentsState
 import com.example.finalproject.ui.leftbar.fragments.comment.viewModel.CommentsViewModel
