@@ -6,25 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
-import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.PaymentRepository
 import com.example.finalproject.databinding.FragmentFinancingBinding
 import com.example.finalproject.ui.leftbar.fragments.financing.adacter.FinancingAdapter
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModel
 import com.example.finalproject.ui.leftbar.fragments.financing.viewModel.FinancingViewModelFactory
 
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
-
 class FinancingFragment : Fragment() {
     private lateinit var binding: FragmentFinancingBinding
     private val financingAdapter = FinancingAdapter(emptyList())
-    private val sharedViewModel : sharedViewModel by  activityViewModels()
     private val viewModel : FinancingViewModel by viewModels{
         FinancingViewModelFactory(PaymentRepository(requireContext()))
     }
