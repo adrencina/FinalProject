@@ -2,7 +2,6 @@ package com.example.finalproject.ui.leftbar.fragments.comment.presenter
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -72,9 +71,9 @@ class CommentsFragment : Fragment() {
         sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
             if (id != -1) {
                 viewModel.fetchCommentsByProductId(id)
-                sharedViewModel.productPrice.observe(viewLifecycleOwner,{ price ->
-                    binding.tvPrice.text = "$${price} en dolarucos"
-                })
+//                sharedViewModel.productPrice.observe(viewLifecycleOwner,{ price ->
+//                    binding.tvPrice.text = "$${price} en dolarucos"
+//                })
 
             }
         }
