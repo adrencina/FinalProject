@@ -17,17 +17,14 @@ import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.data.repository.ProductInfo.P
-import com.example.finalproject.databinding.ActivitySimilarBinding
 import com.example.finalproject.databinding.FragmentImagesBinding
-import com.example.finalproject.ui.home.presenter.HomeActivity
-import com.example.finalproject.ui.buy.BuyActivity
 import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModelFactory
 import com.example.finalproject.ui.leftbar.viewModel.SharedFragViewModel
-import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 import com.example.finalproject.ui.similar.presenter.SimilarActivity
+
 
 class ImagesFragment : Fragment() {
 
@@ -65,9 +62,9 @@ class ImagesFragment : Fragment() {
             startActivity(intent)
         }
 
-        sharedViewModel.productName.observe(viewLifecycleOwner,{
+        sharedViewModel.productName.observe(viewLifecycleOwner) {
             sharedViewModel.fragmentTittle(it)
-        })
+        }
         observeViewModel()
         navigateToFragment()
 
