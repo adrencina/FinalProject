@@ -29,22 +29,25 @@ class CommentsFragment : Fragment() {
         CommentsViewModelFactory(CommentsRepository(requireContext()))
     }
 
-    companion object{
-        private const val ARG_PRODUCT_ID = "product_id"
+
+
+//    companion object{
+//        private const val ARG_PRODUCT_ID = "product_id"
+//
+//
+//
+//        fun newInstance(productId : Int) : CommentsFragment{
+//            val instanceFragmentComm = CommentsFragment()
+//            val args = Bundle()
+//            args.putInt(ARG_PRODUCT_ID, productId)
+//            instanceFragmentComm.arguments = args
+//
+//            return  instanceFragmentComm
+//        }
+//
 
 
 
-        fun newInstance(productId : Int) : CommentsFragment{
-            val instanceFragmentComm = CommentsFragment()
-            val args = Bundle()
-            args.putInt(ARG_PRODUCT_ID, productId)
-            instanceFragmentComm.arguments = args
-
-            return  instanceFragmentComm
-        }
-
-
-    }
 
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,18 +68,31 @@ class CommentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productId = arguments?.getInt(ARG_PRODUCT_ID, -1) ?: -1
-        if (productId != -1) {
-            viewModel.fetchCommentsByProductId(productId)
+        sharedViewModel.productId.observe(viewLifecycleOwner) { id ->
+            if (id != -1) {
+                viewModel.fetchCommentsByProductId(id)
+                sharedViewModel.productPrice.observe(viewLifecycleOwner,{ price ->
+                    binding.tvPrice.text = "$${price}"
+                })
 
+            }
         }
 
-        if (productId != -1) {
-            sharedViewModel.product.observe(viewLifecycleOwner,{
-                binding.tvPrice.text = "$${it}"
-            })
-            viewModel.getProductById(productId)
-        }
+
+//        val productId = arguments?.getInt(ARG_PRODUCT_ID, -1) ?: -1
+
+
+//        if (productId != -1) {
+//            viewModel.fetchCommentsByProductId(productId)
+//
+//        }
+//
+//        if (productId != -1) {
+//            sharedViewModel.product.observe(viewLifecycleOwner,{
+//                binding.tvPrice.text = "$${it}"
+//            })
+//            viewModel.getProductById(productId)
+//        }
 
 
 

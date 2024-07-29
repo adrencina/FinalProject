@@ -11,7 +11,7 @@ import com.example.finalproject.ui.leftbar.fragments.images.presenter.ImagesFrag
 class LeftBarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLeftBarBinding
-    private val sharedViewModel: sharedViewModel by viewModels()
+    private val sharedViewModel : sharedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,23 +19,32 @@ class LeftBarActivity : AppCompatActivity() {
         binding = ActivityLeftBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val receivedProductPrice = intent.getIntExtra("productPrice", -1)
-        sharedViewModel.productvalue(receivedProductPrice.toString())
+        sharedViewModel.productPricevalue(receivedProductPrice.toString())
+
 
         val receivedProductId = intent.getIntExtra("idProduct", -1)
+        sharedViewModel.productIdvalue(receivedProductId)
 
-        if (savedInstanceState == null) {
 
-            // Instancias de los Fragments
-            val instanceFragmentImg = ImagesFragment.newInstance(receivedProductId)
+
+
+
+//        if (savedInstanceState == null) {
+//
+//            // Instancias de los Fragments
+////            val instanceFragmentImg = ImagesFragment.newInstance(receivedProductId)
 //            val instanceFragmentComm = CommentsFragment.newInstance(receivedProductId)
-//            val instanceFragmentFin = FinancingFragment.newInstance(receivedProductId)
-//            val instanceFragmentDesc = DescriptionFragment.newInstance(receivedProductId)
-
-            // Esto añade los Instance Fragments al contenedor
-            supportFragmentManager.beginTransaction()
-                .add(R.id.nav_graph_fragment, instanceFragmentImg)
-                .commit()
-        }
+////            val instanceFragmentFin = FinancingFragment.newInstance(receivedProductId)
+////            val instanceFragmentDesc = DescriptionFragment.newInstance(receivedProductId)
+//
+//            // Esto añade los Instance Fragments al contenedor
+//            supportFragmentManager.beginTransaction()
+//                .add(R.id.nav_graph_fragment, instanceFragmentComm)
+//
+//
+//
+//                .commit()
+//        }
     }
 }
 
