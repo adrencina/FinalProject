@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-       <!-- Cuerpo del fragment -->
+    <!-- Cuerpo del fragment -->
 
 
 
