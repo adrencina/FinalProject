@@ -63,7 +63,6 @@ class FinancingFragment : Fragment() {
 
     private fun setupNavigation() {
         binding.tvImagesFragment.setOnClickListener {
-
             findNavController().navigate(R.id.action_financingFragment_to_imagesFragment)
         }
         binding.tvCommentsFragment.setOnClickListener {
