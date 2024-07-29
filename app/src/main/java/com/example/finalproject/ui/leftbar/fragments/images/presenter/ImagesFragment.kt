@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.leftbar.fragments.images.presenter
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.repository.LeftbarRepository
 import com.example.finalproject.databinding.FragmentImagesBinding
+import com.example.finalproject.ui.buy.BuyActivity
 import com.example.finalproject.ui.leftbar.fragments.images.adapter.ImagesAdapter
 import com.example.finalproject.ui.leftbar.fragments.images.state.ImagesState
 import com.example.finalproject.ui.leftbar.fragments.images.viewModel.ImagesViewModel
@@ -55,6 +57,7 @@ class ImagesFragment : Fragment() {
         })
         observeViewModel()
         navigateToFragment()
+
 
 
     }

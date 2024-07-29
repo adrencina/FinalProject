@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject.databinding.ActivityLeftBarBinding
+import com.example.finalproject.ui.buy.BuyActivity
 import com.example.finalproject.ui.home.presenter.HomeActivity
 import com.example.finalproject.ui.leftbar.viewModel.sharedViewModel
 
@@ -40,6 +41,11 @@ class LeftBarActivity : AppCompatActivity() {
 
         binding.BtnBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnBuy.setOnClickListener {
+            val intent = Intent(this, BuyActivity::class.java)
             startActivity(intent)
         }
     }
