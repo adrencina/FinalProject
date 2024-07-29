@@ -63,7 +63,7 @@ class SearchAdapter(
                 binding.ivSearchPhoto.setImageResource(R.drawable.imgerror) // Imagen Placeholder
             }
 
-            binding.tvSearchPrice.text = product.price?.toString() ?: "No Data"
+            binding.tvSearchPrice.text = "${product.currency}${product.price}"
 
             if(product.isFavorite==true){
                 binding.ivSearchFullHeart.visibility = View.VISIBLE

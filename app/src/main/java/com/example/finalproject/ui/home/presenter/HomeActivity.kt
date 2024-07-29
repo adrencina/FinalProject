@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.home.presenter
 
+import android.annotation.SuppressLint
 import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import android.content.Intent
 import android.net.Uri
@@ -85,25 +86,25 @@ class HomeActivity : AppCompatActivity() {
 
     // Observamos el VM
     private fun observeViewModel() {
-        homeViewModel.productTypes.observe(this,  { productTypes ->
+        homeViewModel.productTypes.observe(this) { productTypes ->
             productTypesAdapter.updateData(productTypes)
-        })
+        }
 
-        homeViewModel.products.observe(this, { products ->
+        homeViewModel.products.observe(this) { products ->
             if (products.isNotEmpty()) {
                 productsAdapter.updateData(products)
                 Log.d("HomeActivity", "Productos mostrados: ${products.size}")
             } else {
                 Log.d("HomeActivity", "No se encontraron productos")
             }
-        })
+        }
 
-        homeViewModel.dailyOffer.observe(this, { dailyOffer ->
+        homeViewModel.dailyOffer.observe(this) { dailyOffer ->
             dailyOffer?.let { product ->
                 Log.d("HomeActivity", "Recibido producto diario: $product")
                 updateFeaturedProduct(product)
             }
-        })
+        }
 
 //        homeViewModel.lastVisitedProduct.observe(this, Observer { lastVisitedProduct ->
 //            lastVisitedProduct?.let { product ->
@@ -111,10 +112,10 @@ class HomeActivity : AppCompatActivity() {
 //            }
 //        })
 
-        homeViewModel.error.observe(this, { errorMessage ->
+        homeViewModel.error.observe(this) { errorMessage ->
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             Log.e("HomeActivity", "Error: $errorMessage")
-        })
+        }
 
         //todo observador de consumo a favorite terminar cuando consumo este ok
 //        homeViewModel.homeState.observe(this) { favorite ->
@@ -130,12 +131,13 @@ class HomeActivity : AppCompatActivity() {
 //        }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateFeaturedProduct(product: DailyOfferResponse) {
         Log.d("HomeActivity", "Actualizando producto destacado: $product")
 
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
-        binding.tvHomePriceProduct.text = product.price?.toString() ?: "Sin precio"
+        binding.tvHomePriceProduct.text = "${product.currency}${product.price}"
 
         Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
         binding.titleDailyOffer.visible(true)
@@ -230,9 +232,6 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (!newText.isNullOrEmpty()) {
-                    goToSearch(newText)
-                }
                 return true
             }
         })

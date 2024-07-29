@@ -54,9 +54,10 @@ class ProductsAdapter(
 
     inner class ProductViewHolder(private val binding: ItemRvHomeProductsBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(product: Product, onClickListener: (Product) -> Unit) {
             binding.nameRecyclerProduct.text = product.name ?: "No Data"
-            binding.tvRecyclerPrice.text = product.price?.toString() ?: "No Data"
+            binding.tvRecyclerPrice.text = "${product.currency}${product.price}"
 
             val imageUrl = product.image ?: ""
             if (imageUrl.isNotEmpty()) {
