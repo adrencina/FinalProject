@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
 import com.example.finalproject.data.dto.response.Product
-import com.example.finalproject.data.dto.response.ProductType
-import com.example.finalproject.databinding.ItemRvHomeProductsBinding
 import com.example.finalproject.databinding.ItemRvHomeSearchListBinding
-import com.example.finalproject.ui.home.adapter.ProductsAdapter
 import com.squareup.picasso.Picasso
 
 class SearchAdapter(
@@ -31,6 +28,7 @@ class SearchAdapter(
 
     override fun getItemCount(): Int = products.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun update(newProductList: List<Product>) {
         products = newProductList
         notifyDataSetChanged()
@@ -45,7 +43,11 @@ class SearchAdapter(
 
     inner class ProductViewHolder(private val binding: ItemRvHomeSearchListBinding) : RecyclerView.ViewHolder(binding.root) {
 
+
         fun bind(product: Product) {
+            val price = product.price
+            val currency = product.currency
+            val productPrice = "${currency+price} "
             binding.tvSeachTitle.text = product.name ?: "No Data"
             binding.tvSearchSubtitle.text = product.description ?: "No description"
 
@@ -63,7 +65,7 @@ class SearchAdapter(
                 binding.ivSearchPhoto.setImageResource(R.drawable.imgerror) // Imagen Placeholder
             }
 
-            binding.tvSearchPrice.text = "${product.currency}${product.price}"
+            binding.tvSearchPrice.text = productPrice
 
             if(product.isFavorite==true){
                 binding.ivSearchFullHeart.visibility = View.VISIBLE

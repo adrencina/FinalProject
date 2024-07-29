@@ -6,11 +6,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalproject.R
@@ -19,7 +17,6 @@ import com.example.finalproject.data.dto.response.DailyOfferResponse
 import com.example.finalproject.data.dto.response.Product
 import com.example.finalproject.data.dto.response.ProductType
 import com.example.finalproject.data.repository.HomeRepository
-
 import com.example.finalproject.databinding.ActivityHomeBinding
 import com.example.finalproject.ui.home.viewModel.HomeViewModel
 import com.example.finalproject.ui.home.adapter.ProductTypesAdapter
@@ -131,13 +128,16 @@ class HomeActivity : AppCompatActivity() {
 //        }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun updateFeaturedProduct(product: DailyOfferResponse) {
-        Log.d("HomeActivity", "Actualizando producto destacado: $product")
 
+    private fun updateFeaturedProduct(product: DailyOfferResponse) {
+        val price = product.price
+        val currency = product.currency
+        val prodPrice = "${currency+price} "
+
+        Log.d("HomeActivity", "Actualizando producto destacado: $product")
         binding.tvHomeNameProduct.text = product.name ?: "Producto no disponible"
         binding.tvHomeDescriptionProduct.text = product.description ?: "Sin descripción"
-        binding.tvHomePriceProduct.text = "${product.currency}${product.price}"
+        binding.tvHomePriceProduct.text = prodPrice
 
         Log.d("HomeActivity", "Configurando visibilidad de titleDailyOffer a VISIBLE")
         binding.titleDailyOffer.visible(true)
